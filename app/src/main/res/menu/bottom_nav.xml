@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/healthSummaryFragment"
-        android:title="Summary"
+        android:title="@string/health_summary"
         android:icon="@drawable/ic_healthsummary"/>
     <item
         android:id="@+id/SearchFragment"
-        android:title="Search"
+        android:title="@string/search"
         android:icon="@drawable/ic_search"/>
     <item
         android:id="@+id/DiagnosisFragment"
-        android:title="Diagnosis"
+        android:title="@string/diagnosis"
         android:icon="@drawable/ic_diagnosis"/>
     <item
         android:id="@+id/ProfileFragment"
-        android:title="Account"
+        android:title="@string/profile"
         android:icon="@drawable/ic_profile"/>
 
 

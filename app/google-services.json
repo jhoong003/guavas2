@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "706559048578",
+    "firebase_url": "https://guavas2.firebaseio.com",
+    "project_id": "guavas2",
+    "storage_bucket": "guavas2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706559048578:android:b029b44eaa6b33125b2d9b",
+        "android_client_info": {
+          "package_name": "com.example.guavas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706559048578-fmlrb82dbvmd7bdbb882kf352l65tfhb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.guavas",
+            "certificate_hash": "6dde6510719ba69e679f50b927b403a53c296590"
+          }
+        },
+        {
+          "client_id": "706559048578-6lvhe07fltv30forqftcuepa2ni3eg45.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-otaMTR2JffPscamd2mBeXxYAbqq9c9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706559048578-6lvhe07fltv30forqftcuepa2ni3eg45.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
