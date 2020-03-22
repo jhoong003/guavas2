@@ -35,8 +35,26 @@
     <string name="verification_code">Verification Code</string>
     <string name="confirm">Confirm</string>
 
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_hospital">Hospital</string>
     <string name="search_disease">Disease</string>
+
+
+    <!-- Profile -->
+    <string name="btnEditProfile">Edit Profile</string>
+    <string name="button_save">Save</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="profile_firstname">First Name</string>
+    <string name="profile_lastname">Last Name</string>
+    <string name="profile_gender">Gender</string>
+    <string name="profile_dob">Date of Birth</string>
+    <string name="profile_dobDD">DD</string>
+    <string name="profile_dobMM">MM</string>
+    <string name="profile_dobYYYY">YYYY</string>
+    <string name="profile_height">Height (cm)</string>
+    <string name="profile_weight">Weight (kg)</string>
+    <string name="profile_email">Email</string>
+
 </resources>
