@@ -15,8 +15,8 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         Button registerBtn = findViewById(R.id.start_sign_up_btn);
-        Button loginBtn = findViewById(R.id.start_sign_in_btn);
-        Button forgetBtn = findViewById(R.id.forgetpassword);
+        //Button loginBtn = findViewById(R.id.start_sign_in_btn);
+        //Button forgetBtn = findViewById(R.id.forgetpassword);
 
         registerBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -26,7 +26,7 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        loginBtn.setOnClickListener(new View.OnClickListener(){
+        /*loginBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent login_intent = new Intent(StartActivity.this, LoginActivity.class);
@@ -40,6 +40,6 @@ public class StartActivity extends AppCompatActivity {
                 Intent forget_intent = new Intent(StartActivity.this, ForgetActivity.class);
                 startActivity(forget_intent);
             }
-        });
+        });*/
     }
 }

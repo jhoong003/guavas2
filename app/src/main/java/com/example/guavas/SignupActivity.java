@@ -43,9 +43,7 @@ public class SignupActivity extends AppCompatActivity {
     int RC_SIGN_IN = 0;
     GoogleSignInClient mGoogleSignInClient;
     //final ProgressBar loadingProgressBar = findViewById(R.id.loading);
-    GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +54,16 @@ public class SignupActivity extends AppCompatActivity {
 
         Phone = findViewById(R.id.phone);
         TextInputEditText countryCode = findViewById(R.id.CountryCode);
-        Password = findViewById(R.id.password);
-        Button registerBtn = findViewById(R.id.signup_btn);
+        //Password = findViewById(R.id.password);
+        Button registerBtn = findViewById(R.id.signup_btn); //phone signin
 
-        signInButton = findViewById(R.id.login_btn2);
+        signInButton = findViewById(R.id.login_btn2); //google signin
 
         RegisterProgress = new ProgressDialog(this);
 
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +98,18 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // [START on_start_sign_in]
+        // Check for existing Google Sign In account, if the user is already signed in
+        // the GoogleSignInAccount will be non-null.
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        // [END on_start_sign_in]
+    }
+
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
