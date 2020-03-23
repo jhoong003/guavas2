@@ -1,9 +1,60 @@
 <resources>
-    <string name="app_name">Guavas</string>
+    <string name="app_name">Meds</string>
+
+    <!-- login page and sign up page -->
+    <string name="phone">"Phone Number"</string>
+    <string name="password">Password</string>
+    <string name="sign_up"> "Sign Up"</string>
+    <string name="sign_in"> "Sign In"</string>
+    <string name="registering"> "Transferring to verification page"</string>
+    <string name="country_code"> "+65"</string>
+
+    <!-- profile page -->
+    <string name="sign_out"> "Sign Out"</string>
+
+    <!--navigation bar-->
+    <string name="health_summary">Health Summary</string>
+    <string name="diagnosis">Diagnosis</string>
+    <string name="profile">Profile</string>
+    <string name="search">Search</string>
+
+    <!--start page-->
+    <string name="welcome">"Welcome !"</string>
+    <string name="activity_signup">"Don't have and account? Sign up"</string>
+    <string name="activity_signin">"Sign in"</string>
+    <string name="forget_password">"Forget password"</string>
+    <string name="content_description">"App Icon"</string>
+
+    <!--verification page-->
+    <string name="verification_failed">"Verification failed"</string>
+    <string name="signin_failed">"Sign in failed"</string>
+    <string name="register_failed">"Sign up failed"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >8 characters</string>
+    <string name="verification">"Verification"</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="confirm">Confirm</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="search">Search</string>
     <string name="search_hospital">Hospital</string>
     <string name="search_disease">Disease</string>
+
+
+    <!-- Profile -->
+    <string name="btnEditProfile">Edit Profile</string>
+    <string name="button_save">Save</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="profile_firstname">First Name</string>
+    <string name="profile_lastname">Last Name</string>
+    <string name="profile_gender">Gender</string>
+    <string name="profile_dob">Date of Birth</string>
+    <string name="profile_dobDD">DD</string>
+    <string name="profile_dobMM">MM</string>
+    <string name="profile_dobYYYY">YYYY</string>
+    <string name="profile_height">Height (cm)</string>
+    <string name="profile_weight">Weight (kg)</string>
+    <string name="profile_email">Email</string>
+
 </resources>
