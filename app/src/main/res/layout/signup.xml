@@ -29,11 +29,9 @@
         android:id="@+id/container1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="200dp"
         android:layout_marginBottom="15dp"
-        android:orientation="horizontal"
-        android:layout_alignLeft="@id/password"
-        android:layout_alignStart="@id/password">
+        android:orientation="horizontal">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/CountryCode"
             android:layout_width="40dp"
@@ -54,7 +52,7 @@
         </com.google.android.material.textfield.TextInputEditText>
     </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <!--<com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,7 +70,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/password"
             android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>-->
 
 
     <LinearLayout
@@ -90,7 +88,7 @@
             android:layout_marginEnd="48dp"
             android:layout_marginTop="300dp"
             android:layout_marginBottom="64dp"
-            android:text="@string/sign_up" />
+            android:text="@string/sign_in" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/login_btn2"

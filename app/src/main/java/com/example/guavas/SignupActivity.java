@@ -78,11 +78,11 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String phone = Objects.requireNonNull(Objects.requireNonNull(Phone).getText()).toString();
                 //String username = Objects.requireNonNull(Username.getEditText()).getText().toString();
-                String password = Objects.requireNonNull(Password.getEditText()).getText().toString();
+                //String password = Objects.requireNonNull(Password.getEditText()).getText().toString();
                 String countryCode = "+65";
 
                 if (TextUtils.isEmpty(phone)) Phone.setError("Phone cannot be empty");
-                else if (TextUtils.isEmpty(password)) Password.setError("Password cannot be empty");
+                //else if (TextUtils.isEmpty(password)) Password.setError("Password cannot be empty");
                 else if (!isPhoneValid(phone)) Phone.setError("Phone is invalid");
                 else {
                     RegisterProgress.setTitle(R.string.registering);
