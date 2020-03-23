@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -28,9 +27,12 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.Objects;
 
+/**
+ * This activity controls the sign in feautrue.
+ * It displays data retrieve from the
+ */
 
-
-public class SignupActivity extends AppCompatActivity {
+public class SigninActivity extends AppCompatActivity {
 
     private DatabaseReference databaseRef;
     private TextInputEditText Phone;
@@ -48,7 +50,7 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup);
+        setContentView(R.layout.activity_signin);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
@@ -90,7 +92,7 @@ public class SignupActivity extends AppCompatActivity {
                     RegisterProgress.show();
                     //registerNewUser(phone, password);//username, password);
                     phone = countryCode + phone;
-                    Intent ver_Intent = new Intent(SignupActivity.this, VerificationActivity.class);
+                    Intent ver_Intent = new Intent(SigninActivity.this, VerificationActivity.class);
                     ver_Intent.putExtra("phoneNumber", phone);
                     startActivity(ver_Intent);
                 }
@@ -137,12 +139,12 @@ public class SignupActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             // Signed in successfully, show authenticated UI.
-            startActivity(new Intent(SignupActivity.this, ProfileActivity.class));
+            startActivity(new Intent(SigninActivity.this, ProfileActivity.class));
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // refer to the GoogleSignInStatusCodes class reference for more info.
             Log.w("Google Sign In Error", "signInResult:failed code=" + e.getStatusCode());
-            Toast.makeText(SignupActivity.this, "Failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(SigninActivity.this, "Failed", Toast.LENGTH_LONG).show();
         }
     }
 }
