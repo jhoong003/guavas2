@@ -7,7 +7,7 @@
 
     <activity
         android:id="@+id/sighupActivity"
-        android:name="com.example.guavas.SignupActivity"
-        android:label="activity_signup"
-        tools:layout="@layout/signup" />
+        android:name="com.example.guavas.SigninActivity"
+        android:label="activity_signin"
+        tools:layout="@layout/activity_signin" />
 </navigation>

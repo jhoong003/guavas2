@@ -52,6 +52,10 @@ public class MainActivity<SectionPagerAdapter> extends AppCompatActivity {
         setContentView(R.layout.main_activity);
         bottomNavigation = findViewById(R.id.bottom_Nav);
 
+        if (!isNetworkConnected()) {
+            Toast.makeText(this, "No Internet connection!", Toast.LENGTH_SHORT).show();
+        }
+
         // Authentication
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
