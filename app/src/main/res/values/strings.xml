@@ -57,4 +57,36 @@
     <string name="profile_weight">Weight (kg)</string>
     <string name="profile_email">Email</string>
 
+    <!--Health Summary Menu-->
+    <string-array name="option_health_summary">
+        <item>Allergies</item>
+        <item>Body-Mass Index</item>
+        <item>Inherited Sicknesses</item>
+        <item>Vitals</item>
+    </string-array>
+    <!--Vitals Menu-->
+    <string-array name="option_vitals">
+        <item>Blood Glucose</item>
+        <item>Blood Pressure</item>
+        <item>Heart Rate</item>
+        <item>Pulse Rate</item>
+    </string-array>
+
+    <string name="text_all_data">All Recorded Data</string>
+    <string name="text_date">Date</string>
+    <string name="text_time">Time</string>
+    <string name="text_measurement">Measurement</string>
+
+    <string name="button_show_all">Show All</string>
+
+    <string name="hint_measurement">Your measurement...</string>
+
+    <string name="text_dialog_datetime">Date and Time</string>
+    <string name="text_dialog_measurement">Measurement</string>
+    <string name="text_dialog_title">Your Record</string>
+
+    <string name="comment_normal">Great! Your measurement is under the normal condition.</string>
+    <string name="comment_abnormal">Uh oh! It seems that you are not in the normal range.\n
+        Try to maintain between %d and %d.</string>
+
 </resources>

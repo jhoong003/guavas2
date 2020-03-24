@@ -168,7 +168,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void toHealthSummaryActivity () {
-        Intent startIntent = new Intent(ProfileActivity.this, HealthSummaryActivity.class);
+        Intent startIntent = new Intent(ProfileActivity.this, NavigationActivity.class);
         startActivity(startIntent);
         finish();
     }
