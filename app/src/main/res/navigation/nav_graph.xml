@@ -42,29 +42,11 @@
         tools:layout="@layout/fragment_verification" >
         <action
             android:id="@+id/action_verification_to_healthSummary"
-            app:destination="@id/healthSummary" />
-    </fragment>
-    <fragment
-        android:id="@+id/healthSummary"
-        android:name="com.example.guavas.healthSummary"
-        android:label="fragment_health_summary"
-        tools:layout="@layout/fragment_health_summary" >
-        <action
-            android:id="@+id/action_healthSummary_to_familyilliness"
-            app:destination="@id/familyilliness" />
-        <action
-            android:id="@+id/action_healthSummary_to_vitals"
-            app:destination="@id/vitals" />
-        <action
-            android:id="@+id/action_healthSummary_to_BMI"
-            app:destination="@id/BMI" />
-        <action
-            android:id="@+id/action_healthSummary_to_allergies"
-            app:destination="@id/allergies" />
+            app:destination="@id/search" />
     </fragment>
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.guavas.profile"
+        android:name="com.example.guavas.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -100,42 +82,6 @@
         <action
             android:id="@+id/action_search_to_disease"
             app:destination="@id/disease" />
-    </fragment>
-    <fragment
-        android:id="@+id/allergies"
-        android:name="com.example.guavas.allergies"
-        android:label="fragment_allergies"
-        tools:layout="@layout/fragment_allergies" >
-        <action
-            android:id="@+id/action_allergies_to_healthSummary"
-            app:destination="@id/healthSummary" />
-    </fragment>
-    <fragment
-        android:id="@+id/BMI"
-        android:name="com.example.guavas.BMI"
-        android:label="fragment_b_m_i"
-        tools:layout="@layout/fragment_b_m_i" >
-        <action
-            android:id="@+id/action_BMI_to_healthSummary"
-            app:destination="@id/healthSummary" />
-    </fragment>
-    <fragment
-        android:id="@+id/familyilliness"
-        android:name="com.example.guavas.familyilliness"
-        android:label="fragment_familyilliness"
-        tools:layout="@layout/fragment_familyilliness" >
-        <action
-            android:id="@+id/action_familyilliness_to_healthSummary"
-            app:destination="@id/healthSummary" />
-    </fragment>
-    <fragment
-        android:id="@+id/vitals"
-        android:name="com.example.guavas.vitals"
-        android:label="fragment_vitals"
-        tools:layout="@layout/fragment_vitals" >
-        <action
-            android:id="@+id/action_vitals_to_healthSummary"
-            app:destination="@id/healthSummary" />
     </fragment>
     <fragment
         android:id="@+id/hospital_info"
