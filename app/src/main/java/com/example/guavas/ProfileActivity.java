@@ -46,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
     TextView mobileNumber;
     int google=0;
     GoogleSignInClient mGoogleSignInClient;
+    Button view_support;
 
     TextView lblFirstname, lblLastname, lblAge, lblHeight, lblWeight;
     DatabaseReference reff;
@@ -79,6 +80,17 @@ public class ProfileActivity extends AppCompatActivity {
                 i.putExtras(bundle);
                 //Fire that second activity
                 startActivity(i);
+            }
+        });
+
+        //to support activity
+        Button view_support = findViewById(R.id.viewsupport);
+        view_support.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, SupportActivity.class);
+                intent.putExtra("phoneNumber", phoneNumber);
+                startActivity(intent);
             }
         });
 
