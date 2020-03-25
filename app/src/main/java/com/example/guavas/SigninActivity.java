@@ -56,7 +56,6 @@ public class SigninActivity extends AppCompatActivity {
 
         Phone = findViewById(R.id.phone);
         TextInputEditText countryCode = findViewById(R.id.CountryCode);
-        //Password = findViewById(R.id.password);
         Button registerBtn = findViewById(R.id.signup_btn); //phone signin
 
         signInButton = findViewById(R.id.login_btn2); //google signin
@@ -70,7 +69,7 @@ public class SigninActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signIn();
+                signIn();//change to control class: someclass.signin()
             }
         });
 
@@ -79,22 +78,18 @@ public class SigninActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String phone = Objects.requireNonNull(Objects.requireNonNull(Phone).getText()).toString();
-                //String username = Objects.requireNonNull(Username.getEditText()).getText().toString();
-                //String password = Objects.requireNonNull(Password.getEditText()).getText().toString();
                 String countryCode = "+65";
 
                 if (TextUtils.isEmpty(phone)) Phone.setError("Phone cannot be empty");
-                //else if (TextUtils.isEmpty(password)) Password.setError("Password cannot be empty");
                 else if (!isPhoneValid(phone)) Phone.setError("Phone is invalid");
                 else {
                     RegisterProgress.setTitle(R.string.registering);
                     RegisterProgress.setCanceledOnTouchOutside(false);
                     RegisterProgress.show();
-                    //registerNewUser(phone, password);//username, password);
                     phone = countryCode + phone;
                     Intent ver_Intent = new Intent(SigninActivity.this, VerificationActivity.class);
                     ver_Intent.putExtra("phoneNumber", phone);
-                    startActivity(ver_Intent);
+                    startActivity(ver_Intent);//change to control class: someclass.verification(ver_Intent)
                 }
 
             }
