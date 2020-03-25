@@ -174,7 +174,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void toDiagnosisActivity () {
-        Intent startIntent = new Intent(ProfileActivity.this, DiagnosisActivity.class);
+        Intent startIntent = new Intent(ProfileActivity.this, DiagnoseMain.class);
         startActivity(startIntent);
         finish();
     }

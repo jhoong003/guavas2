@@ -1,4 +1,4 @@
 package com.example.guavas;
 
-class DiagnosisActivity {
+public class DiseaseActivity {
 }
