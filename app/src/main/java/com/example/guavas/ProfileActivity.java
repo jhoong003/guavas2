@@ -18,6 +18,7 @@ import com.example.guavas.Entity.UserProfile;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -86,30 +87,41 @@ public class ProfileActivity extends AppCompatActivity {
         //SIGN OUT
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account != null) google = 1;
-        findViewById(R.id.signout_btn).setOnClickListener(new View.OnClickListener() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+
+        findViewById(R.id.signout_btn).setOnClickListener(new View.OnClickListener() {
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             FirebaseUser currentUser = mAuth.getCurrentUser();
-
             @Override
             public void onClick(View v) {
                 if(currentUser != null){
                     FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(ProfileActivity.this, StartActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 }
                 else if(google == 1){
                     signOut();
+                    Intent intent = new Intent(ProfileActivity.this, StartActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 }
 
-                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+
             }
         });
     }
 
     private void signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+        /*if(mGoogleSignInClient == null){
+            Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);}*/
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                     }
@@ -156,7 +168,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void toHealthSummaryActivity () {
-        Intent startIntent = new Intent(ProfileActivity.this, HealthSummaryActivity.class);
+        Intent startIntent = new Intent(ProfileActivity.this, NavigationActivity.class);
         startActivity(startIntent);
         finish();
     }

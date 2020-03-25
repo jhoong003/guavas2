@@ -52,6 +52,10 @@ public class MainActivity<SectionPagerAdapter> extends AppCompatActivity {
         setContentView(R.layout.main_activity);
         bottomNavigation = findViewById(R.id.bottom_Nav);
 
+        if (!isNetworkConnected()) {
+            Toast.makeText(this, "No Internet connection!", Toast.LENGTH_SHORT).show();
+        }
+
         // Authentication
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -60,7 +64,7 @@ public class MainActivity<SectionPagerAdapter> extends AppCompatActivity {
             toStartActivity();
         }
         else{
-            toProfileActivity();
+            toNavigationActivity();
         }
     }
 
@@ -79,8 +83,8 @@ public class MainActivity<SectionPagerAdapter> extends AppCompatActivity {
         finish();
     }
 
-    private void toProfileActivity(){
-        Intent startIntent = new Intent(MainActivity.this, ProfileActivity.class);
+    private void toNavigationActivity(){
+        Intent startIntent = new Intent(MainActivity.this, NavigationActivity.class);
         startActivity(startIntent);
         finish();
     }
