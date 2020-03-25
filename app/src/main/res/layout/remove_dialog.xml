@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/text_dialog_title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingHorizontal="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:text="@string/text_dialog_datetime"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center|start"
+            android:paddingStart="8dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/text_dialog_datetime"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center|start"
+            android:paddingStart="8dp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:text="@string/text_dialog_measurement"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center|start"
+            android:paddingStart="8dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/text_dialog_measurement"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center|start"
+            android:paddingStart="8dp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_comment"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"/>
+
+</LinearLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.guavas.login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_signUp"
+            app:destination="@id/signUp" />
+        <action
+            android:id="@+id/action_login_to_forgetPassword"
+            app:destination="@id/forgetPassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp"
+        android:name="com.example.guavas.signUp"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUp_to_verification"
+            app:destination="@id/verification" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgetPassword"
+        android:name="com.example.guavas.forgetPassword"
+        android:label="fragment_forget_password"
+        tools:layout="@layout/fragment_forget_password" >
+        <action
+            android:id="@+id/action_forgetPassword_to_verification"
+            app:destination="@id/verification" />
+    </fragment>
+    <fragment
+        android:id="@+id/verification"
+        android:name="com.example.guavas.verification"
+        android:label="fragment_verification"
+        tools:layout="@layout/fragment_verification" >
+        <action
+            android:id="@+id/action_verification_to_healthSummary"
+            app:destination="@id/search" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.guavas.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_to_changePassword"
+            app:destination="@id/changePassword" />
+        <action
+            android:id="@+id/action_profile_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/action_profile_to_feedback"
+            app:destination="@id/feedback" />
+    </fragment>
+    <fragment
+        android:id="@+id/diagnosis"
+        android:name="com.example.guavas.diagnosis"
+        android:label="fragment_diagnosis"
+        tools:layout="@layout/fragment_diagnosis" >
+        <action
+            android:id="@+id/action_diagnosis_to_commonDiagnosis"
+            app:destination="@id/commonDiagnosis" />
+        <action
+            android:id="@+id/action_diagnosis_to_chronicDiagnosis"
+            app:destination="@id/chronicDiagnosis" />
+    </fragment>
+    <fragment
+        android:id="@+id/search"
+        android:name="com.example.guavas.search"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_search_to_hospital"
+            app:destination="@id/hospital" />
+        <action
+            android:id="@+id/action_search_to_disease"
+            app:destination="@id/disease" />
+    </fragment>
+    <fragment
+        android:id="@+id/hospital_info"
+        android:name="com.example.guavas.hospital_info"
+        android:label="fragment_hospital_info"
+        tools:layout="@layout/fragment_hospital_info" >
+        <action
+            android:id="@+id/action_hospital_info_to_hospital"
+            app:destination="@id/hospital" />
+    </fragment>
+    <fragment
+        android:id="@+id/disease"
+        android:name="com.example.guavas.disease"
+        android:label="fragment_disease"
+        tools:layout="@layout/fragment_disease" >
+        <action
+            android:id="@+id/action_disease_to_disease_info"
+            app:destination="@id/disease_info" />
+        <action
+            android:id="@+id/action_disease_to_search"
+            app:destination="@id/search" />
+    </fragment>
+    <fragment
+        android:id="@+id/hospital"
+        android:name="com.example.guavas.hospital"
+        android:label="fragment_hospital"
+        tools:layout="@layout/fragment_hospital" >
+        <action
+            android:id="@+id/action_hospital_to_hospital_info"
+            app:destination="@id/hospital_info" />
+        <action
+            android:id="@+id/action_hospital_to_search"
+            app:destination="@id/search" />
+    </fragment>
+    <fragment
+        android:id="@+id/disease_info"
+        android:name="com.example.guavas.disease_info"
+        android:label="fragment_disease_info"
+        tools:layout="@layout/fragment_disease_info" >
+        <action
+            android:id="@+id/action_disease_info_to_disease"
+            app:destination="@id/disease" />
+    </fragment>
+    <fragment
+        android:id="@+id/chronicDiagnosis"
+        android:name="com.example.guavas.chronicDiagnosis"
+        android:label="fragment_chronic_diagnosis"
+        tools:layout="@layout/fragment_chronic_diagnosis" />
+    <fragment
+        android:id="@+id/commonDiagnosis"
+        android:name="com.example.guavas.commonDiagnosis"
+        android:label="fragment_common_diagnosis"
+        tools:layout="@layout/fragment_common_diagnosis" />
+    <fragment
+        android:id="@+id/changePassword"
+        android:name="com.example.guavas.changePassword"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/feedback"
+        android:name="com.example.guavas.feedback"
+        android:label="fragment_feedback"
+        tools:layout="@layout/fragment_feedback" />
+</navigation>
