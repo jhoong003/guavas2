@@ -20,10 +20,15 @@
 
     <!--start page-->
     <string name="welcome">"Welcome !"</string>
-    <string name="activity_signup">"Don't have and account? Sign up"</string>
     <string name="activity_signin">"Sign in"</string>
-    <string name="forget_password">"Forget password"</string>
     <string name="content_description">"App Icon"</string>
+
+    <!--support page-->
+    <string name="support">"Support"</string>
+    <string name="view_support">"View Support"</string>
+    <string name="submit">"Submit Rating"</string>
+    <string name="rating">"How would you rate our app?"</string>
+    <string name="FAQ">"Need help? Check out our FAQ!"</string>
 
     <!--verification page-->
     <string name="verification_failed">"Verification failed"</string>

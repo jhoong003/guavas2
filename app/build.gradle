@@ -4,7 +4,10 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
-
+    aaptOptions {
+        noCompress "tflite";
+        noCompress "lite";
+    }
     defaultConfig {
         applicationId "com.example.guavas"
         minSdkVersion 19
@@ -67,5 +70,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.2.1'
     //Chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    //Tensorflow
+    implementation 'org.tensorflow:tensorflow-lite:+'
 
 }
