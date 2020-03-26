@@ -16,11 +16,10 @@
             android:layout_width="130dp"
             android:layout_height="100dp"
             android:layout_gravity = "center_vertical|center_horizontal"
-            android:text="Chronic Disease Diagnosis"
+            android:text="@string/button_chronic_diagnosis"
             android:background="@color/colorPrimary"
             android:textColor="@android:color/white"/>
     </FrameLayout>
-
 
     <FrameLayout
         android:layout_width="0dp"
@@ -31,10 +30,9 @@
             android:layout_width="130dp"
             android:layout_height="100dp"
             android:layout_gravity = "center_vertical|center_horizontal"
-            android:text="Common Disease Diagnosis"
+            android:text="@string/button_common_diagnosis"
             android:background="@color/colorPrimary"
             android:textColor="@android:color/white"/>
     </FrameLayout>
-
 
 </LinearLayout>

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.guavas.fragment.DiagnoseMainFragment;
 import com.example.guavas.fragment.HealthSummaryFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -44,7 +45,8 @@ public class NavigationActivity extends AppCompatActivity{
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.navigation_diagnosis:
-                        //Inject your diagnosis fragment here
+                        DiagnoseMainFragment diagnoseMainFragment = new DiagnoseMainFragment();
+                        showFragment(diagnoseMainFragment);
                         return true;
                     case R.id.navigation_health_summary:
                         HealthSummaryFragment healthSummaryFragment = new HealthSummaryFragment();
