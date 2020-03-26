@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 public class DiagnoseMain extends AppCompatActivity {
     @Override
@@ -21,7 +22,6 @@ public class DiagnoseMain extends AppCompatActivity {
         Button chronicButton = findViewById(R.id.chronic);
         commonButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                System.out.println("Button Clicked");
                 Intent intent = new Intent(DiagnoseMain.this,Diagnose_common.class);
 
                 startActivity(intent);

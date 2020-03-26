@@ -1,6 +1,6 @@
 package com.example.guavas;
 
-public class ItemList {
+public class ItemList implements Comparable<ItemList>{
     private String text1;
     private String text2;
 
@@ -15,4 +15,8 @@ public class ItemList {
         return text2;
     }
 
+    @Override
+    public int compareTo(ItemList o) {
+        return text1.compareTo(o.getText1());
+    }
 }

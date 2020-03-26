@@ -17,8 +17,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> im
     private ArrayList<ItemList> Item ;
     private ArrayList<ItemList> ItemFull ;
 
-
-
     private OnItemClickListener listener;
     //Constructor
     public ItemAdapter(ArrayList<ItemList> items){
@@ -26,15 +24,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> im
         ItemFull = new ArrayList<ItemList>(items);
     }
 
-
-
     //Onclick costumize
     public interface OnItemClickListener{
         void OnItemClick(int position, View v);
     }
+
     public void setOnItemClickListener(OnItemClickListener listener){
         this.listener = listener;
     }
+
     public static class ItemHolder extends RecyclerView.ViewHolder{
         public TextView Text1;
 
@@ -59,8 +57,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> im
 
     }
 
-
-
     //Bawaan
     @NonNull
     @Override
@@ -75,8 +71,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> im
         ItemList inputItem = Item.get(position);
         holder.Text1.setText(inputItem.getText1());
         holder.Text2.setText(inputItem.getText2());
-
-
     }
 
     @Override
@@ -112,7 +106,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> im
             results.values = filteredList;
 
             return results;
-
 
         }
 

@@ -93,5 +93,10 @@
     <string name="comment_normal">Great! Your measurement is under the normal condition.</string>
     <string name="comment_abnormal">Uh oh! It seems that you are not in the normal range.\n
         Try to maintain between %d and %d.</string>
+    <string name="action_settings">action_settings_strings</string>
+    <string name="search_title">Search</string>
+    <string name="button_chronic_diagnosis">Chronic Disease Diagnosis</string>
+    <string name="button_common_diagnosis">Common Disease Diagnosis</string>
+    <string name="button_submit">SUBMIT</string>
 
 </resources>
