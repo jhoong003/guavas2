@@ -77,6 +77,13 @@
         <item>Pulse Rate</item>
     </string-array>
 
+    <!--BMI Menu-->
+    <string-array name="option_bmi">
+        <item>Body-Mass Index</item>
+        <item>Height</item>
+        <item>Weight</item>
+    </string-array>
+
     <string name="text_all_data">All Recorded Data</string>
     <string name="text_date">Date</string>
     <string name="text_time">Time</string>
@@ -98,5 +105,7 @@
     <string name="button_chronic_diagnosis">Chronic Disease Diagnosis</string>
     <string name="button_common_diagnosis">Common Disease Diagnosis</string>
     <string name="button_submit">SUBMIT</string>
+    <string name="text_weight">Weight</string>
+    <string name="text_height">Height</string>
 
 </resources>

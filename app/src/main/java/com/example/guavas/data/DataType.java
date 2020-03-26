@@ -4,10 +4,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class DataType implements Parcelable {
+
     private String dataTypeName;
     private String measurementUnit;
     private float minNormal;
     private float maxNormal;
+    private boolean compound = false;
+    private int numOfCompound;
+    private DataType[] compounds;
 
     public DataType(String name, String unit, float min, float max){
         dataTypeName = name;
@@ -16,11 +20,24 @@ public class DataType implements Parcelable {
         maxNormal = max;
     }
 
+    public DataType(String name, String unit, float min, float max, boolean compound, int compoundCount, DataType[]compounds){
+        dataTypeName = name;
+        measurementUnit = unit;
+        minNormal = min;
+        maxNormal = max;
+        this.compound = compound;
+        numOfCompound = compoundCount;
+        this.compounds = compounds;
+    }
+
     protected DataType(Parcel in) {
         dataTypeName = in.readString();
         measurementUnit = in.readString();
         minNormal = in.readFloat();
         maxNormal = in.readFloat();
+        compound = in.readInt() == 1;
+        numOfCompound = in.readInt();
+        compounds = in.createTypedArray(DataType.CREATOR);
     }
 
     public static final Creator<DataType> CREATOR = new Creator<DataType>() {
@@ -39,32 +56,28 @@ public class DataType implements Parcelable {
         return dataTypeName;
     }
 
-    public void setDataTypeName(String dataTypeName) {
-        this.dataTypeName = dataTypeName;
-    }
-
     public String getMeasurementUnit() {
         return measurementUnit;
-    }
-
-    public void setMeasurementUnit(String measurementUnit) {
-        this.measurementUnit = measurementUnit;
     }
 
     public float getMinNormal() {
         return minNormal;
     }
 
-    public void setMinNormal(float minNormal) {
-        this.minNormal = minNormal;
-    }
-
     public float getMaxNormal() {
         return maxNormal;
     }
 
-    public void setMaxNormal(float maxNormal) {
-        this.maxNormal = maxNormal;
+    public boolean isCompound() {
+        return compound;
+    }
+
+    public int getNumOfCompound() {
+        return numOfCompound;
+    }
+
+    public DataType getCompoundAtIndex(int index) {
+        return compounds[index];
     }
 
     @Override
@@ -78,5 +91,8 @@ public class DataType implements Parcelable {
         dest.writeString(measurementUnit);
         dest.writeFloat(minNormal);
         dest.writeFloat(maxNormal);
+        dest.writeInt(compound ? 1 : 0);
+        dest.writeInt(numOfCompound);
+        dest.writeTypedArray(compounds, 0);
     }
 }

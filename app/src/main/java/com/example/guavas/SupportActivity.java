@@ -15,6 +15,8 @@ import com.example.guavas.FirebaseDAO.MedsDAO;
 import com.example.guavas.FirebaseDAO.RatingDAO;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -50,6 +52,7 @@ public class SupportActivity extends AppCompatActivity {
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
         expandableListDetail = FAQDataManager.getFAQData();
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
+        Collections.sort(expandableListTitle);
         expandableListAdapter = new ExpandableList(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
 

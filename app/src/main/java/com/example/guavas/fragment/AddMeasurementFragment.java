@@ -14,6 +14,7 @@ import android.widget.TimePicker;
 
 import com.example.guavas.R;
 import com.example.guavas.data.DataType;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -52,14 +53,6 @@ public class AddMeasurementFragment extends Fragment {
         return fragment;
     }
 
-    public EditText getMeasurementEditText() {
-        return measurementEditText;
-    }
-
-    public Calendar getCalendar() {
-        return calendar;
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +67,7 @@ public class AddMeasurementFragment extends Fragment {
         parent =  inflater.inflate(R.layout.fragment_add_measurement, container, false);
         setupTitle();
         setupCloseButton();
+        setupFloatingButton();
         setupForm();
         loadPreviousState(savedInstanceState);
         return parent;
@@ -102,6 +96,18 @@ public class AddMeasurementFragment extends Fragment {
         });
     }
 
+    private void setupFloatingButton(){
+        FloatingActionButton floatingActionButton = parent.findViewById(R.id.fab_add_measurement);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClickDone(v,
+                        Double.parseDouble(measurementEditText.getText().toString()),
+                        calendar.getTimeInMillis());
+            }
+        });
+    }
+
     private void setupForm(){
         fillDefaultValue();
         setupDatePicker();
@@ -112,6 +118,9 @@ public class AddMeasurementFragment extends Fragment {
 
     private void fillDefaultValue(){
         calendar = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
         dateText = (TextView)parent.findViewById(R.id.text_date);
         timeText = (TextView)parent.findViewById(R.id.text_time);
         dateFormatter = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
@@ -190,7 +199,7 @@ public class AddMeasurementFragment extends Fragment {
     }
 
     public interface Listener {
-        public void onClickDone(View view);
+        public void onClickDone(View view, double measurement, long timeInMillis);
         public void onClickClose();
     }
 }
