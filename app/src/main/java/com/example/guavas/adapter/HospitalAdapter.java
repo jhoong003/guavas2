@@ -5,15 +5,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.guavas.R;
 import com.example.guavas.hospital;
-
 import java.util.ArrayList;
-
 public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.HospitalViewHolder> /*implements Filterable*/ {
 
 
@@ -77,62 +73,17 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
         hospital currentItem=hospitalList.get(position);
         holder.imgURL.setImageResource(currentItem.getImgURL());
         holder.hospitalName.setText(currentItem.getName());
-
-
     }
 
     @Override
     public int getItemCount() {
-
         // Return the number of items in the hospitalList
         return hospitalList.size();
     }
 
     public void updateList (ArrayList<hospital> newHospitalList){
-        hospitalList.clear();
+        hospitalList =new ArrayList<hospital>() ;
         hospitalList.addAll(newHospitalList);
         notifyDataSetChanged();
     }
-   /* @Override
-    public Filter getFilter() {
-        return hospitalFilter;
-    }
-
-    private Filter hospitalFilter = new Filter(){
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            // list contain the filtered items
-            List<hospitalCard> filteredList = new ArrayList<>();
-
-            if (constraint == null || constraint.length() == 0){
-                filteredList.addAll(hospitalListDup);
-            }
-            else{
-                // turn the constraint to lowercase
-                String filterPattern = constraint.toString().toLowerCase().trim();
-                for (hospitalCard item : hospitalListDup){
-                    // Compare the hospital title with the constraint
-                    // if true, add the item to the filterList
-                    if(item.getTitle().toLowerCase().contains(filterPattern)){
-                        filteredList.add(item);
-                    }
-                }
-            }
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            // Clear all the items in the original list of hospitals
-            hospitalList = new ArrayList<>();
-            // Add the new list of hospitals obtained from FilterResults() to the hospitalList
-            hospitalList.addAll((List)results.values);
-            // Notify the adapter that the list has changed
-            notifyDataSetChanged();
-
-        }
-    };*/
 }

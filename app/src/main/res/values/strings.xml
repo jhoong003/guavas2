@@ -98,5 +98,10 @@
     <string name="button_chronic_diagnosis">Chronic Disease Diagnosis</string>
     <string name="button_common_diagnosis">Common Disease Diagnosis</string>
     <string name="button_submit">SUBMIT</string>
+=======
+    <string name="disease_description">Description</string>
+    <string name="disease_prevention">Prevention</string>
+
+>>>>>>> Stashed changes
 
 </resources>

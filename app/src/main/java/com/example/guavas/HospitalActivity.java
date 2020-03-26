@@ -1,33 +1,23 @@
 package com.example.guavas;
 
-import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import androidx.appcompat.widget.SearchView;
-
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.guavas.adapter.HospitalAdapter;
 import com.example.guavas.fragment.HospitalInfoActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -35,7 +25,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 public class HospitalActivity extends AppCompatActivity implements HospitalAdapter.OnItemClickListener, View.OnClickListener, SearchView.OnQueryTextListener{
@@ -54,17 +43,11 @@ public class HospitalActivity extends AppCompatActivity implements HospitalAdapt
     private HospitalAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     ArrayList<hospital> hospitalsList = new ArrayList<>();
-    private DatabaseReference mDatabase;
-    private Context helperContext;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_hospital);
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -134,10 +117,7 @@ public class HospitalActivity extends AppCompatActivity implements HospitalAdapt
         final Resources resources = getApplicationContext().getResources();
         InputStream inputStream = resources.openRawResource(R.raw.hosp);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        //Map<String, hospital> hospitals = new HashMap<>();
         String line = null;
-        int id = 1;
         while (true){
             try {
                 if (!((line = reader.readLine())!=null)) {
@@ -154,9 +134,7 @@ public class HospitalActivity extends AppCompatActivity implements HospitalAdapt
                 System.out.println(a.trim());
             }
             hospitalsList.add(new hospital(string[0].trim(), string[1].trim(), string[2].trim(), string[3].trim(), R.drawable.ic_hospital));
-
         }
-
         mAdapter.notifyDataSetChanged();
     }
     //Set Up the recycler view

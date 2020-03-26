@@ -7,13 +7,10 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!-- TODO: Update blank fragment layout -->
+<!-- TODO: Update blank fragment layout -->
 
     <include layout="@layout/toolbar"/>
     <androidx.recyclerview.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -22,6 +19,7 @@
         android:scrollbars="vertical"
         tools:listitem="@layout/hospital_card_view">
     </androidx.recyclerview.widget.RecyclerView>
+
 
 
 

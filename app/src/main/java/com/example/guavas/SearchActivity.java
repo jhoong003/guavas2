@@ -22,8 +22,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search);
 
-        //Instantiate the navigation controller which is referencing view
-        //navController = Navigation.findNavController(view);
         GridLayout gridView = findViewById(R.id.grid_layout);
         CardView hospitalButton = findViewById(R.id.hospitalBut);
         CardView diseaseButton = findViewById(R.id.diseaseBut);

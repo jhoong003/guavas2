@@ -8,8 +8,7 @@
     app:contentInsetEnd="0dp"
     app:contentInsetRight="0dp"
     android:background="@color/colorAccent"
-    android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
-    app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
+    android:theme= "@style/Theme.AppCompat.DayNight.DarkActionBar"
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
