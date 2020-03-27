@@ -17,7 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".NavigationActivity"/>
-            
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,8 +45,7 @@
         <activity android:name=".DiseaseInfoActivity"/>
         <activity android:name=".VerificationActivity" />
         <activity android:name=".ProfileEditActivity" />
-<!--<<<<<<< HEAD
-<<<<<<< HEAD-->
+
         <activity android:name=".diabetesfactor" />
         <activity android:name=".diabetesResult" />
         <activity android:name=".Diagnose_chronic" />
@@ -66,6 +64,8 @@
         </activity>
         <activity android:name=".SupportActivity" />
         <activity android:name=".ShowAllActivity"/>
+        
+
     </application>
 
 </manifest>
