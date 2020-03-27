@@ -16,7 +16,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.guavas.adapter.HospitalAdapter;
-import com.example.guavas.fragment.HospitalInfoActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -25,6 +24,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class HospitalActivity extends AppCompatActivity implements HospitalAdapter.OnItemClickListener, View.OnClickListener, SearchView.OnQueryTextListener{
@@ -53,7 +53,7 @@ public class HospitalActivity extends AppCompatActivity implements HospitalAdapt
         setSupportActionBar(toolbar);
         TextView textView = (TextView)toolbar.findViewById(R.id.toolbarTitle);
         textView.setText("Hospital");
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(true);
 
         setUpRecyclerView();
         try {
@@ -91,21 +91,20 @@ public class HospitalActivity extends AppCompatActivity implements HospitalAdapt
 
 
                     switch (menuItem.getItemId()) {
-                        case R.id.ProfileFragment:
+                        case R.id.navigation_profile:
                             Intent i1 = new Intent(HospitalActivity.this, ProfileActivity.class);
                             startActivity(i1);
                             break;
-                        case R.id.SearchFragment:
+                        case R.id.navigation_search:
                             break;
-                        case R.id.DiagnosisFragment:
+                        case R.id.navigation_diagnosis:
                             Intent i2 = new Intent(HospitalActivity.this, DiagnoseMain.class);
                             startActivity(i2);
                             break;
-                        case R.id.healthSummaryFragment:
+                        case R.id.navigation_health_summary:
                             Intent i4 = new Intent(HospitalActivity.this, MainActivity.class);
                             startActivity(i4);
                             break;
-
                     }
                     return true;
                 }
@@ -127,6 +126,7 @@ public class HospitalActivity extends AppCompatActivity implements HospitalAdapt
                 System.out.println("No data");
                 e.printStackTrace();
             }
+            assert line != null;
             line = line.trim();
             System.out.println(line);
             String[] string = line.split("\\|");

@@ -56,6 +56,8 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        BottomNavigationView bottomNav=findViewById(R.id.bottom_navigation_menu);
+        bottomNav.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
         // get saved phone number
         SharedPreferences prefs =  getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
