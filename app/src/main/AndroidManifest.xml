@@ -28,18 +28,19 @@
         <activity android:name=".SigninActivity" />
         <activity android:name=".SearchActivity"/>
         <activity android:name=".DiseaseActivity">
-            <!--<meta-data
+           <!-- <meta-data
                 android:name="android.app.searchable" />
             <intent-filter>
                 <category android:name="android.intent.action.SEARCH" />
-            </intent-filter>-->
+            </intent-filter> -->
         </activity>
         <activity android:name=".HospitalActivity">
-            <!--<meta-data
+            <!--
+            <meta-data
                 android:name="android.app.searchable"/>
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
-            </intent-filter>-->
+            </intent-filter> -->
         </activity>
         <activity android:name=".HospitalInfoActivity"/>
         <activity android:name=".DiseaseInfoActivity"/>

@@ -8,11 +8,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -52,8 +54,28 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
+public class ProfileFragment extends Fragment implements View.OnClickListener {
+
+    private String phoneNumber;
+    private int google=0;
+    private GoogleSignInClient mGoogleSignInClient;
+
+    private View parent;
+    private TextView lblFirstname, lblLastname, lblAge, lblHeight, lblWeight;
+    private TextView mobileNumber;
+    private DatabaseReference reff;
+
+    public ProfileFragment() {
+
+    }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
+        phoneNumber = preferences.getString("phoneNumber", null);
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         parent = inflater.inflate(R.layout.fragment_profile, container,false);
@@ -103,8 +125,7 @@ public class ProfileFragment extends Fragment {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-
-
+        
         parent.findViewById(R.id.signout_btn).setOnClickListener(new View.OnClickListener() {
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -122,8 +143,6 @@ public class ProfileFragment extends Fragment {
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
-
-
             }
         });
 
@@ -140,6 +159,22 @@ public class ProfileFragment extends Fragment {
             public void onComplete(@NonNull Task<Void> task) {
             }
         });
+    }
+
+    private void setupButtons(){
+        Button btnEditProfile = parent.findViewById(R.id.btnEditProfile);
+        btnEditProfile.setOnClickListener(this);
+        Button btnSignOut = parent.findViewById(R.id.signout_btn);
+        btnSignOut.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.signout_btn){
+            onClickSignOut();
+        }else if (v.getId() == R.id.btnEditProfile){
+            Toast.makeText(getContext(), "Go to edit profile", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void displayProfile(){
@@ -221,7 +256,49 @@ public class ProfileFragment extends Fragment {
                 }
             }
             public void onCancelled(@NotNull DatabaseError databaseError){
+                Log.e("ProfileFragment", databaseError.getDetails());
+            }
+        });
+    }
 
+    private void onClickSignOut(){
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
+        if(account != null) google = 1;
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(getContext(), gso);
+
+
+        parent.findViewById(R.id.signout_btn).setOnClickListener(new View.OnClickListener() {
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            @Override
+            public void onClick(View v) {
+                if(currentUser != null){
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(getContext(), StartActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+                else if(google == 1){
+                    signOut();
+                    Intent intent = new Intent(getContext(), StartActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+
+    private void signOut() {
+        /*if(mGoogleSignInClient == null){
+            Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);}*/
+        mGoogleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
             }
         });
     }

@@ -1,7 +1,10 @@
 package com.example.guavas;
 
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -100,8 +103,13 @@ public class result extends AppCompatActivity {
         tv1.setText(DL.getName());
         tv2.setText(DL.getDesc());
         tv3.setText(DL.getPrevent());
-
     }
+
+    public void onClickRediagnose(View view){
+        Intent intent = new Intent(this, NavigationActivity.class);
+        startActivity(intent);
+    }
+
     public MappedByteBuffer loadModelFile(String location) throws IOException {
         AssetFileDescriptor fileDescriptor = getApplicationContext().getAssets().openFd(location);
         FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
