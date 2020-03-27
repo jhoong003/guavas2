@@ -72,9 +72,8 @@ public class NavigationActivity extends AppCompatActivity{
                         nextFragment = new HealthSummaryFragment();
                         break;
                     case R.id.navigation_profile:
-                        Intent intent = new Intent(NavigationActivity.this, ProfileActivity.class);
-                        startActivity(intent);
-                        return true;
+                        nextFragment = new ProfileFragment();
+                        break;
                     case R.id.navigation_search:
                         Intent intent2 = new Intent(NavigationActivity.this, SearchActivity.class);
                         startActivity(intent2);

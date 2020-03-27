@@ -3,26 +3,23 @@ package com.example.guavas;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
-import com.example.guavas.Entity.UserProfile;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -37,47 +34,44 @@ import java.util.Calendar;
 import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
 
 /**
- * This Activity controls Profile display and Log out feature
- *
- * @author zane_
+ * A simple {@link Fragment} subclass.
  */
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileFragment extends Fragment {
 
     String phoneNumber;
     TextView mobileNumber;
     int google=0;
     GoogleSignInClient mGoogleSignInClient;
     Button view_support;
+    View parent;
 
     TextView lblFirstname, lblLastname, lblAge, lblHeight, lblWeight;
     DatabaseReference reff;
 
+    public ProfileFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        BottomNavigationView bottomNav=findViewById(R.id.bottom_Nav);
-        bottomNav.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-        Menu menu = bottomNav.getMenu();
-        MenuItem item = menu.getItem(3);
-        item.setChecked(true);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        parent = inflater.inflate(R.layout.fragment_profile, container,false);
 
         // get saved phone number
-        SharedPreferences prefs =  getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
+        SharedPreferences prefs =  getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
         phoneNumber = prefs.getString("phoneNumber", NULL);
         //phoneNumber = "+6588888888";
-
 
         //PROFILE
         displayProfile();
 
         //NAVIGATE to Edit Profile
-        Button btnEditProfile = findViewById(R.id.btnEditProfile);
+        Button btnEditProfile = parent.findViewById(R.id.btnEditProfile);
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ProfileActivity.this, ProfileEditActivity.class);
+                Intent i = new Intent(getActivity(), ProfileEditActivity.class);
                 //Create the bundle
                 Bundle bundle = new Bundle();
                 //Add your data to bundle
@@ -90,11 +84,11 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         //to support activity
-        Button view_support = findViewById(R.id.viewsupport);
+        Button view_support = parent.findViewById(R.id.viewsupport);
         view_support.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileActivity.this, SupportActivity.class);
+                Intent intent = new Intent(getActivity(), SupportActivity.class);
                 intent.putExtra("phoneNumber", phoneNumber);
                 startActivity(intent);
             }
@@ -103,28 +97,28 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         //SIGN OUT
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
         if(account != null) google = 1;
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
 
 
-        findViewById(R.id.signout_btn).setOnClickListener(new View.OnClickListener() {
+        parent.findViewById(R.id.signout_btn).setOnClickListener(new View.OnClickListener() {
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             FirebaseUser currentUser = mAuth.getCurrentUser();
             @Override
             public void onClick(View v) {
                 if(currentUser != null){
                     FirebaseAuth.getInstance().signOut();
-                    Intent intent = new Intent(ProfileActivity.this, StartActivity.class);
+                    Intent intent = new Intent(getActivity(), StartActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
                 else if(google == 1){
                     signOut();
-                    Intent intent = new Intent(ProfileActivity.this, StartActivity.class);
+                    Intent intent = new Intent(getActivity(), StartActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
@@ -132,6 +126,8 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
+
+        return parent;
     }
 
     private void signOut() {
@@ -139,67 +135,18 @@ public class ProfileActivity extends AppCompatActivity {
             Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);}*/
-        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                    }
-                });
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu (Menu menu){
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.bottom_navigation_menu, menu);
-        return true;
-    }
-
-
-    BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_search:
-                    toSearchActivity();
-                    return true;
-                case R.id.navigation_diagnosis:
-                    toDiagnosisActivity();
-                    return true;
-                case R.id.navigation_health_summary:
-                    toHealthSummaryActivity();
-                    return true;
+        mGoogleSignInClient.signOut().addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
             }
-            return false;
-        }
-    };
-
-    private void toSearchActivity () {
-        Intent startIntent = new Intent(ProfileActivity.this, SearchActivity.class);
-        startActivity(startIntent);
-        finish();
-    }
-
-    private void toDiagnosisActivity () {
-        Intent startIntent = new Intent(ProfileActivity.this, DiagnoseMain.class);
-        startActivity(startIntent);
-        finish();
-    }
-
-    private void toHealthSummaryActivity () {
-        Intent startIntent = new Intent(ProfileActivity.this, NavigationActivity.class);
-        startActivity(startIntent);
-        finish();
+        });
     }
 
     private void displayProfile(){
-        mobileNumber = findViewById(R.id.mobileNumber);
+        mobileNumber = parent.findViewById(R.id.mobileNumber);
         mobileNumber.setText(phoneNumber);
 
-        lblFirstname = findViewById(R.id.lblFirstname);
-        lblLastname = findViewById(R.id.lblLastname);
-        lblAge = findViewById(R.id.lblAge);
-        lblHeight = findViewById(R.id.lblHeight);
-        lblWeight = findViewById(R.id.lblWeight);
+
 
 //        UserProfile profile = new UserProfile();
 //        profile = profile.getUserProfile(phoneNumber);
@@ -232,11 +179,11 @@ public class ProfileActivity extends AppCompatActivity {
             public void onDataChange(@NotNull DataSnapshot dataSnapshot){
                 if(dataSnapshot.exists()) {
                     String fname, lname, dy, height, weight;
-                    lblFirstname = findViewById(R.id.lblFirstname);
-                    lblLastname = findViewById(R.id.lblLastname);
-                    lblAge = findViewById(R.id.lblAge);
-                    lblHeight = findViewById(R.id.lblHeight);
-                    lblWeight = findViewById(R.id.lblWeight);
+                    lblFirstname = parent.findViewById(R.id.lblFirstname);
+                    lblLastname = parent.findViewById(R.id.lblLastname);
+                    lblAge = parent.findViewById(R.id.lblAge);
+                    lblHeight = parent.findViewById(R.id.lblHeight);
+                    lblWeight = parent.findViewById(R.id.lblWeight);
 
                     if(dataSnapshot.child("firstName").getValue() != null){
                         fname = dataSnapshot.child("firstName").getValue().toString();
@@ -276,8 +223,6 @@ public class ProfileActivity extends AppCompatActivity {
             public void onCancelled(@NotNull DatabaseError databaseError){
 
             }
-    });
+        });
     }
-
-
 }

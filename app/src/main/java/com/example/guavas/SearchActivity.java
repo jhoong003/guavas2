@@ -31,7 +31,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         BottomNavigationView bottomNav=findViewById(R.id.bottom_navigation_menu);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         Menu menu = bottomNav.getMenu();
-        MenuItem item = menu.getItem(1);
+        MenuItem item = menu.getItem(2);
         item.setChecked(true);
 
     }

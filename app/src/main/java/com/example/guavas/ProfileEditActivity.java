@@ -1,11 +1,15 @@
 package com.example.guavas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.guavas.Entity.UserProfile;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +48,11 @@ public class ProfileEditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_edit);
+        BottomNavigationView bottomNav=findViewById(R.id.bottom_Nav);
+        bottomNav.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        Menu menu = bottomNav.getMenu();
+        MenuItem item = menu.getItem(3);
+        item.setChecked(true);
 
         //Get the bundle
         Bundle bundle = getIntent().getExtras();
@@ -122,6 +132,40 @@ public class ProfileEditActivity extends AppCompatActivity {
 
     }
 
+    BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_search:
+                    toSearchActivity();
+                    return true;
+                case R.id.navigation_diagnosis:
+                    toDiagnosisActivity();
+                    return true;
+                case R.id.navigation_health_summary:
+                    toHealthSummaryActivity();
+                    return true;
+            }
+            return false;
+        }
+    };
+    private void toSearchActivity () {
+        Intent startIntent = new Intent(ProfileEditActivity.this, SearchActivity.class);
+        startActivity(startIntent);
+        finish();
+    }
+
+    private void toDiagnosisActivity () {
+        Intent startIntent = new Intent(ProfileEditActivity.this, DiagnoseMain.class);
+        startActivity(startIntent);
+        finish();
+    }
+
+    private void toHealthSummaryActivity () {
+        Intent startIntent = new Intent(ProfileEditActivity.this, NavigationActivity.class);
+        startActivity(startIntent);
+        finish();
+    }
 
     //Function to handle Gender Radio Button
     public void onRadioButtonClicked(View view) {
