@@ -41,13 +41,16 @@ public class HealthSummaryFragment extends Fragment {
             public void onClick(int position) {
                 Fragment nextFragment;
                 switch (position){
-                    case 3:
-                        nextFragment = new VitalsFragment();
-                        displayFragment(nextFragment);
+                    case 1:
+                        nextFragment = VitalsFragment.newInstance(VitalsFragment.SUBMENU_BMI);
                         break;
+                    case 3:
+                        nextFragment = VitalsFragment.newInstance(VitalsFragment.SUBMENU_VITALS);                        break;
                     default:
                         Toast.makeText(getContext(), "Not implemented yet!", Toast.LENGTH_SHORT).show();
+                        return;
                 }
+                displayFragment(nextFragment);
             }
         });
         recyclerView.setAdapter(adapter);

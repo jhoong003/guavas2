@@ -2,10 +2,13 @@ package com.example.guavas;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 public class FAQDataManager {
 
-// This class manages the questions and answers in FAQ Page
-// Questions and answers are stored as Hashmaps with questions as key and answers as values
+/**
+ * This class manages the questions and answers in FAQ Page
+ * Questions and answers are stored as Hashmaps with questions as key and answers as values
+ * */
 
     public static HashMap<String, List<String>> getFAQData() {
         final HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();

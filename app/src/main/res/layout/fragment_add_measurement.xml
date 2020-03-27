@@ -99,13 +99,13 @@
         </LinearLayout>
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_measurement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:src="@drawable/ic_done_white_24dp"
         app:backgroundTint="@color/colorAccent"
-        android:layout_marginBottom="4dp"
-        android:onClick="onClickDone"/>
+        android:layout_marginBottom="4dp"/>
 
     <ImageButton
         android:id="@+id/image_button_close"
