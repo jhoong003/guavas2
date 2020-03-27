@@ -48,14 +48,13 @@ public class diabetesResult extends AppCompatActivity {
                 System.out.println(j);
             }
         }
-
-
-
     }
+
     public void onClickRediagnoseD(View view){
         Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
     }
+
     public MappedByteBuffer loadModelFile(String location) throws IOException {
         AssetFileDescriptor fileDescriptor = getApplicationContext().getAssets().openFd(location);
         FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());

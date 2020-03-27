@@ -113,6 +113,32 @@
     <string name="button_gender_male">Male</string>
     <string name="button_gender_female">Female</string>
     <string name="label_date_of_birth">Date of birth</string>
+    <string name="button_heart_disease">Heart Disease+</string>
+    <string name="button_diabetes">Diabetes+</string>
+    <string name="text_title_chronic_diagnosis">Which chronic disease are you concerned with?</string>
+    <string name="text_diabetes_age">Age</string>
+    <string name="text_diabetes_BMI">BMI</string>
+    <string name="text_diabetes_insulin">Insulin</string>
+    <string name="text_diabetes_triceps">Triceps skin thickness</string>
+    <string name="text_diabetes_blood_pressure">Blood pressure</string>
+    <string name="text_diabetes_plasma_glucose">Plasma glucose</string>
+    <string name="text_diabetes_pregnancy_count">Number of pregnancies</string>
+    <string name="button_home">Home</string>
+    <string name="text_result_diagnosis_suggestion">For further information please go to the hospital</string>
+    <string name="text_result_diagnosis_percentage">Percentage</string>
+    <string name="text_diagnosis_result">Diagnose Result</string>
+    <string name="text_chronic_diagnosis_glucose">Glucose</string>
+    <string name="text_chronic_diagosis_heart_rate">Heart Rate</string>
+    <string name="text_chronic_diagnosis_diastolic">Diastolic blood pressure</string>
+    <string name="text_chronic_diagnosis_systolic">Systolic blood pressure</string>
+    <string name="text_chronic_diagnosis_alcohol">Total Alcohol</string>
+    <string name="hint_boolean">(1 = Yes or 0 = No)</string>
+    <string name="text_chronic_diagnosis_hypertension">Do you have hypertension?</string>
+    <string name="text_chronic_diagnosis_stroke">Do you have stroke?</string>
+    <string name="text_chronic_diagnosis_cigarrete">Cigarettes per day</string>
+    <string name="text_chronic_diagnosis_smoker">Current Smoker</string>
+    <string name="hint_boolean_gender">(1 = Male or 0 = Female)</string>
+    <string name="text_chronic_diagnosis_gender">Gender</string>
 
     >>>>>>> Stashed changes
 

@@ -14,9 +14,8 @@ public class diabetesfactor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diabetesform);
-
-
     }
+
     public void Send(View view){
         final EditText factor1 = (EditText) findViewById(R.id.factor1);
         Factors[0] =Integer.parseInt(factor1.getText().toString());
