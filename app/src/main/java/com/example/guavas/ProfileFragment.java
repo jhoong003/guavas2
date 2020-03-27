@@ -125,7 +125,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-        
+
         parent.findViewById(R.id.signout_btn).setOnClickListener(new View.OnClickListener() {
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             FirebaseUser currentUser = mAuth.getCurrentUser();
