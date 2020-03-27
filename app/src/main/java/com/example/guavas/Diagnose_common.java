@@ -9,6 +9,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.guavas.adapter.ItemAdapter;
 import com.example.guavas.data.ItemList;
 
 import androidx.appcompat.app.AppCompatActivity;

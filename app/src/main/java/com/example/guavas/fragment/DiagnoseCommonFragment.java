@@ -20,7 +20,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.guavas.ItemAdapter;
+import com.example.guavas.adapter.ItemAdapter;
 import com.example.guavas.data.ItemList;
 import com.example.guavas.R;
 import com.example.guavas.observer.FragmentObserver;

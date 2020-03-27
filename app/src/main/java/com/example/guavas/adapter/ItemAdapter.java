@@ -1,4 +1,4 @@
-package com.example.guavas;
+package com.example.guavas.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
+import com.example.guavas.R;
 import com.example.guavas.data.ItemList;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,8 @@ import java.util.List;
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> implements Filterable {
     private ArrayList<ItemList> Item ;
     private ArrayList<ItemList> ItemFull ;
+
+    private ArrayList<ItemList> selectedList;
 
     private OnItemClickListener listener;
 
