@@ -1,36 +1,56 @@
-package com.example.guavas;
+package com.example.guavas.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guavas.adapter.ItemAdapter;
 import com.example.guavas.data.ItemList;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import com.example.guavas.R;
+import com.example.guavas.observer.FragmentObserver;
+import com.example.guavas.observer.Subject;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-//Deprecated (Migrated to fragment)
-public class Diagnose_common extends AppCompatActivity {
+public class DiagnoseCommonFragment extends Fragment implements Subject, View.OnClickListener {
+
     private RecyclerView recyclerView;
     private ItemAdapter adapter;
     private RecyclerView.LayoutManager layout;
     private float[] selectedSymptoms;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diagnose_common);
 
+    private FragmentObserver observer;
+
+    public DiagnoseCommonFragment() {
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View parent = inflater.inflate(R.layout.fragment_diagnose_common, container, false);
         final ArrayList<ItemList> itemLists = new ArrayList<>();
         itemLists.add(new ItemList("Itching",""));
         itemLists.add(new ItemList("Skin rash",""));
@@ -166,9 +186,9 @@ public class Diagnose_common extends AppCompatActivity {
         itemLists.add(new ItemList("Yellow crust ooze",""));
         Collections.sort(itemLists);
 
-        recyclerView = findViewById(R.id.RecycleViews);
+        recyclerView = parent.findViewById(R.id.RecycleViews);
         recyclerView.setHasFixedSize(true);
-        layout = new LinearLayoutManager(this);
+        layout = new LinearLayoutManager(getContext());
         adapter = new ItemAdapter(itemLists);
         selectedSymptoms = new float[132];
         int count = 0;
@@ -190,19 +210,25 @@ public class Diagnose_common extends AppCompatActivity {
 
                 String result = itemLists.get(position).getText1();
                 selectedSymptoms[position] = 1;
-                Toast toast = Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT);
-                toast.show();
+
+                Toast.makeText(getContext(), "Selected " + result, Toast.LENGTH_SHORT).show();
 
             }
         });
+
+        Button predictButton = parent.findViewById(R.id.predict_button);
+        predictButton.setOnClickListener(this);
+
+        return parent;
     }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.example_menu, menu);
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.example_menu, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
-
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -217,16 +243,30 @@ public class Diagnose_common extends AppCompatActivity {
                 return false;
             }
         });
-        return true;
     }
 
-    public void Predict(View view){
-        Intent intent = new Intent(Diagnose_common.this,result.class);
-        intent.putExtra("values",selectedSymptoms);
-        for(float i:selectedSymptoms){
-            System.out.println(i);
-        }
-        startActivity(intent);
+    @Override
+    public void register(FragmentObserver observer) {
+        this.observer = observer;
     }
 
+    @Override
+    public void unregister() {
+        observer = null;
+    }
+
+    @Override
+    public void notifyObserver(Fragment fragment) {
+        observer.updateContainerWithFragment(fragment);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.predict_button) predict();
+    }
+
+    private void predict(){
+        DiagnoseResultFragment fragment = DiagnoseResultFragment.newInstance(selectedSymptoms);
+        notifyObserver(fragment);
+    }
 }

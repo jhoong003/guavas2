@@ -62,7 +62,7 @@ public class ViewDetailsContentFragment extends Fragment implements ViewDetailsG
             dataType = args.getParcelable(DATATYPE_KEY);
             position = args.getInt(POSITION_KEY);
             dataProcessor = DataProcessorFactory.getDataProcessor(position);
-            fragmentManager = getParentFragmentManager();
+            fragmentManager = getChildFragmentManager();
         }
     }
 

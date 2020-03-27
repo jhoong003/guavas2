@@ -8,18 +8,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.guavas.R;
-import com.example.guavas.hospital;
+import com.example.guavas.Hospital;
 import java.util.ArrayList;
 public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.HospitalViewHolder> /*implements Filterable*/ {
 
 
-    private ArrayList<hospital> hospitalList;
-    private ArrayList<hospital> hospitalListDup;      //Duplicate the array of hospital cards
+    private ArrayList<Hospital> hospitalList;
+    private ArrayList<Hospital> hospitalListDup;      //Duplicate the array of hospital cards
     private OnItemClickListener mListener;           //Initialise the interface
 
 
     // Constructor
-    public HospitalAdapter(ArrayList<hospital> hospitalList, OnItemClickListener mListener){
+    public HospitalAdapter(ArrayList<Hospital> hospitalList, OnItemClickListener mListener){
         this.hospitalList=hospitalList;
         this.mListener=mListener;
         hospitalListDup = new ArrayList<>(hospitalList);
@@ -70,7 +70,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
 
     @Override
     public void onBindViewHolder(@NonNull HospitalViewHolder holder, int position) {
-        hospital currentItem=hospitalList.get(position);
+        Hospital currentItem=hospitalList.get(position);
         holder.imgURL.setImageResource(currentItem.getImgURL());
         holder.hospitalName.setText(currentItem.getName());
     }
@@ -81,8 +81,8 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
         return hospitalList.size();
     }
 
-    public void updateList (ArrayList<hospital> newHospitalList){
-        hospitalList =new ArrayList<hospital>() ;
+    public void updateList (ArrayList<Hospital> newHospitalList){
+        hospitalList =new ArrayList<Hospital>() ;
         hospitalList.addAll(newHospitalList);
         notifyDataSetChanged();
     }

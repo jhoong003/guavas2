@@ -1,13 +1,20 @@
-package com.example.guavas;
+package com.example.guavas.fragment;
 
-import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.guavas.DiagnoseLoading;
+import com.example.guavas.R;
+import com.example.guavas.observer.FragmentObserver;
+import com.example.guavas.observer.Subject;
 
 import org.tensorflow.lite.Interpreter;
 
@@ -16,18 +23,30 @@ import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
-/**
- * Deprecated (Migrated to fragment)
- */
-public class result extends AppCompatActivity {
+public class DiagnoseResultFragment extends Fragment implements Subject, View.OnClickListener {
+    private static final String VALUE_KEY = "val";
+    private Interpreter Htflite;
+    private FragmentObserver observer;
 
-    public Interpreter Htflite;
+    public DiagnoseResultFragment() {
+    }
+
+    public static DiagnoseResultFragment newInstance(float[] values) {
+
+        Bundle args = new Bundle();
+        args.putFloatArray(VALUE_KEY, values);
+        DiagnoseResultFragment fragment = new DiagnoseResultFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.result);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View parent = inflater.inflate(R.layout.fragment_diagnosis_result, container, false);
+
         String[] ListOfIllness = new String[41];
-        float [] values  = getIntent().getFloatArrayExtra("values");
+        float [] values  = getArguments().getFloatArray(VALUE_KEY);
         float[][] inputX = new float[1][132];
         float[][] output = new float[1][41];
         int count = 0;
@@ -72,10 +91,12 @@ public class result extends AppCompatActivity {
         ListOfIllness[38]="Urinary tract infection";
         ListOfIllness[39]="Varicose veins";
         ListOfIllness[40]="Hepatitis A";
+
         for(float i:values){
             inputX[0][count] =i;
             count++;
         }
+
         try {
             //noinspection deprecation
             Htflite = new Interpreter(loadModelFile("common.tflite"));
@@ -99,26 +120,49 @@ public class result extends AppCompatActivity {
         }
         System.out.println(currentMaxIndex);
         DiagnoseLoading DL = new DiagnoseLoading(ListOfIllness[currentMaxIndex]);
-        TextView tv1 = findViewById(R.id.IllName);
-        TextView tv2 = findViewById(R.id.Desc);
-        TextView tv3 = findViewById(R.id.Prevention);
+        TextView tv1 = parent.findViewById(R.id.IllName);
+        TextView tv2 = parent.findViewById(R.id.Desc);
+        TextView tv3 = parent.findViewById(R.id.Prevention);
         tv1.setText(DL.getName());
         tv2.setText(DL.getDesc());
         tv3.setText(DL.getPrevent());
+
+        Button button = parent.findViewById(R.id.home_button);
+        button.setOnClickListener(this);
+        return parent;
     }
 
-    public void onClickRediagnose(View view){
-        Intent intent = new Intent(this, NavigationActivity.class);
-        startActivity(intent);
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.home_button) onClickHome();
+    }
+
+    private void onClickHome(){
+        DiagnoseMainFragment fragment = new DiagnoseMainFragment();
+        notifyObserver(fragment);
     }
 
     public MappedByteBuffer loadModelFile(String location) throws IOException {
-        AssetFileDescriptor fileDescriptor = getApplicationContext().getAssets().openFd(location);
+        AssetFileDescriptor fileDescriptor = getActivity().getApplicationContext().getAssets().openFd(location);
         FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
         FileChannel fileChannel = inputStream.getChannel();
         long startOffset = fileDescriptor.getStartOffset();
         long declaredLength = fileDescriptor.getDeclaredLength();
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
     }
-}
 
+    @Override
+    public void register(FragmentObserver observer) {
+        this.observer = observer;
+    }
+
+    @Override
+    public void unregister() {
+        observer = null;
+    }
+
+    @Override
+    public void notifyObserver(Fragment fragment) {
+        observer.updateContainerWithFragment(fragment);
+    }
+}

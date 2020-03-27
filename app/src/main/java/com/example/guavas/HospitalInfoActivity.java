@@ -18,6 +18,9 @@ import static com.example.guavas.HospitalActivity.TELEPHONE;
 import static com.example.guavas.HospitalActivity.DESCRIPTION;
 import static com.example.guavas.HospitalActivity.URL;
 
+/**
+ * Deprecated (Migrated into fragment)
+ */
 public class HospitalInfoActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "HospitalInfoActivity";
 

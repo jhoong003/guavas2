@@ -18,7 +18,7 @@ import static com.example.guavas.DiseaseActivity.NAME;
 import static com.example.guavas.DiseaseActivity.DESCRIPTION;
 import static com.example.guavas.DiseaseActivity.PREVENTION;
 
-
+//Deprecated (Migrated to fragment)
 public class DiseaseInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView title;

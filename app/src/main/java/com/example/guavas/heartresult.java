@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
+//Deprecated (Migrated to fragment)
 public class heartresult extends AppCompatActivity {
     protected Interpreter tflite;
     private float[] f = new float[12];

@@ -16,13 +16,15 @@ import com.example.guavas.MainActivity;
 import com.example.guavas.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+//Deprecated (Migrated into fragment)
+
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search);
 
-        GridLayout gridView = findViewById(R.id.grid_layout);
+/*        GridLayout gridView = findViewById(R.id.grid_layout);
         CardView hospitalButton = findViewById(R.id.hospitalBut);
         CardView diseaseButton = findViewById(R.id.diseaseBut);
         hospitalButton.setOnClickListener(this);
@@ -33,7 +35,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         Menu menu = bottomNav.getMenu();
         MenuItem item = menu.getItem(2);
         item.setChecked(true);
-
+*/
     }
     @Override
     public void onClick(View v) {

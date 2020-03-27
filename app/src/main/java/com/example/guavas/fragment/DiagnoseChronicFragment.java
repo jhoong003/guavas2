@@ -10,39 +10,39 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.guavas.DiagnoseMain;
 import com.example.guavas.Diagnose_chronic;
-import com.example.guavas.Diagnose_common;
 import com.example.guavas.R;
+import com.example.guavas.diabetesfactor;
+import com.example.guavas.heartfactor;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
 
-public class DiagnoseMainFragment extends Fragment implements Subject {
+public class DiagnoseChronicFragment extends Fragment implements Subject {
 
     private FragmentObserver observer;
 
-    public DiagnoseMainFragment() {
+    public DiagnoseChronicFragment() {
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View parent = inflater.inflate(R.layout.fragment_diagnose_chronic, container, false);
 
-        View parent = inflater.inflate(R.layout.fragment_diagnose_main, container, false);
-        Button commonButton = parent.findViewById(R.id.common);
-        Button chronicButton = parent.findViewById(R.id.chronic);
-        commonButton.setOnClickListener(new View.OnClickListener(){
+        Button Diabetes = parent.findViewById(R.id.diabetes);
+        Button Heart = parent.findViewById(R.id.Heart);
+        Diabetes.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                notifyObserver(new DiagnoseCommonFragment());
+                notifyObserver(new DiabetesDiagnosisFragment());
+            }
+        });
+        Heart.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                notifyObserver(new HeartDiagnoseFragment());
             }
         });
 
-        chronicButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                notifyObserver(new DiagnoseChronicFragment());
-            }
-        });
         return parent;
     }
 

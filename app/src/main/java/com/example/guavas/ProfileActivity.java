@@ -13,9 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
-import com.example.guavas.Entity.UserProfile;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -38,7 +36,7 @@ import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.N
 
 /**
  * This Activity controls Profile display and Log out feature
- *
+ * Deprecated (Migrated to fragment)
  * @author zane_
  */
 public class ProfileActivity extends AppCompatActivity {

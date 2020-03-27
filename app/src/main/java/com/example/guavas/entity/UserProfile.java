@@ -1,13 +1,4 @@
-package com.example.guavas.Entity;
-
-import androidx.annotation.NonNull;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.annotations.NotNull;
+package com.example.guavas.entity;
 
 /**
  * This Entity class implements the UserProfile entity.

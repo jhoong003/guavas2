@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.guavas.adapter.DiseaseAdapter;
+import com.example.guavas.data.IllDetail;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//Deprecated (Migrated to fragment)
 public class DiseaseActivity extends AppCompatActivity implements View.OnClickListener, DiseaseAdapter.OnItemClickListener,  SearchView.OnQueryTextListener {
     public static final String DESCRIPTION = "description";
     public static final String NAME = "name";
@@ -49,7 +51,6 @@ public class DiseaseActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_disease);
 
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         TextView textView = (TextView)toolbar.findViewById(R.id.toolbarTitle);
@@ -58,7 +59,6 @@ public class DiseaseActivity extends AppCompatActivity implements View.OnClickLi
 
         setUpRecyclerView();
         prepareDiseaseData();
-
 
         back = findViewById(R.id.Back);
         back.setOnClickListener(this);

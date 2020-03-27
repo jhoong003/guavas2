@@ -48,12 +48,7 @@ public class DataCardViewAdapter extends RecyclerView.Adapter<DataCardViewAdapte
         if (measurement >= dataType.getMinNormal() && measurement <= dataType.getMaxNormal())
             cardView.setCardBackgroundColor(ContextCompat.getColor(cardView.getContext(), R.color.normal_measurement));
         else {
-            float a = 0.1f;
-            double differenceRate = (measurement < dataType.getMinNormal()) ?
-                    dataType.getMinNormal()/measurement : measurement/dataType.getMaxNormal();
-            int colorAlpha = (int) (Math.min(a + (differenceRate-1)*0.9, 1) * 255);
-            cardView.setCardBackgroundColor(ColorUtils.setAlphaComponent(
-                    ContextCompat.getColor(cardView.getContext(), R.color.abnormal_measurement), colorAlpha));
+            cardView.setCardBackgroundColor(ContextCompat.getColor(cardView.getContext(), R.color.abnormal_measurement));
         }
 
         TextView measurementText = (TextView) cardView.findViewById(R.id.text_measurement);

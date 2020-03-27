@@ -8,15 +8,15 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+//Deprecated (Migrated to fragment)
 public class diabetesfactor extends AppCompatActivity {
     private float[] Factors = new float[7];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diabetesform);
-
-
     }
+
     public void Send(View view){
         final EditText factor1 = (EditText) findViewById(R.id.factor1);
         Factors[0] =Integer.parseInt(factor1.getText().toString());

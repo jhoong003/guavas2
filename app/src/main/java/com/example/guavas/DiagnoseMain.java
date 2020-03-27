@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+//Deprecated (Migrated to fragment)
 public class DiagnoseMain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

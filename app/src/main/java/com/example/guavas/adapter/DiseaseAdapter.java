@@ -3,13 +3,12 @@ package com.example.guavas.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.guavas.IllDetail;
+import com.example.guavas.data.IllDetail;
 import com.example.guavas.R;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.example.guavas;
 
-public class hospital {
+public class Hospital {
     private String hospitalName;
     private String hospitalAddress;
     private String hospitalWebsite;
@@ -8,7 +8,7 @@ public class hospital {
     private String hospitalNumber;
     private int imgURL;
 
-    public hospital (String hospitalName, String hospitalAddress, String hospitalNumber /* String hospitalWebsite,*/, String HospitalDescription, int imgURL){
+    public Hospital(String hospitalName, String hospitalAddress, String hospitalNumber /* String hospitalWebsite,*/, String HospitalDescription, int imgURL){
         //this.hospitalWebsite=hospitalWebsite;
         this.hospitalName=hospitalName;
         this.hospitalAddress=hospitalAddress;

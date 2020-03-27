@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
+//Deprecated (Migrated to fragment)
 public class diabetesResult extends AppCompatActivity {
     private float[] f = new float[7];
     public Interpreter Htflite;
@@ -48,14 +49,13 @@ public class diabetesResult extends AppCompatActivity {
                 System.out.println(j);
             }
         }
-
-
-
     }
+
     public void onClickRediagnoseD(View view){
         Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
     }
+
     public MappedByteBuffer loadModelFile(String location) throws IOException {
         AssetFileDescriptor fileDescriptor = getApplicationContext().getAssets().openFd(location);
         FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
