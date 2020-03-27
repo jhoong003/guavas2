@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
+import java.util.Objects;
+
 import static com.example.guavas.HospitalActivity.NAME;
 import static com.example.guavas.HospitalActivity.ADDRESS;
 import static com.example.guavas.HospitalActivity.TELEPHONE;
@@ -37,7 +39,7 @@ public class HospitalInfoActivity extends AppCompatActivity implements View.OnCl
         setSupportActionBar(toolbar);
         TextView textView = (TextView)toolbar.findViewById(R.id.toolbarTitle);
         textView.setText("Information");
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(true);
         ImageView imageView = findViewById(R.id.image);
         TextView hospital_name = findViewById(R.id.name);
         TextView hospital_description = findViewById(R.id.description);

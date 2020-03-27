@@ -12,6 +12,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import org.w3c.dom.Text;
 
+import java.util.Objects;
+
 import static com.example.guavas.DiseaseActivity.NAME;
 import static com.example.guavas.DiseaseActivity.DESCRIPTION;
 import static com.example.guavas.DiseaseActivity.PREVENTION;
@@ -19,7 +21,6 @@ import static com.example.guavas.DiseaseActivity.PREVENTION;
 
 public class DiseaseInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView back;
     private TextView title;
 
     @Override
@@ -36,7 +37,7 @@ public class DiseaseInfoActivity extends AppCompatActivity implements View.OnCli
         setSupportActionBar(toolbar);
         TextView textView = (TextView)toolbar.findViewById(R.id.toolbarTitle);
         textView.setText("Information");
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(true);
         TextView dname = findViewById(R.id.name);
         TextView dprevention = findViewById(R.id.prevention);
         TextView ddescription = findViewById(R.id.description);
@@ -45,7 +46,7 @@ public class DiseaseInfoActivity extends AppCompatActivity implements View.OnCli
         dprevention.setText(prevention);
         ddescription.setText(description);
 
-        back = findViewById(R.id.Back);
+        TextView back = findViewById(R.id.Back);
         back.setOnClickListener(this);
 
     }
