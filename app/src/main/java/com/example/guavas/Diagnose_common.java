@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,18 +24,17 @@ public class Diagnose_common extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ItemAdapter adapter;
     private RecyclerView.LayoutManager layout;
-    private ArrayList<Integer> SelectedItem = new ArrayList<>();
-    private float[] select;
+    private float[] selectedSymptoms;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diagnose_common);
 
         final ArrayList<ItemList> itemLists = new ArrayList<>();
-        itemLists.add(new ItemList("Itching","Normal temperature with itchy throat"));
-        itemLists.add(new ItemList("Skin rash","High temperature with nothing"));
-        itemLists.add(new ItemList("Nodal skin eruptions","pretty high temperature with itchy nose"));
-        itemLists.add(new ItemList("Continuous sneezing","Normal temperature with dizzy and head pain"));
+        itemLists.add(new ItemList("Itching",""));
+        itemLists.add(new ItemList("Skin rash",""));
+        itemLists.add(new ItemList("Nodal skin eruptions",""));
+        itemLists.add(new ItemList("Continuous sneezing",""));
         itemLists.add(new ItemList("Shivering",""));
         itemLists.add(new ItemList("Chills",""));
         itemLists.add(new ItemList("Joint pain",""));
@@ -163,16 +163,16 @@ public class Diagnose_common extends AppCompatActivity {
         itemLists.add(new ItemList("Blister",""));
         itemLists.add(new ItemList("Red sore around nose",""));
         itemLists.add(new ItemList("Yellow crust ooze",""));
-        //Collections.sort(itemLists);
+        Collections.sort(itemLists);
 
         recyclerView = findViewById(R.id.RecycleViews);
         recyclerView.setHasFixedSize(true);
         layout = new LinearLayoutManager(this);
         adapter = new ItemAdapter(itemLists);
-        select = new float[132];
+        selectedSymptoms = new float[132];
         int count = 0;
         while(count<132){
-            select[count] = 0;
+            selectedSymptoms[count] = 0;
             count++;
         }
         recyclerView.setLayoutManager(layout);
@@ -180,13 +180,15 @@ public class Diagnose_common extends AppCompatActivity {
 
         adapter.setOnItemClickListener(new ItemAdapter.OnItemClickListener() {
             @Override
-            public void OnItemClick(int position, View v) {
-                TextView title = v.findViewById(R.id.Text1);
-                TextView subtitle = v.findViewById(R.id.Text2);
-                title.setTextColor(getResources().getColor(R.color.white));
-                subtitle.setTextColor(getResources().getColor(R.color.white));
+            public void OnItemClick(int position) {
+                View cardParentView = recyclerView.getLayoutManager().findViewByPosition(position);
+                TextView title = cardParentView.findViewById(R.id.Text1);
+                TextView subtitle = cardParentView.findViewById(R.id.Text2);
+                title.setTextColor(getResources().getColor(R.color.black));
+                subtitle.setTextColor(getResources().getColor(R.color.black));
+
                 String result = itemLists.get(position).getText1();
-                select[position] = 1;
+                selectedSymptoms[position] = 1;
                 Toast toast = Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT);
                 toast.show();
 
@@ -219,8 +221,8 @@ public class Diagnose_common extends AppCompatActivity {
 
     public void Predict(View view){
         Intent intent = new Intent(Diagnose_common.this,result.class);
-        intent.putExtra("values",select);
-        for(float i:select){
+        intent.putExtra("values",selectedSymptoms);
+        for(float i:selectedSymptoms){
             System.out.println(i);
         }
         startActivity(intent);

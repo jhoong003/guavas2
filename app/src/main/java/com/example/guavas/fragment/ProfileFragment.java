@@ -1,4 +1,4 @@
-package com.example.guavas;
+package com.example.guavas.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.guavas.ProfileEditActivity;
+import com.example.guavas.R;
+import com.example.guavas.StartActivity;
+import com.example.guavas.SupportActivity;
+import com.example.guavas.observer.FragmentObserver;
+import com.example.guavas.observer.Subject;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -33,57 +38,36 @@ import com.google.firebase.database.annotations.NotNull;
 
 import java.util.Calendar;
 
-import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ProfileFragment extends Fragment {
-
-    String phoneNumber;
-    TextView mobileNumber;
-    int google=0;
-    GoogleSignInClient mGoogleSignInClient;
-    Button view_support;
-    View parent;
-
-    TextView lblFirstname, lblLastname, lblAge, lblHeight, lblWeight;
-    DatabaseReference reff;
-
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
-
-public class ProfileFragment extends Fragment implements View.OnClickListener {
+public class ProfileFragment extends Fragment implements Subject {
 
     private String phoneNumber;
     private int google=0;
     private GoogleSignInClient mGoogleSignInClient;
 
+    private Button view_support;
     private View parent;
-    private TextView lblFirstname, lblLastname, lblAge, lblHeight, lblWeight;
     private TextView mobileNumber;
+    private TextView lblFirstname, lblLastname, lblAge, lblHeight, lblWeight;
     private DatabaseReference reff;
 
-    public ProfileFragment() {
+    private FragmentObserver observer;
 
+    public ProfileFragment() {
+        // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // get saved phone number
         SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
         phoneNumber = preferences.getString("phoneNumber", null);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        parent = inflater.inflate(R.layout.fragment_profile, container,false);
 
-        // get saved phone number
-        SharedPreferences prefs =  getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
-        phoneNumber = prefs.getString("phoneNumber", NULL);
-        //phoneNumber = "+6588888888";
+        parent = inflater.inflate(R.layout.fragment_profile, container,false);
 
         //PROFILE
         displayProfile();
@@ -93,30 +77,23 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ProfileEditActivity.class);
-                //Create the bundle
-                Bundle bundle = new Bundle();
-                //Add your data to bundle
-                bundle.putString("phone",phoneNumber);
-                //Add the bundle to the intent
-                i.putExtras(bundle);
-                //Fire that second activity
-                startActivity(i);
+                //Create the fragment
+                ProfileEditFragment fragment = ProfileEditFragment.newInstance(phoneNumber);
+                //Fire that fragment
+                notifyObserver(fragment);
+
             }
         });
 
         //to support activity
-        Button view_support = parent.findViewById(R.id.viewsupport);
+        view_support = parent.findViewById(R.id.viewsupport);
         view_support.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SupportActivity.class);
-                intent.putExtra("phoneNumber", phoneNumber);
-                startActivity(intent);
+                SupportFragment fragment = SupportFragment.newInstance(phoneNumber);
+                notifyObserver(fragment);
             }
         });
-
-
 
         //SIGN OUT
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
@@ -149,64 +126,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         return parent;
     }
 
-    private void signOut() {
-        /*if(mGoogleSignInClient == null){
-            Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);}*/
-        mGoogleSignInClient.signOut().addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-            }
-        });
-    }
-
-    private void setupButtons(){
-        Button btnEditProfile = parent.findViewById(R.id.btnEditProfile);
-        btnEditProfile.setOnClickListener(this);
-        Button btnSignOut = parent.findViewById(R.id.signout_btn);
-        btnSignOut.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.signout_btn){
-            onClickSignOut();
-        }else if (v.getId() == R.id.btnEditProfile){
-            Toast.makeText(getContext(), "Go to edit profile", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void displayProfile(){
         mobileNumber = parent.findViewById(R.id.mobileNumber);
         mobileNumber.setText(phoneNumber);
-
-
-
-//        UserProfile profile = new UserProfile();
-//        profile = profile.getUserProfile(phoneNumber);
-//        if(profile != null){
-//            if(profile.getFirstName() != null){
-//                lblFirstname.setText(profile.getFirstName());
-//            }
-//            if(profile.getLastName() != null){
-//                lblLastname.setText(profile.getLastName());
-//            }
-//            if(profile.getDobY() != null){
-//                int curYr = Calendar.getInstance().get(Calendar.YEAR);
-//                int year = Integer.parseInt(profile.getDobY());
-//                int age = curYr-year;
-//                lblAge.setText(age + " years old");
-//            }
-//            if(profile.getHeight() != 0){
-//                lblHeight.setText(profile.getHeight()+"(cm)");
-//
-//            }
-//            if(profile.getWeight() != 0){
-//                lblWeight.setText(profile.getWeight()+ "(kg)");
-//            }
-//        }
-//
 
         reff = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(phoneNumber);
         reff.addValueEventListener(new ValueEventListener() {
@@ -233,13 +155,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     if(dataSnapshot.child("dobY").getValue() != null){
                         dy = dataSnapshot.child("dobY").getValue().toString();
 
-                        //String dob = dd+"/"+dm+"/"+dy;
-                        //http://www.deboma.com/article/mobile-development/22/android-datepicker-and-age-calculation
-
                         int curYr = Calendar.getInstance().get(Calendar.YEAR);
                         int year = Integer.parseInt(dy);
                         int age = curYr-year;
-                        //Toast.makeText(ProfileViewActivity.this, "this is age"+age, Toast.LENGTH_LONG).show();
 
                         lblAge.setText(age + " years old");
                     }
@@ -261,45 +179,26 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         });
     }
 
-    private void onClickSignOut(){
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
-        if(account != null) google = 1;
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(getContext(), gso);
-
-
-        parent.findViewById(R.id.signout_btn).setOnClickListener(new View.OnClickListener() {
-            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            FirebaseUser currentUser = mAuth.getCurrentUser();
-            @Override
-            public void onClick(View v) {
-                if(currentUser != null){
-                    FirebaseAuth.getInstance().signOut();
-                    Intent intent = new Intent(getContext(), StartActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                }
-                else if(google == 1){
-                    signOut();
-                    Intent intent = new Intent(getContext(), StartActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                }
-            }
-        });
-    }
-
     private void signOut() {
-        /*if(mGoogleSignInClient == null){
-            Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);}*/
         mGoogleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
             }
         });
+    }
+
+    @Override
+    public void register(FragmentObserver observer) {
+        this.observer = observer;
+    }
+
+    @Override
+    public void unregister() {
+        observer = null;
+    }
+
+    @Override
+    public void notifyObserver(Fragment fragment) {
+        observer.updateContainerWithFragment(fragment);
     }
 }

@@ -18,72 +18,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> im
     private ArrayList<ItemList> ItemFull ;
 
     private OnItemClickListener listener;
-    //Constructor
-    public ItemAdapter(ArrayList<ItemList> items){
-        Item = items;
-        ItemFull = new ArrayList<ItemList>(items);
-    }
-
-    //Onclick costumize
-    public interface OnItemClickListener{
-        void OnItemClick(int position, View v);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener){
-        this.listener = listener;
-    }
-
-    public static class ItemHolder extends RecyclerView.ViewHolder{
-        public TextView Text1;
-
-        public TextView Text2;
-        public ItemHolder(@NonNull View itemView, final OnItemClickListener listener) {
-            super(itemView);
-            Text1 = itemView.findViewById(R.id.Text1);
-            Text2 = itemView.findViewById(R.id.Text2);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(listener!= null){
-                        int position = getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION){
-                            listener.OnItemClick(position, v);
-                        }
-                    }
-                }
-            });
-        }
-    }
-
-    //Bawaan
-    @NonNull
-    @Override
-    public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardboi,parent,false);
-        ItemHolder IH = new ItemHolder(v,this.listener);
-        return IH;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
-        ItemList inputItem = Item.get(position);
-        holder.Text1.setText(inputItem.getText1());
-        holder.Text2.setText(inputItem.getText2());
-    }
-
-    @Override
-    public int getItemCount() {
-        return Item.size();
-    }
-
-
-
-    @Override
-    public Filter getFilter() {
-
-        return exampleFitler;
-    }
 
     private Filter exampleFitler = new Filter(){
         @Override
@@ -115,4 +49,71 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> im
             notifyDataSetChanged();
         }
     };
+
+    //Constructor
+    public ItemAdapter(ArrayList<ItemList> items){
+        Item = items;
+        ItemFull = new ArrayList<ItemList>(items);
+    }
+
+    //Bawaan
+    @NonNull
+    @Override
+    public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardboi,parent,false);
+        ItemHolder IH = new ItemHolder(v,this.listener);
+        return IH;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
+        ItemList inputItem = Item.get(position);
+
+        holder.Text1.setText(inputItem.getText1());
+        holder.Text2.setText(inputItem.getText2());
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return Item.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+
+        return exampleFitler;
+    }
+
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
+
+    public static class ItemHolder extends RecyclerView.ViewHolder{
+        public TextView Text1;
+        public TextView Text2;
+
+        public ItemHolder(@NonNull View itemView, final OnItemClickListener listener) {
+            super(itemView);
+            Text1 = itemView.findViewById(R.id.Text1);
+            Text2 = itemView.findViewById(R.id.Text2);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener!= null){
+                        int position = getAdapterPosition();
+                        listener.OnItemClick(position);
+                    }
+                }
+            });
+        }
+    }
+
+    //Onclick costumize
+    public interface OnItemClickListener{
+        void OnItemClick(int position);
+    }
+
 }

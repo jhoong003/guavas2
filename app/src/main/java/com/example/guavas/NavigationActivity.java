@@ -3,50 +3,39 @@ package com.example.guavas;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.guavas.fragment.DiagnoseMainFragment;
 import com.example.guavas.fragment.HealthSummaryFragment;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.guavas.fragment.ProfileFragment;
+import com.example.guavas.observer.FragmentObserver;
+import com.example.guavas.observer.Subject;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.lockwood.memorizingpager.NavigationHistory;
-
-import java.util.HashMap;
-import java.util.Stack;
 
 /**
  * The main class for navigating between fragments
  */
 
-public class NavigationActivity extends AppCompatActivity{
+public class NavigationActivity extends AppCompatActivity implements FragmentObserver {
 
     private final String HISTORY_KEY="history";
 
     private BottomNavigationView navigationView;
 
-    private NavigationHistory history;
+   // private NavigationHistory history;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
-        if (savedInstanceState == null) history = new NavigationHistory();
-        else history = savedInstanceState.getParcelable(HISTORY_KEY);
+       // if (savedInstanceState == null) history = new NavigationHistory();
+       // else history = savedInstanceState.getParcelable(HISTORY_KEY);
 
         setupBottomNavigationView();
     }
@@ -54,7 +43,7 @@ public class NavigationActivity extends AppCompatActivity{
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(HISTORY_KEY, history);
+       // outState.putParcelable(HISTORY_KEY, history);
     }
 
     private void setupBottomNavigationView() {
@@ -80,7 +69,7 @@ public class NavigationActivity extends AppCompatActivity{
                         return true;
                 }
                 showFragment(nextFragment);
-                history.pushItem(item.getItemId());
+               // history.pushItem(item.getItemId());
                 return true;
             }
         });
@@ -88,14 +77,23 @@ public class NavigationActivity extends AppCompatActivity{
         navigationView.setSelectedItemId(R.id.navigation_health_summary);
     }
 
+    @Override
+    public void updateContainerWithFragment(Fragment fragment) {
+        showFragment(fragment);
+    }
+
     private void showFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        //Register this class to listen if a change of fragment is needed
+        if (fragment instanceof Subject) {
+            ((Subject) fragment).register(this);
+        }
         transaction.replace(R.id.fragment_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
-    @Override
+/*    @Override
     public void onBackPressed() {
         if (!history.isEmpty()){
             if (getSupportFragmentManager().getBackStackEntryCount() == 1){
@@ -107,4 +105,6 @@ public class NavigationActivity extends AppCompatActivity{
             super.onBackPressed();
         }
     }
+
+*/
 }

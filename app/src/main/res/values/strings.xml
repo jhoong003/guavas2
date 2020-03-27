@@ -110,6 +110,9 @@
     =======
     <string name="disease_description">Description</string>
     <string name="disease_prevention">Prevention</string>
+    <string name="button_gender_male">Male</string>
+    <string name="button_gender_female">Female</string>
+    <string name="label_date_of_birth">Date of birth</string>
 
     >>>>>>> Stashed changes
 
