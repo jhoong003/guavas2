@@ -1,0 +1,42 @@
+Paroymsal Positional Vertigo|a disorder arising from a problem in the inner ear. Symptoms are repeated, brief periods of vertigo with movement, that is, of a spinning sensation upon changes in the position of the head. This can occur with turning in bed or changing position. Each episode of vertigo typically lasts less than one minute. Nausea is commonly associated.BPPV is one of the most common causes of vertigo.|Do the Epley maneuver, the Semont maneuver, and a lesser degree Brandt–Daroff exercises.
+                                                                                                                                           AIDS|A spectrum of conditions caused by infection with the human immunodeficiency virus (HIV).|There is currently no cure, nor an effective HIV vaccine
+                                                                                                                                           Acne|A long-term skin disease that occurs when dead skin cells and oil from the skin clog hair follicles.|Apply skin care, Diet , and other medications
+                                                                                                                                           Alcoholic Hepatitis|Hepatitis (inflammation of the liver) due to excessive intake of alcohol.|Reduce alcohol consumption and go to hospital
+Allergy|Number of conditions caused by hypersensitivity of the immune system to typically harmless substances in the environment.|Seek profesional's help to get more detail
+Arthritis|Disorder that affects joints|Treatment options vary depending on the type of arthritis and include physical therapy and lifestyle changes
+Bronchial Asthma|A common long-term inflammatory disease of the airways of the lungs|Decreasing risk factors such as tobacco smoke, air pollution, chemical irritants including perfume, and the number of lower respiratory infections.
+Cervical Spondylosis|The degeneration of the vertebral column from any cause|Education on lifestyle modifications, chiropractic, nonsteroidal anti-inflammatory drugs (NSAIDs), physical therapy, and osteopathic care
+Chicken pox|A highly contagious disease caused by the initial infection with varicella zoster virus (VZV)|Cutting the nails short or wearing gloves may prevent scratching and minimize the risk of secondary infections
+Chronic Cholestasis|A condition where bile cannot flow from the liver to the duodenum|surgery
+Common Cold|a viral infectious disease of the upper respiratory tract that primarily affects the nose.|Getting plenty of rest, drinking fluids to maintain hydration, and gargling with warm salt water are reasonable conservative measures.
+Dengue|a mosquito-borne tropical disease caused by the dengue virus.|maintaining proper fluid balance, and Treatment depends on the symptoms
+Diabetes|a group of metabolic disorders characterized by a high blood sugar level over a prolonged period of time.|dietary changes, exercise, weight loss, and use of appropriate medications (insulin, oral medications)
+Dimorphic Hemmorhoids|vascular structures in the anal canal.|foods rich in dietary fiber, intake of oral fluids to maintain hydration, nonsteroidal anti-inflammatory drugs, sitz baths, and rest.
+Drug Reaction|Body Reaction to drugs|Reducing drugs consumption
+Fungal Infection|is a fungal infection of the skin.|topical agents such as miconazole, terbinafine, clotrimazole, ketoconazole, or tolnaftate applied twice daily 
+GERD|acid reflux, is a long-term condition in which stomach contents rise up into the esophagus, resulting in either symptoms or complications.|food choices, lifestyle changes, medications, and possibly surgery. Initial treatment is frequently with a proton-pump inhibitor such as omeprazole.
+Gastroenteritis|infectious diarrhea, is inflammation of the gastrointestinal tract—the stomach and small intestine.|taking a single dose of the anti vomiting medication metoclopramide or ondansetron
+Heart Attack|blood flow decreases or stops to a part of the heart, causing damage to the heart muscle.|Go to hospital
+Hepatitis B|an infectious disease caused by the hepatitis B virus (HBV) that affects the liver.|Not required
+Hepatitis C|an infectious disease caused by the hepatitis C virus (HCV) that primarily affects the liver.|avoid alcohol and medications toxic to the liver.
+Hepatitis D|a disease caused by the hepatitis delta virus (HDV), a small spherical enveloped virusoid.|conventional or pegylated interferon alpha therapy
+Hepatitis E|inflammation of the liver caused by infection with the hepatitis E virus (HEV)|There is no drug that has established safety and effectiveness for hepatitis E, and there have been no large randomized clinical trials of antiviral drugs.
+Hypertension|a long-term medical condition in which the blood pressure in the arteries is persistently elevated.|Lifestyle modification
+Hyperthyroidism|the condition that occurs due to excessive production of thyroid hormones by the thyroid gland.|Antithyroid drugs
+Hypoglycemia|a fall in blood sugar to levels below normal.|eating of carbohydrates such as sugars, determining the cause, and taking measures to hopefully prevent future episodes
+Hypothyrodism|a disorder of the endocrine system in which the thyroid gland does not produce enough thyroid hormone.|Hormone replacement
+Impetigo| a bacterial infection that involves the superficial skin|Antibiotics, either as a cream or by mouth, are usually prescribed. Mild cases may be treated with mupirocin ointments
+Jaundice| a yellowish or greenish pigmentation of the skin and whites of the eyes due to high bilirubin levels.|Do some liver check up
+Malaria|a mosquito-borne infectious disease that affects humans and other animals|antimalarial medications
+Migraine|a primary headache disorder characterized by recurrent headaches that are moderate to severe.|trigger avoidance, acute symptomatic control, and medication for prevention.
+Osteoarthristis|a type of joint disease that results from breakdown of joint cartilage and underlying bone.|Lifestyle modification (such as weight loss and exercise) and pain medications are the mainstays of treatment
+Paralysis|a loss of motor function in one or more muscles|Go to hospital
+Peptic ulcer disease|a break in the inner lining of the stomach, the first part of the small intestine, or sometimes the lower esophagus.|a triple regimen in which pantoprazole and clarithromycin are combined with either amoxicillin or metronidazole
+Pneumonia|an inflammatory condition of the lung affecting primarily the small air sacs known as alveoli.|Antibiotics by mouth, rest, simple analgesics, and fluids usually suffice for complete resolution.
+Psoriasis|a long-lasting autoimmune disease characterized by patches of abnormal skin.|no cure is available for psoriasis
+Tuberculosis|an infectious disease usually caused by Mycobacterium tuberculosis (MTB) bacteria.|Go to hospital
+Typhoid|a bacterial infection due to a specific type of Salmonella that causes symptoms.|Oral rehydration therapy and antibiotics
+Urinary tract infection|an infection that affects part of the urinary tract.|consume antibiotics and Phenazopyridine
+Varicose veins|superficial veins that have become enlarged and twisted.|surgical for 100% cure
+Hepatitis A|an infectious disease of the liver caused by Hepatovirus A (HAV)|No specific treatment
+
