@@ -30,8 +30,6 @@
         <activity android:name=".SearchActivity" />
         <activity android:name=".VerificationActivity" />
         <activity android:name=".ProfileEditActivity" />
-<!--<<<<<<< HEAD
-<<<<<<< HEAD-->
         <activity android:name=".diabetesfactor" />
         <activity android:name=".diabetesResult" />
         <activity android:name=".Diagnose_chronic" />
@@ -40,23 +38,8 @@
         <activity android:name=".heartfactor" />
         <activity android:name=".heartresult" />
         <activity android:name=".result" />
-        <activity android:name=".ProfileActivity">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-=======
-       <!-- <activity android:name=".ProfileActivity" />-->
+        <activity android:name=".ProfileActivity"/>
         <activity android:name=".SupportActivity" />
->>>>>>> 7b796793dfbd2b8fe677d93a6e10ec9a6af22d8f
-=======
-   <!--     <activity android:name=".ProfileActivity" />
-        <activity android:name=".SupportActivity" />-->
->>>>>>> 7b796793dfbd2b8fe677d93a6e10ec9a6af22d8f
         <activity android:name=".ShowAllActivity"/>
     </application>
 
