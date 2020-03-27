@@ -14,8 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.guavas.Entity.UserProfile;
-import com.example.guavas.ProfileEditActivity;
+import com.example.guavas.entity.UserProfile;
 import com.example.guavas.R;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;

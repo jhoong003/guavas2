@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+//Deprecated (Migrated to fragment)
 
 public class HospitalActivity extends AppCompatActivity implements HospitalAdapter.OnItemClickListener, View.OnClickListener, SearchView.OnQueryTextListener{
     public static final String URL = "imageUrl";

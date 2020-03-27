@@ -15,11 +15,11 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.example.guavas.ExpandableList;
-import com.example.guavas.FAQDataManager;
+import com.example.guavas.controller.FAQDataManager;
 import com.example.guavas.firebaseDAO.MedsDAO;
 import com.example.guavas.firebaseDAO.RatingDAO;
 import com.example.guavas.R;
-import com.example.guavas.UserRatingData;
+import com.example.guavas.data.model.UserRatingData;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
 

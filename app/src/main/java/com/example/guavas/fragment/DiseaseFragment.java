@@ -21,7 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.guavas.IllDetail;
+import com.example.guavas.data.IllDetail;
 import com.example.guavas.R;
 import com.example.guavas.adapter.DiseaseAdapter;
 import com.example.guavas.observer.FragmentObserver;

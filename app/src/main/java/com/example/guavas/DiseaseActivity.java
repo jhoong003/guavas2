@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.guavas.adapter.DiseaseAdapter;
+import com.example.guavas.data.IllDetail;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//Deprecated (Migrated to fragment)
 public class DiseaseActivity extends AppCompatActivity implements View.OnClickListener, DiseaseAdapter.OnItemClickListener,  SearchView.OnQueryTextListener {
     public static final String DESCRIPTION = "description";
     public static final String NAME = "name";

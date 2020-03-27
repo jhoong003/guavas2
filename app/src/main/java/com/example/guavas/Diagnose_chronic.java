@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+//Deprecated (Migrated to fragment)
 public class Diagnose_chronic extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -3,11 +3,8 @@ package com.example.guavas;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.guavas.Entity.UserProfile;
+import com.example.guavas.entity.UserProfile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,13 +23,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 
-import java.util.Objects;
-
 /**
  * This Activity controls Profile update feature.
  * It display data retrieve from the database
  * It inserts & update data into the database
- *
+ * Deprecated (Migrated to Fragment)
  * @author zane_
  */
 public class ProfileEditActivity extends AppCompatActivity {

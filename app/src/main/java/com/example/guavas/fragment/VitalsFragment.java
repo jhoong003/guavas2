@@ -9,6 +9,8 @@ import com.example.guavas.R;
 import com.example.guavas.adapter.FeatureCardViewAdapter;
 import com.example.guavas.data.DataType;
 import com.example.guavas.data.DataTypes;
+import com.example.guavas.observer.FragmentObserver;
+import com.example.guavas.observer.Subject;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -16,16 +18,16 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class VitalsFragment extends Fragment {
+public class VitalsFragment extends Fragment implements Subject {
 
     public static final int SUBMENU_BMI = 1;
     public static final int SUBMENU_VITALS = 2;
-
-    private static String SUBMENU_KEY = "sub";
+    private static final String SUBMENU_KEY = "sub";
 
     private String[] titles;
     private int[] imageIds;
     private int subMenu;
+    private FragmentObserver observer;
 
     protected RecyclerView recyclerView;
 
@@ -87,14 +89,25 @@ public class VitalsFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
     }
 
-    protected void launchViewDetailsFragment(int position, int subMenu){
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+    private void launchViewDetailsFragment(int position, int subMenu){
         Fragment nextFragment;
         if (subMenu == SUBMENU_BMI) nextFragment = ViewDetailsHeaderFragment.newInstance(DataTypes.getBMIDataType(position));
         else nextFragment = ViewDetailsHeaderFragment.newInstance(DataTypes.getVitalDataType(position));
-        transaction.replace(R.id.frame_layout_vital, nextFragment);
-        transaction.addToBackStack(null);
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        transaction.commit();
+        notifyObserver(nextFragment);
+    }
+
+    @Override
+    public void register(FragmentObserver observer) {
+        this.observer = observer;
+    }
+
+    @Override
+    public void unregister() {
+        observer = null;
+    }
+
+    @Override
+    public void notifyObserver(Fragment fragment) {
+        observer.updateContainerWithFragment(fragment);
     }
 }

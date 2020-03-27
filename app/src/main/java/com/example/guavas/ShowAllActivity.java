@@ -111,7 +111,7 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
     }
 
     public void onClickAddData(View view){
-        if (fragment == null){
+        if (fragment == null && dataType.isCompound()){
             compoundIndex = 0;
             compoundData.clear();
         }

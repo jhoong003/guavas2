@@ -14,13 +14,17 @@ import android.widget.Toast;
 
 import com.example.guavas.R;
 import com.example.guavas.adapter.FeatureCardViewAdapter;
+import com.example.guavas.observer.FragmentObserver;
+import com.example.guavas.observer.Subject;
 
 
-public class HealthSummaryFragment extends Fragment {
+public class HealthSummaryFragment extends Fragment implements Subject {
 
     private int[] imageIds = {R.drawable.allergy, R.drawable.bmi, R.drawable.inheritance, R.drawable.vital};
     private String[] titles = new String[4];
     private RecyclerView recyclerView;
+
+    private FragmentObserver observer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +54,7 @@ public class HealthSummaryFragment extends Fragment {
                         Toast.makeText(getContext(), "Not implemented yet!", Toast.LENGTH_SHORT).show();
                         return;
                 }
-                displayFragment(nextFragment);
+                notifyObserver(nextFragment);
             }
         });
         recyclerView.setAdapter(adapter);
@@ -61,11 +65,18 @@ public class HealthSummaryFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
     }
 
-    private void displayFragment(Fragment fragment){
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, fragment);
-        transaction.addToBackStack(null);
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        transaction.commit();
+    @Override
+    public void register(FragmentObserver observer) {
+        this.observer = observer;
+    }
+
+    @Override
+    public void unregister() {
+        observer = null;
+    }
+
+    @Override
+    public void notifyObserver(Fragment fragment) {
+        observer.updateContainerWithFragment(fragment);
     }
 }

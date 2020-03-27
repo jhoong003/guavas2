@@ -1,4 +1,4 @@
-package com.example.guavas;
+package com.example.guavas.data.model;
 
 public class UserRatingData {
 

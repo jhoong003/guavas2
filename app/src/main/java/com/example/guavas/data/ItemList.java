@@ -1,4 +1,4 @@
-package com.example.guavas;
+package com.example.guavas.data;
 
 public class ItemList implements Comparable<ItemList>{
     private String text1;

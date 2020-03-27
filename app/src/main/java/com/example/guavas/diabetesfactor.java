@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+//Deprecated (Migrated to fragment)
 public class diabetesfactor extends AppCompatActivity {
     private float[] Factors = new float[7];
     @Override

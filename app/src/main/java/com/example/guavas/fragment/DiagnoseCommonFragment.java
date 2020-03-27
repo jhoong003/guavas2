@@ -1,6 +1,5 @@
 package com.example.guavas.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,13 +20,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.guavas.Diagnose_common;
 import com.example.guavas.ItemAdapter;
-import com.example.guavas.ItemList;
+import com.example.guavas.data.ItemList;
 import com.example.guavas.R;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
-import com.example.guavas.result;
 
 import java.util.ArrayList;
 import java.util.Collections;

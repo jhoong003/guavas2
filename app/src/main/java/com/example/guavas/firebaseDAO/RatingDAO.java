@@ -3,7 +3,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.guavas.UserRatingData;
+import com.example.guavas.data.model.UserRatingData;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

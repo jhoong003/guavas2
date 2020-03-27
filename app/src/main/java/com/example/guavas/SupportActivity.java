@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.guavas.controller.FAQDataManager;
+import com.example.guavas.data.model.UserRatingData;
 import com.example.guavas.firebaseDAO.MedsDAO;
 import com.example.guavas.firebaseDAO.RatingDAO;
 
@@ -19,6 +21,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Deprecated (Migrated to fragment)
+ */
 public class SupportActivity extends AppCompatActivity {
 
     ExpandableListView expandableListView;

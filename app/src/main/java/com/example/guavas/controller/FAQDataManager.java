@@ -1,4 +1,4 @@
-package com.example.guavas;
+package com.example.guavas.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

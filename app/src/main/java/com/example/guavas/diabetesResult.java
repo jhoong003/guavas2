@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
+//Deprecated (Migrated to fragment)
 public class diabetesResult extends AppCompatActivity {
     private float[] f = new float[7];
     public Interpreter Htflite;

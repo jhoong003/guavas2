@@ -16,7 +16,9 @@ import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
-
+/**
+ * Deprecated (Migrated to fragment)
+ */
 public class result extends AppCompatActivity {
 
     public Interpreter Htflite;

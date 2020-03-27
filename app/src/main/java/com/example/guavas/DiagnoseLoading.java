@@ -1,5 +1,7 @@
 package com.example.guavas;
 
+import com.example.guavas.data.IllDetail;
+
 import java.util.ArrayList;
 
 public class DiagnoseLoading {
