@@ -28,7 +28,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         hospitalButton.setOnClickListener(this);
         diseaseButton.setOnClickListener(this);
 
-        BottomNavigationView bottomNav=findViewById(R.id.bottom_Nav);
+        BottomNavigationView bottomNav=findViewById(R.id.bottom_navigation_menu);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         Menu menu = bottomNav.getMenu();
         MenuItem item = menu.getItem(1);
@@ -56,20 +56,20 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                    Fragment selectedFragment = null;
+                   // Fragment selectedFragment = null;
 
                     switch (menuItem.getItemId()) {
-                        case R.id.ProfileFragment:
+                        case R.id.navigation_profile:
                             Intent i1 = new Intent(SearchActivity.this, ProfileActivity.class);
                             startActivity(i1);
                             break;
-                        case R.id.SearchFragment:
+                        case R.id.navigation_search:
                             break;
-                        case R.id.DiagnosisFragment:
+                        case R.id.navigation_diagnosis:
                             Intent i2 = new Intent(SearchActivity.this, DiagnoseMain.class);
                             startActivity(i2);
                             break;
-                        case R.id.healthSummaryFragment:
+                        case R.id.navigation_health_summary:
                             Intent i4 = new Intent(SearchActivity.this, MainActivity.class);
                             startActivity(i4);
                             break;

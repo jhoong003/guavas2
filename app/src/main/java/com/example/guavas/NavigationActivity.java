@@ -76,7 +76,8 @@ public class NavigationActivity extends AppCompatActivity{
                         startActivity(intent);
                         return true;
                     case R.id.navigation_search:
-                        //Inject your search fragment here
+                        Intent intent2 = new Intent(NavigationActivity.this, SearchActivity.class);
+                        startActivity(intent2);
                         return true;
                 }
                 showFragment(nextFragment);

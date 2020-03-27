@@ -96,7 +96,7 @@ public class SupportActivity extends AppCompatActivity {
                                                         "Thank you for rating our app!",
                                                         Toast.LENGTH_SHORT).show();
 
-                                                startActivity(new Intent(SupportActivity.this, MainActivity.class));
+                                                startActivity(new Intent(SupportActivity.this, ProfileActivity.class));
 
                                                 // Save to Firebase
                                                 ratingDAO.save(userRatingData);

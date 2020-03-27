@@ -87,24 +87,25 @@ public class DiseaseActivity extends AppCompatActivity implements View.OnClickLi
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
 
+
                     switch (menuItem.getItemId()) {
-                        case R.id.ProfileFragment:
+                        case R.id.navigation_profile:
                             Intent i1 = new Intent(DiseaseActivity.this, ProfileActivity.class);
                             startActivity(i1);
                             break;
-                        case R.id.SearchFragment:
+                        case R.id.navigation_search:
                             break;
-                        case R.id.DiagnosisFragment:
+                        case R.id.navigation_diagnosis:
                             Intent i2 = new Intent(DiseaseActivity.this, DiagnoseMain.class);
                             startActivity(i2);
                             break;
-                        case R.id.healthSummaryFragment:
+                        case R.id.navigation_health_summary:
                             Intent i4 = new Intent(DiseaseActivity.this, MainActivity.class);
                             startActivity(i4);
                             break;
-
                     }
-                    return true;
+
+                return true;
                 }
             };
 
