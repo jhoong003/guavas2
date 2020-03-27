@@ -131,29 +131,6 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/txtHeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:hint="@string/profile_height"
-                android:inputType="number" />
-
-
-            <EditText
-                android:id="@+id/txtWeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:hint="@string/profile_weight"
-                android:inputType="number" />
-
-            <EditText
                 android:id="@+id/txtEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

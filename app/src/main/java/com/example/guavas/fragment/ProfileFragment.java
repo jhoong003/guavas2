@@ -19,8 +19,11 @@ import com.example.guavas.ProfileEditActivity;
 import com.example.guavas.R;
 import com.example.guavas.StartActivity;
 import com.example.guavas.SupportActivity;
+import com.example.guavas.controller.DailyDataProcessor;
+import com.example.guavas.data.model.MedicalRecord;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
+import com.github.mikephil.charting.data.Entry;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -36,7 +39,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class ProfileFragment extends Fragment implements Subject {
 
@@ -48,7 +54,7 @@ public class ProfileFragment extends Fragment implements Subject {
     private View parent;
     private TextView mobileNumber;
     private TextView lblFirstname, lblLastname, lblAge, lblHeight, lblWeight;
-    private DatabaseReference reff;
+    private DatabaseReference reff, reffHeight, reffWeight;
 
     private FragmentObserver observer;
 
@@ -131,6 +137,9 @@ public class ProfileFragment extends Fragment implements Subject {
         mobileNumber.setText(phoneNumber);
 
         reff = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(phoneNumber);
+        reffHeight = FirebaseDatabase.getInstance().getReference().child(phoneNumber).child("Height");
+        reffWeight = FirebaseDatabase.getInstance().getReference().child(phoneNumber).child("Weight");
+
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NotNull DataSnapshot dataSnapshot){
@@ -139,7 +148,7 @@ public class ProfileFragment extends Fragment implements Subject {
                     lblFirstname = parent.findViewById(R.id.lblFirstname);
                     lblLastname = parent.findViewById(R.id.lblLastname);
                     lblAge = parent.findViewById(R.id.lblAge);
-                    lblHeight = parent.findViewById(R.id.lblHeight);
+
                     lblWeight = parent.findViewById(R.id.lblWeight);
 
                     if(dataSnapshot.child("firstName").getValue() != null){
@@ -161,19 +170,63 @@ public class ProfileFragment extends Fragment implements Subject {
 
                         lblAge.setText(age + " years old");
                     }
-
-                    if(dataSnapshot.child("height").getValue() != null){
-                        height = dataSnapshot.child("height").getValue().toString();
-                        lblHeight.setText(height+"(cm)");
-                    }
-
-                    if(dataSnapshot.child("weight").getValue() != null){
-                        weight = dataSnapshot.child("weight").getValue().toString();
-                        lblWeight.setText(weight+ "(kg)");
-                    }
                 }
             }
             public void onCancelled(@NotNull DatabaseError databaseError){
+                Log.e("ProfileFragment", databaseError.getDetails());
+            }
+        });
+
+        reffHeight.addValueEventListener(new ValueEventListener() {
+            ArrayList<MedicalRecord> heights = new ArrayList<>();
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                lblHeight = parent.findViewById(R.id.lblHeight);
+
+                if (dataSnapshot.getChildrenCount() == 0){
+                    lblHeight.setText(getResources().getString(R.string.no_recorded_data_height));
+                }else {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        MedicalRecord record = snapshot.getValue(MedicalRecord.class);
+                        heights.add(record);
+                    }
+                    DailyDataProcessor processor = new DailyDataProcessor();
+                    ArrayList<Entry> entries = processor.processData(heights);
+                    double height = entries.get(entries.size() - 1).getY();
+
+                    lblHeight.setText(String.format(Locale.getDefault(), "%.2f (cm)", height));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("ProfileFragment", databaseError.getDetails());
+            }
+        });
+
+        reffWeight.addValueEventListener(new ValueEventListener() {
+            ArrayList<MedicalRecord> weights = new ArrayList<>();
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                lblWeight = parent.findViewById(R.id.lblWeight);
+
+                if (dataSnapshot.getChildrenCount() == 0){
+                    lblWeight.setText(getResources().getString(R.string.no_recorded_data_weight));
+                }else {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        MedicalRecord record = snapshot.getValue(MedicalRecord.class);
+                        weights.add(record);
+                    }
+                    DailyDataProcessor processor = new DailyDataProcessor();
+                    ArrayList<Entry> entries = processor.processData(weights);
+                    double weight = entries.get(entries.size() - 1).getY();
+
+                    lblWeight.setText(String.format(Locale.getDefault(), "%.2f (kg)", weight));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e("ProfileFragment", databaseError.getDetails());
             }
         });

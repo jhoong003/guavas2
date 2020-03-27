@@ -37,7 +37,7 @@ public class ProfileEditFragment extends Fragment implements Subject {
     private static String PHONE_KEY ="key";
 
     private String gender, phone;
-    private EditText txtFirstName, txtLastName, txtDay, txtMonth, txtYear, txtHeight, txtWeight, txtEmail;
+    private EditText txtFirstName, txtLastName, txtDay, txtMonth, txtYear, txtEmail;
     private RadioGroup radioGrpGender;
     private RadioButton radioBtnM, radioBtnF;
     private Button btnSave;
@@ -80,8 +80,6 @@ public class ProfileEditFragment extends Fragment implements Subject {
         txtDay = parent.findViewById(R.id.txtDay);
         txtMonth = parent.findViewById(R.id.txtMonth);
         txtYear = parent.findViewById(R.id.txtYear);
-        txtHeight = parent.findViewById(R.id.txtHeight);
-        txtWeight = parent.findViewById(R.id.txtWeight);
         txtEmail = parent.findViewById(R.id.txtEmail);
 
         btnSave = parent.findViewById(R.id.btnSave);
@@ -148,8 +146,6 @@ public class ProfileEditFragment extends Fragment implements Subject {
                     String dd = dataSnapshot.child("dobD").getValue().toString();
                     String dm = dataSnapshot.child("dobM").getValue().toString();
                     String dy = dataSnapshot.child("dobY").getValue().toString();
-                    String height = dataSnapshot.child("height").getValue().toString();
-                    String weight = dataSnapshot.child("weight").getValue().toString();
                     String email = dataSnapshot.child("email").getValue().toString();
 
                     txtFirstName.setText(fname);
@@ -165,8 +161,6 @@ public class ProfileEditFragment extends Fragment implements Subject {
                     txtDay.setText(dd);
                     txtMonth.setText(dm);
                     txtYear.setText(dy);
-                    txtHeight.setText(height);
-                    txtWeight.setText(weight);
                     txtEmail.setText(email);
                 }
             }
@@ -187,11 +181,6 @@ public class ProfileEditFragment extends Fragment implements Subject {
             updateUserProfile.setDobD(txtDay.getText().toString().trim());
             updateUserProfile.setDobM(txtMonth.getText().toString().trim());
             updateUserProfile.setDobY(txtYear.getText().toString().trim());
-
-            int height = Integer.parseInt(txtHeight.getText().toString().trim());
-            updateUserProfile.setHeight(height);
-            int weight = Integer.parseInt(txtWeight.getText().toString().trim());
-            updateUserProfile.setWeight(weight);
 
             updateUserProfile.setEmail(txtEmail.getText().toString().trim());
 
@@ -219,12 +208,6 @@ public class ProfileEditFragment extends Fragment implements Subject {
             return false;
         } else if (txtYear.getText().toString().length() == 0) {
             txtYear.setError("DOB Year cannot be empty");
-            return false;
-        } else if (txtHeight.getText().toString().length() == 0) {
-            txtHeight.setError("Height cannot be empty");
-            return false;
-        } else if (txtWeight.getText().toString().length() == 0) {
-            txtWeight.setError("Weight cannot be empty");
             return false;
         } else if (txtEmail.getText().toString().length() == 0) {
             txtEmail.setError("Email cannot be empty");
