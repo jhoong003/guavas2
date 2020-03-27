@@ -6,9 +6,11 @@ public class IllDetail {
     public String IllName;
     public String Description;
     public String Prevention;
-    public IllDetail(){
 
+    public IllDetail(){
+        //Required public constructor
     }
+
     public IllDetail(String name, String Desc, String prevent){
         IllName = name;
         Description = Desc;

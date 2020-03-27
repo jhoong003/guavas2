@@ -34,7 +34,6 @@ public class HospitalActivity extends AppCompatActivity implements HospitalAdapt
     public static final String ADDRESS = "address";
     public static final String TELEPHONE = "number";
 
-
     private static final String TAG = "HospitalActivity";
     private Toolbar toolbar;
     private TextView back;
@@ -42,7 +41,7 @@ public class HospitalActivity extends AppCompatActivity implements HospitalAdapt
     protected RecyclerView mRecyclerView;
     private HospitalAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
-    ArrayList<hospital> hospitalsList = new ArrayList<>();
+    ArrayList<Hospital> hospitalsList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +55,7 @@ public class HospitalActivity extends AppCompatActivity implements HospitalAdapt
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(true);
 
         setUpRecyclerView();
+
         try {
             prepareHospitalData();
         } catch (FileNotFoundException e) {
@@ -133,7 +133,7 @@ public class HospitalActivity extends AppCompatActivity implements HospitalAdapt
             for (String a: string){
                 System.out.println(a.trim());
             }
-            hospitalsList.add(new hospital(string[0].trim(), string[1].trim(), string[2].trim(), string[3].trim(), R.drawable.ic_hospital));
+            hospitalsList.add(new Hospital(string[0].trim(), string[1].trim(), string[2].trim(), string[3].trim(), R.drawable.ic_hospital));
         }
         mAdapter.notifyDataSetChanged();
     }
@@ -169,15 +169,15 @@ public class HospitalActivity extends AppCompatActivity implements HospitalAdapt
     @Override
     public boolean onQueryTextChange(String newText) {
         String userInput = newText.toLowerCase();
-        List<hospital> newList = new ArrayList<>();
+        List<Hospital> newList = new ArrayList<>();
 
-        for (hospital item:hospitalsList){
+        for (Hospital item:hospitalsList){
             if(item.getName().toLowerCase().contains(userInput)){
                 newList.add(item);
             }
         }
 
-        mAdapter.updateList((ArrayList<hospital>) newList);
+        mAdapter.updateList((ArrayList<Hospital>) newList);
         /*mAdapter.getFilter().filter(newText);*/
 
         return true;
@@ -187,7 +187,7 @@ public class HospitalActivity extends AppCompatActivity implements HospitalAdapt
     public void onItemClick(int position) {
         Log.d(TAG, "onItemClick: clicked");
         Intent intent = new Intent(this, HospitalInfoActivity.class);
-        hospital clickedItem = hospitalsList.get(position);
+        Hospital clickedItem = hospitalsList.get(position);
         intent.putExtra(NAME, clickedItem.getName());
         intent.putExtra(ADDRESS, clickedItem.getAddress());
         intent.putExtra(DESCRIPTION, clickedItem.getDescription());

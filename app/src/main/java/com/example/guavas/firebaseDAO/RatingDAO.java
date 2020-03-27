@@ -1,4 +1,4 @@
-package com.example.guavas.FirebaseDAO;
+package com.example.guavas.firebaseDAO;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;

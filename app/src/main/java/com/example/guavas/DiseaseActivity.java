@@ -49,7 +49,6 @@ public class DiseaseActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_disease);
 
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         TextView textView = (TextView)toolbar.findViewById(R.id.toolbarTitle);
@@ -58,7 +57,6 @@ public class DiseaseActivity extends AppCompatActivity implements View.OnClickLi
 
         setUpRecyclerView();
         prepareDiseaseData();
-
 
         back = findViewById(R.id.Back);
         back.setOnClickListener(this);

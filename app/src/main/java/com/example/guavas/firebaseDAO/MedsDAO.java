@@ -1,4 +1,4 @@
-package com.example.guavas.FirebaseDAO;
+package com.example.guavas.firebaseDAO;
 import java.util.List;
 import java.util.Optional;
 public interface MedsDAO<T>{

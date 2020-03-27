@@ -1,6 +1,5 @@
 package com.example.guavas.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -17,11 +16,9 @@ import android.widget.Toast;
 
 import com.example.guavas.ExpandableList;
 import com.example.guavas.FAQDataManager;
-import com.example.guavas.FirebaseDAO.MedsDAO;
-import com.example.guavas.FirebaseDAO.RatingDAO;
-import com.example.guavas.ProfileActivity;
+import com.example.guavas.firebaseDAO.MedsDAO;
+import com.example.guavas.firebaseDAO.RatingDAO;
 import com.example.guavas.R;
-import com.example.guavas.SupportActivity;
 import com.example.guavas.UserRatingData;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
