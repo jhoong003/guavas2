@@ -163,7 +163,7 @@ public class Diagnose_common extends AppCompatActivity {
         itemLists.add(new ItemList("Blister",""));
         itemLists.add(new ItemList("Red sore around nose",""));
         itemLists.add(new ItemList("Yellow crust ooze",""));
-        Collections.sort(itemLists);
+        //Collections.sort(itemLists);
 
         recyclerView = findViewById(R.id.RecycleViews);
         recyclerView.setHasFixedSize(true);

@@ -3,6 +3,7 @@ package com.example.guavas;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,11 +45,15 @@ public class heartresult extends AppCompatActivity {
             for(float j:i){
 
                 TextView textView = findViewById(R.id.HChronic1);
-                textView.setText(Float.toString(1-j));
+                textView.setText(Float.toString((1-j)*100));
                 System.out.println(j);
             }
         }
 
+    }
+    public void onClickRediagnoseD(View view){
+        Intent intent = new Intent(this, NavigationActivity.class);
+        startActivity(intent);
     }
     public MappedByteBuffer loadModelFile(String location) throws IOException {
         AssetFileDescriptor fileDescriptor = getApplicationContext().getAssets().openFd(location);

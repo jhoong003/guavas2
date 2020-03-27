@@ -7,8 +7,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/colorPrimary">
         <TextView
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -18,6 +19,7 @@
             android:textStyle="bold"
             android:text="Gender (1 = Male or 0 = Female)"/>
         <EditText
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -29,6 +31,7 @@
             android:inputType="number"
             android:background="@drawable/rectanglewhite"/>
         <TextView
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -38,6 +41,7 @@
             android:layout_marginTop="10dp"
             android:text="Age"/>
         <EditText
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -49,6 +53,7 @@
             android:inputType="number"
             android:background="@drawable/rectanglewhite"/>
         <TextView
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -58,6 +63,7 @@
             android:textStyle="bold"
             android:text="Current Smoker (1 = Yes or 0 = No)"/>
         <EditText
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -69,6 +75,7 @@
             android:inputType="number"
             android:background="@drawable/rectanglewhite"/>
         <TextView
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -78,6 +85,7 @@
             android:textStyle="bold"
             android:text="Cigerrate per day"/>
         <EditText
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -89,6 +97,7 @@
             android:inputType="number"
             android:background="@drawable/rectanglewhite"/>
         <TextView
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -98,6 +107,7 @@
             android:textStyle="bold"
             android:text="Do you have strok? (1 = Yes or 0 = No)"/>
         <EditText
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -109,6 +119,7 @@
             android:inputType="number"
             android:background="@drawable/rectanglewhite"/>
         <TextView
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -118,6 +129,7 @@
             android:textStyle="bold"
             android:text="Do you have hypertention? (1 = Yes or 0 = No)"/>
         <EditText
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -129,6 +141,7 @@
             android:inputType="number"
             android:background="@drawable/rectanglewhite"/>
         <TextView
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -138,6 +151,7 @@
             android:textStyle="bold"
             android:text="Total Alcohol"/>
         <EditText
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -149,6 +163,7 @@
             android:inputType="number"
             android:background="@drawable/rectanglewhite"/>
         <TextView
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -158,6 +173,7 @@
             android:textStyle="bold"
             android:text="Systolic blood pressure"/>
         <EditText
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -169,6 +185,7 @@
             android:inputType="number"
             android:background="@drawable/rectanglewhite"/>
         <TextView
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -178,6 +195,7 @@
             android:textStyle="bold"
             android:text="Diastolic blood pressure"/>
         <EditText
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -189,6 +207,7 @@
             android:inputType="number"
             android:background="@drawable/rectanglewhite"/>
         <TextView
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -198,6 +217,7 @@
             android:textStyle="bold"
             android:text="BMI"/>
         <EditText
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -209,6 +229,7 @@
             android:inputType="number"
             android:background="@drawable/rectanglewhite"/>
         <TextView
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -218,6 +239,7 @@
             android:textStyle="bold"
             android:text="Heart Rate"/>
         <EditText
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -229,6 +251,7 @@
             android:inputType="number"
             android:background="@drawable/rectanglewhite"/>
         <TextView
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -238,6 +261,7 @@
             android:textStyle="bold"
             android:text="Glucose"/>
         <EditText
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id = "@+id/Hfactor12"
@@ -266,8 +290,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
-            android:onClick="HSend"
-            android:background="@drawable/rectangledarkgray"/>
+            android:onClick="HSend"/>
 
 
     </LinearLayout>
