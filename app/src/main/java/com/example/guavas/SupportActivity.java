@@ -11,15 +11,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.guavas.FirebaseDAO.RatingDAO;
 import com.example.guavas.controller.FAQDataManager;
 import com.example.guavas.data.model.UserRatingData;
-import com.example.guavas.firebaseDAO.MedsDAO;
-import com.example.guavas.firebaseDAO.RatingDAO;
+import com.example.guavas.FirebaseDAO.MedsDAO;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Deprecated (Migrated to fragment)
@@ -49,7 +50,7 @@ public class SupportActivity extends AppCompatActivity {
         setRatingBar();
         setSubmitRating();
 
-        ratingDAO = new RatingDAO();
+        ratingDAO = (MedsDAO) new RatingDAO();
     }
 
     private void setFAQ() {
@@ -68,8 +69,8 @@ public class SupportActivity extends AppCompatActivity {
                         getApplicationContext(),
                         expandableListTitle.get(groupPosition)
                                 + " -> "
-                                + expandableListDetail.get(
-                                expandableListTitle.get(groupPosition)).get(
+                                + Objects.requireNonNull(expandableListDetail.get(
+                                expandableListTitle.get(groupPosition))).get(
                                 childPosition), Toast.LENGTH_SHORT
                 ).show();
                 return false;
