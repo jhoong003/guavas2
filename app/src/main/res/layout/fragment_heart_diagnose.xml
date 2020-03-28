@@ -6,10 +6,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/colorPrimary">
+        android:orientation="vertical">
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -19,7 +18,7 @@
             android:textStyle="bold"
             android:text="@string/text_chronic_diagnosis_gender"/>
         <EditText
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -30,9 +29,10 @@
             android:id = "@+id/Hfactor1"
             android:inputType="number"
             android:hint="@string/hint_boolean_gender"
-            android:background="@drawable/rectanglewhite"/>
+            android:textColorHint="@color/white"
+            android:background="@drawable/rectangledarkgray"/>
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -42,7 +42,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/text_diabetes_age"/>
         <EditText
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -52,9 +52,9 @@
             android:layout_marginTop="10dp"
             android:id = "@+id/Hfactor2"
             android:inputType="number"
-            android:background="@drawable/rectanglewhite"/>
+            android:background="@drawable/rectangledarkgray"/>
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -64,7 +64,7 @@
             android:textStyle="bold"
             android:text="@string/text_chronic_diagnosis_smoker"/>
         <EditText
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -75,9 +75,10 @@
             android:id = "@+id/Hfactor3"
             android:inputType="number"
             android:hint="@string/hint_boolean"
-            android:background="@drawable/rectanglewhite"/>
+            android:background="@drawable/rectangledarkgray"
+            android:textColorHint="@color/white"/>
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -87,7 +88,7 @@
             android:textStyle="bold"
             android:text="@string/text_chronic_diagnosis_cigarrete"/>
         <EditText
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -97,9 +98,9 @@
             android:layout_marginTop="10dp"
             android:id = "@+id/Hfactor4"
             android:inputType="number"
-            android:background="@drawable/rectanglewhite"/>
+            android:background="@drawable/rectangledarkgray"/>
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -109,7 +110,7 @@
             android:textStyle="bold"
             android:text="@string/text_chronic_diagnosis_stroke"/>
         <EditText
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -120,9 +121,10 @@
             android:id = "@+id/Hfactor5"
             android:inputType="number"
             android:hint="@string/hint_boolean"
-            android:background="@drawable/rectanglewhite"/>
+            android:background="@drawable/rectangledarkgray"
+            android:textColorHint="@color/white"/>
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -132,7 +134,7 @@
             android:textStyle="bold"
             android:text="@string/text_chronic_diagnosis_hypertension"/>
         <EditText
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -143,9 +145,10 @@
             android:id = "@+id/Hfactor6"
             android:inputType="number"
             android:hint="@string/hint_boolean"
-            android:background="@drawable/rectanglewhite"/>
+            android:background="@drawable/rectangledarkgray"
+            android:textColorHint="@color/white"/>
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -155,7 +158,7 @@
             android:textStyle="bold"
             android:text="@string/text_chronic_diagnosis_alcohol"/>
         <EditText
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -165,9 +168,9 @@
             android:layout_marginTop="10dp"
             android:id = "@+id/Hfactor7"
             android:inputType="number"
-            android:background="@drawable/rectanglewhite"/>
+            android:background="@drawable/rectangledarkgray"/>
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -177,7 +180,7 @@
             android:textStyle="bold"
             android:text="@string/text_chronic_diagnosis_systolic"/>
         <EditText
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -187,9 +190,9 @@
             android:layout_marginTop="10dp"
             android:id = "@+id/Hfactor8"
             android:inputType="numberDecimal"
-            android:background="@drawable/rectanglewhite"/>
+            android:background="@drawable/rectangledarkgray"/>
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -199,7 +202,7 @@
             android:textStyle="bold"
             android:text="@string/text_chronic_diagnosis_diastolic"/>
         <EditText
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -209,9 +212,9 @@
             android:layout_marginTop="10dp"
             android:id = "@+id/Hfactor9"
             android:inputType="numberDecimal"
-            android:background="@drawable/rectanglewhite"/>
+            android:background="@drawable/rectangledarkgray"/>
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -221,7 +224,7 @@
             android:textStyle="bold"
             android:text="@string/text_diabetes_BMI"/>
         <EditText
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -231,9 +234,9 @@
             android:layout_marginTop="10dp"
             android:id = "@+id/Hfactor10"
             android:inputType="numberDecimal"
-            android:background="@drawable/rectanglewhite"/>
+            android:background="@drawable/rectangledarkgray"/>
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -243,7 +246,7 @@
             android:textStyle="bold"
             android:text="@string/text_chronic_diagosis_heart_rate"/>
         <EditText
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -253,9 +256,9 @@
             android:layout_marginTop="10dp"
             android:id = "@+id/Hfactor11"
             android:inputType="numberDecimal"
-            android:background="@drawable/rectanglewhite"/>
+            android:background="@drawable/rectangledarkgray"/>
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -266,7 +269,7 @@
             android:text="@string/text_chronic_diagnosis_glucose"/>
 
         <EditText
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id = "@+id/Hfactor12"
@@ -276,7 +279,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:inputType="numberDecimal"
-            android:background="@drawable/rectanglewhite"/>
+            android:background="@drawable/rectangledarkgray"/>
 
         <Button
             android:id="@+id/button_submit"
@@ -287,7 +290,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/rectanglewhite"
+            android:layout_marginBottom="8dp"
+            android:textColor="@android:color/white"/>
 
     </LinearLayout>
 

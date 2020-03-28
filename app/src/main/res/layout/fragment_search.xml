@@ -7,7 +7,7 @@
     android:clickable="true">
 
     <RelativeLayout
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,6 +17,7 @@
             android:text="@string/search"
             android:textSize="50sp"
             android:layout_centerInParent="true"
+            android:textColor="@android:color/white"
             android:textStyle="bold" />
     </RelativeLayout>
 

@@ -10,7 +10,7 @@
 
     <!-- Rating Bar's color control-->
     <style name="RatingBar" parent="Theme.AppCompat">
-        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlNormal">@android:color/darker_gray</item>
         <item name="colorControlActivated">@color/yellow</item>
     </style>
 

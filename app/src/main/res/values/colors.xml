@@ -13,5 +13,6 @@
     <color name="normal_measurement">#00e676</color>
     <color name="abnormal_measurement">#ff5722</color>
     <color name="pink">#85FF0000</color>
+    <color name="creamypink">#3CFF0000</color>
     <color name="guava">#98cd32</color>
 </resources>

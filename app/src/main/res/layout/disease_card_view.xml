@@ -8,6 +8,8 @@
     android:layout_marginRight="5dp"
     android:layout_marginBottom="5dp"
     android:layout_marginTop="5dp"
+    android:paddingBottom="8dp"
+    android:backgroundTint="@color/colorPrimary"
     app:cardMaxElevation="15dp"
     app:contentPaddingRight="10dp"
     app:contentPaddingLeft="10dp"
@@ -19,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="20sp"
-        android:textColor="@color/design_default_color_primary_dark" />
+
+        android:textColor="@android:color/white" />
 
 </androidx.cardview.widget.CardView>

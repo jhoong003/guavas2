@@ -52,14 +52,12 @@ public class NavigationActivity extends AppCompatActivity implements FragmentObs
 
     private void setupBottomNavigationView() {
         navigationView = findViewById(R.id.bottom_Nav);
+
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment nextFragment = null;
-                navigationView.getMenu().findItem(item.getItemId()).getIcon().setColorFilter(
-                        BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                                getResources().getColor(R.color.colorPrimary), BlendModeCompat.SRC_IN)
-                );
+
                 switch(item.getItemId()){
                     case R.id.navigation_diagnosis:
                         nextFragment = new DiagnoseMainFragment();
@@ -80,7 +78,7 @@ public class NavigationActivity extends AppCompatActivity implements FragmentObs
             }
         });
         //Move to health summary page on start
-        navigationView.setSelectedItemId(R.id.navigation_health_summary);
+        navigationView.setSelectedItemId(R.id.navigation_profile);
     }
 
     @Override

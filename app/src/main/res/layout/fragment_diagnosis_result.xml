@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,7 +10,6 @@
         >
 
         <TextView
-            android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Illness Name"
@@ -25,15 +23,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/IllName"
-            android:background="@drawable/rectanglewhite"
+            android:background="@drawable/rectangledarkgray"
             android:textSize="20sp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:padding="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             />
         <TextView
-            android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description"
@@ -45,13 +42,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/Desc"
             android:textSize="20sp"
-            android:background="@drawable/rectanglewhite"
-            android:textColor="@android:color/black"
+            android:background="@drawable/rectangledarkgray"
+            android:textColor="@android:color/white"
             android:padding="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
         <TextView
-            android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Prevention"
@@ -63,8 +59,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/Prevention"
             android:textSize="20sp"
-            android:background="@drawable/rectanglewhite"
-            android:textColor="@android:color/black"
+            android:text="TESTING"
+            android:background="@drawable/rectangledarkgray"
+            android:textColor="@android:color/white"
             android:padding="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
@@ -76,7 +73,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rectanglewhite"
+        android:textColor="@android:color/white"
         android:text="Home"
+        android:layout_marginBottom="8dp"
         android:layout_gravity="bottom|center"/>
 
 </FrameLayout>

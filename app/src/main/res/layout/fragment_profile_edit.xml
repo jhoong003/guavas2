@@ -4,13 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="0dp"
-    android:paddingTop="0dp"
-    android:paddingRight="0dp"
-    android:paddingBottom="0dp"
-    android:background="@color/creamygreen"
-    tools:context=".ProfileEditActivity">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -153,7 +147,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="49dp"
                     android:layout_marginBottom="87dp"
-                    android:hint="@string/button_save" />
+                    android:background="@drawable/rectanglewhite"
+                    android:textColor="@android:color/white"
+                    android:text="@string/button_save" />
             </LinearLayout>
 
         </LinearLayout>

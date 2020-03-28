@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.guavas.NavigationActivity;
 import com.example.guavas.R;
 import com.example.guavas.StartActivity;
 import com.example.guavas.controller.DailyDataProcessor;

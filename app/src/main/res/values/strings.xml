@@ -136,7 +136,7 @@
     <string name="hint_boolean_gender">(1 = Male or 0 = Female)</string>
     <string name="text_chronic_diagnosis_gender">Gender</string>
 
-    <string name="no_recorded_data_height">No recorded height yet!</string>
-    <string name="no_recorded_data_weight">No recorded weight yet!</string>
+    <string name="no_recorded_data_height">-Height-</string>
+    <string name="no_recorded_data_weight">-Weight-</string>
 
 </resources>
