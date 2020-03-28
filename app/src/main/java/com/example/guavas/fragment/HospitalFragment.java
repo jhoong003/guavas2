@@ -36,7 +36,6 @@ import java.util.List;
 
 public class HospitalFragment extends Fragment implements Subject,
         HospitalAdapter.OnItemClickListener,
-        View.OnClickListener,
         SearchView.OnQueryTextListener{
 
     public static final String URL = "imageUrl";
@@ -83,14 +82,6 @@ public class HospitalFragment extends Fragment implements Subject,
         }
 
         return parent;
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.Back) {
-            SearchFragment fragment = new SearchFragment();
-            notifyObserver(fragment);
-        }
     }
 
     //Prepare the data to be displayed on the recycler view

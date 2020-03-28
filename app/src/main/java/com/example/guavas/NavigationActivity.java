@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -17,7 +16,6 @@ import com.example.guavas.fragment.SearchFragment;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.lockwood.memorizingpager.NavigationHistory;
 
 import java.util.Stack;
 
@@ -33,7 +31,7 @@ public class NavigationActivity extends AppCompatActivity implements FragmentObs
 
     private Stack<Integer> backHistory;
 
-    private Subject subject;
+    //private Subject subject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +49,7 @@ public class NavigationActivity extends AppCompatActivity implements FragmentObs
     }
 
     private void setupBottomNavigationView() {
-        navigationView = (BottomNavigationView)findViewById(R.id.bottom_Nav);
+        navigationView = findViewById(R.id.bottom_Nav);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

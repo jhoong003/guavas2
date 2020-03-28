@@ -28,23 +28,18 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.Objects;
 
 /**
- * This activity controls the sign in feautrue.
- * It displays data retrieve from the
+ * This activity controls the sign in features
  */
 
 public class SigninActivity extends AppCompatActivity {
 
-    private DatabaseReference databaseRef;
     private TextInputEditText Phone;
-    //private TextInputLayout Username;
-    private TextInputLayout Password;
     private ProgressDialog RegisterProgress;
 
     //google sign in
     SignInButton signInButton;
     int RC_SIGN_IN = 0;
     GoogleSignInClient mGoogleSignInClient;
-    //final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
 
     @Override
@@ -52,7 +47,7 @@ public class SigninActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        //FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         Phone = findViewById(R.id.phone);
         TextInputEditText countryCode = findViewById(R.id.CountryCode);
@@ -69,7 +64,7 @@ public class SigninActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signIn();//change to control class: someclass.signin()
+                signIn();
             }
         });
 
@@ -89,7 +84,7 @@ public class SigninActivity extends AppCompatActivity {
                     phone = countryCode + phone;
                     Intent ver_Intent = new Intent(SigninActivity.this, VerificationActivity.class);
                     ver_Intent.putExtra("phoneNumber", phone);
-                    startActivity(ver_Intent);//change to control class: someclass.verification(ver_Intent)
+                    startActivity(ver_Intent);
                 }
 
             }
@@ -134,7 +129,7 @@ public class SigninActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             // Signed in successfully, show authenticated UI.
-            startActivity(new Intent(SigninActivity.this, ProfileActivity.class));
+            startActivity(new Intent(SigninActivity.this, NavigationActivity.class));
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // refer to the GoogleSignInStatusCodes class reference for more info.

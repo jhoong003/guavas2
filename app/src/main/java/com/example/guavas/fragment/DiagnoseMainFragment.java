@@ -1,6 +1,5 @@
 package com.example.guavas.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,9 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.guavas.DiagnoseMain;
-import com.example.guavas.Diagnose_chronic;
-import com.example.guavas.Diagnose_common;
 import com.example.guavas.R;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;

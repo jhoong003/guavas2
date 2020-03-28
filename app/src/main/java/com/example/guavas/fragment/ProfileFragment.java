@@ -15,10 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.guavas.ProfileEditActivity;
 import com.example.guavas.R;
 import com.example.guavas.StartActivity;
-import com.example.guavas.SupportActivity;
 import com.example.guavas.controller.DailyDataProcessor;
 import com.example.guavas.data.model.MedicalRecord;
 import com.example.guavas.observer.FragmentObserver;
@@ -39,7 +37,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -49,7 +46,7 @@ public class ProfileFragment extends Fragment implements Subject {
     private String phoneNumber;
     private int google=0;
     private GoogleSignInClient mGoogleSignInClient;
-
+    private SharedPreferences preferences;
     private Button view_support;
     private View parent;
     private TextView mobileNumber;
@@ -66,18 +63,20 @@ public class ProfileFragment extends Fragment implements Subject {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // get saved phone number
-        SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
-        phoneNumber = preferences.getString("phoneNumber", null);
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
+        if (account != null){
+            phoneNumber = account.getDisplayName();//get google user id
+        }else {
+             preferences = getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
+            phoneNumber = preferences.getString("phoneNumber", null);//get phone number
+        }
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         parent = inflater.inflate(R.layout.fragment_profile, container,false);
-
         //PROFILE
         displayProfile();
-
         //NAVIGATE to Edit Profile
         Button btnEditProfile = parent.findViewById(R.id.btnEditProfile);
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +86,6 @@ public class ProfileFragment extends Fragment implements Subject {
                 ProfileEditFragment fragment = ProfileEditFragment.newInstance(phoneNumber);
                 //Fire that fragment
                 notifyObserver(fragment);
-
             }
         });
 
@@ -128,7 +126,6 @@ public class ProfileFragment extends Fragment implements Subject {
                 }
             }
         });
-
         return parent;
     }
 
@@ -144,7 +141,7 @@ public class ProfileFragment extends Fragment implements Subject {
             @Override
             public void onDataChange(@NotNull DataSnapshot dataSnapshot){
                 if(dataSnapshot.exists()) {
-                    String fname, lname, dy, height, weight;
+                    String fname, lname, dy;
                     lblFirstname = parent.findViewById(R.id.lblFirstname);
                     lblLastname = parent.findViewById(R.id.lblLastname);
                     lblAge = parent.findViewById(R.id.lblAge);
@@ -233,6 +230,7 @@ public class ProfileFragment extends Fragment implements Subject {
     }
 
     private void signOut() {
+        if (preferences != null) preferences.edit().clear().apply();
         mGoogleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

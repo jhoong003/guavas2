@@ -1,6 +1,5 @@
 package com.example.guavas;
 
-//x
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -33,24 +32,15 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-//import org.json.JSONException;
-//import org.json.JSONObject;
-
-//import java.io.IOException;
 
 
-//x
-public class MainActivity<SectionPagerAdapter> extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private Toolbar mainToolBar;
-    BottomNavigationView bottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
-        bottomNavigation = findViewById(R.id.bottom_Nav);
 
         if (!isNetworkConnected()) {
             Toast.makeText(this, "No Internet connection!", Toast.LENGTH_SHORT).show();
@@ -88,27 +78,6 @@ public class MainActivity<SectionPagerAdapter> extends AppCompatActivity {
         startActivity(startIntent);
         finish();
     }
-
-    /*@RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void setMainToolBarTitleAsUsername() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users").child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid()).child("name");
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
-                String username = Objects.requireNonNull(dataSnapshot.getValue()).toString();
-                mainToolBar.setTitle(username);
-                Log.i("Username", username);
-            }
-
-            @Override
-            public void onCancelled(@NotNull DatabaseError databaseError) {
-
-            }
-        });
-    }*/
 
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);

@@ -1,4 +1,4 @@
-package com.example.guavas.firebaseDAO;
+package com.example.guavas.FirebaseDAO;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -10,7 +10,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 import java.util.Optional;
 
-public class RatingDAO implements MedsDAO<UserRatingData> {
+public class RatingDAO implements com.example.guavas.FirebaseDAO.MedsDAO<UserRatingData> {
     private DatabaseReference mDatabase;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
