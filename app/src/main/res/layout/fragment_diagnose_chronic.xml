@@ -2,8 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorAccent">
+    android:orientation="vertical">
     <TextView
         android:layout_marginTop="40dp"
         android:layout_width="200dp"
@@ -11,8 +10,9 @@
         android:layout_marginBottom="40dp"
         android:layout_marginStart="20dp"
         android:textSize="30sp"
-        android:textColor="@android:color/white"
-        android:text="@string/text_title_chronic_diagnosis"/>
+        android:textColor="@android:color/black"
+        android:text="@string/text_title_chronic_diagnosis"
+        />
     <Button
         android:id="@+id/diabetes"
         android:layout_width="wrap_content"

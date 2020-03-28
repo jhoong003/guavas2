@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00BCD4</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#DFFF0F0F</color>
+    <color name="colorPrimaryDark">#DC0000</color>
+    <color name="colorAccent">#FFC107</color>
     <color name="dark_green">#008577</color>
     <color name="yellow">#FFEB3B</color>
     <color name="creamypurple">#5C673AB7</color>
@@ -12,6 +12,6 @@
     <color name="black">#000000</color>
     <color name="normal_measurement">#00e676</color>
     <color name="abnormal_measurement">#ff5722</color>
-    <color name="pink">#F498AD</color>
+    <color name="pink">#85FF0000</color>
     <color name="guava">#98cd32</color>
 </resources>

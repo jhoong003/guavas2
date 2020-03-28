@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.guavas.R;
-import com.example.guavas.heartfactor;
-import com.example.guavas.heartresult;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
 

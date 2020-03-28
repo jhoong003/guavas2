@@ -10,10 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.guavas.Diagnose_chronic;
 import com.example.guavas.R;
-import com.example.guavas.diabetesfactor;
-import com.example.guavas.heartfactor;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
 

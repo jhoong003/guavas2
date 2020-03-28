@@ -3,6 +3,8 @@ package com.example.guavas;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.BlendModeColorFilterCompat;
+import androidx.core.graphics.BlendModeCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -54,7 +56,10 @@ public class NavigationActivity extends AppCompatActivity implements FragmentObs
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment nextFragment = null;
-
+                navigationView.getMenu().findItem(item.getItemId()).getIcon().setColorFilter(
+                        BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                                getResources().getColor(R.color.colorPrimary), BlendModeCompat.SRC_IN)
+                );
                 switch(item.getItemId()){
                     case R.id.navigation_diagnosis:
                         nextFragment = new DiagnoseMainFragment();

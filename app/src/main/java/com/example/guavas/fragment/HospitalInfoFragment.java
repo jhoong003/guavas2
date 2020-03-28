@@ -17,10 +17,10 @@ import com.example.guavas.R;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
 
-import static com.example.guavas.HospitalActivity.NAME;
-import static com.example.guavas.HospitalActivity.ADDRESS;
-import static com.example.guavas.HospitalActivity.TELEPHONE;
-import static com.example.guavas.HospitalActivity.DESCRIPTION;
+import static com.example.guavas.fragment.HospitalFragment.NAME;
+import static com.example.guavas.fragment.HospitalFragment.ADDRESS;
+import static com.example.guavas.fragment.HospitalFragment.TELEPHONE;
+import static com.example.guavas.fragment.HospitalFragment.DESCRIPTION;
 
 public class HospitalInfoFragment extends Fragment implements Subject {
 

@@ -15,9 +15,9 @@ import com.example.guavas.R;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
 
-import static com.example.guavas.DiseaseActivity.NAME;
-import static com.example.guavas.DiseaseActivity.DESCRIPTION;
-import static com.example.guavas.DiseaseActivity.PREVENTION;
+import static com.example.guavas.fragment.DiseaseFragment.NAME;
+import static com.example.guavas.fragment.DiseaseFragment.DESCRIPTION;
+import static com.example.guavas.fragment.DiseaseFragment.PREVENTION;
 
 public class DiseaseInfoFragment extends Fragment implements Subject {
 
