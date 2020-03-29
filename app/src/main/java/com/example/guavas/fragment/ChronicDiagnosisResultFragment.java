@@ -71,7 +71,7 @@ public class ChronicDiagnosisResultFragment extends Fragment implements Subject,
         TextView titleText = parent.findViewById(R.id.text_disease_name);
         titleText.setText(diseaseName);
 
-        float[][] inputX = new float[1][7];
+        float[][] inputX = new float[1][factors.length];
         float[][] output = {{1}};
         int count = 0;
         for(float i:factors){

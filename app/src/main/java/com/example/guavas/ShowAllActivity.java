@@ -11,6 +11,7 @@ import com.example.guavas.adapter.FirebaseDataAdapter;
 import com.example.guavas.controller.BMICalculator;
 import com.example.guavas.data.DataType;
 import com.example.guavas.data.model.MedicalRecord;
+import com.example.guavas.firebaseDAO.MeasurementDAO;
 import com.example.guavas.fragment.AddMeasurementFragment;
 import com.example.guavas.fragment.RemoveMeasurementDialogFragment;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -165,16 +166,13 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
                 if (compoundIndex < dataType.getNumOfCompound()) onClickAddData(view);
                 else{
                     for(int i=0;i<dataType.getNumOfCompound();i++){
-                        addToDatabase(dataType.getCompoundAtIndex(i).getDataTypeName(),
-                                compoundData.get(i).first,
-                                compoundData.get(i).second);
-
+                        addToDatabase(compoundData.get(i).first, compoundData.get(i).second);
                     }
-                    addToDatabase(dataType.getDataTypeName(), BMICalculator.calculate(compoundData),timeInMillis);
+                    addToDatabase(BMICalculator.calculate(compoundData),timeInMillis);
                     fragment = null;
                 }
             }else {
-                addToDatabase(dataType.getDataTypeName(), measurement, timeInMillis);
+                addToDatabase(measurement, timeInMillis);
                 fragment = null;
                 onClickClose();
             }
@@ -209,26 +207,10 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
         dialogFragment.show(getSupportFragmentManager(), null);
     }
 
-    private void addToDatabase(String dataTypeName, double measurement, long timeInMillis){
+    private void addToDatabase(double measurement, long timeInMillis){
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(key);
-
-        MedicalRecord medicalRecord = new MedicalRecord(timeInMillis, measurement);
-
-        String key = reference.push().getKey();
-        reference.child(dataTypeName).child(key).setValue(medicalRecord)
-            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    showSnackbar("Your measurement has been added.");
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    showSnackbar("Failed to add to the database! Please try again!");
-                }
-            });
+        MeasurementDAO dao = new MeasurementDAO(this, dataType);
+        dao.save(new MedicalRecord(timeInMillis, measurement));
     }
 
     private void showSnackbar(String message){

@@ -87,8 +87,8 @@ public class ViewDetailsContentFragment extends Fragment implements ViewDetailsG
             key = account.getDisplayName();
         }
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference().child(key).child(dataType.getDataTypeName());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                .child(key).child(dataType.getDataTypeName());
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override

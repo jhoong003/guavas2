@@ -62,13 +62,18 @@
     <string-array name="option_health_summary">
         <item>Body-Mass Index</item>
         <item>Vitals</item>
+        <item>Others</item>
     </string-array>
     <!--Vitals Menu-->
     <string-array name="option_vitals">
+        <item>Alcohol Consumption</item>
         <item>Blood Glucose</item>
-        <item>Blood Pressure</item>
+        <item>Blood Pressure (Systolic)</item>
+        <item>Blood Pressure (Diastolic)</item>
         <item>Heart Rate</item>
+        <item>Insulin</item>
         <item>Pulse Rate</item>
+        <item>Tricep Skin Thickness</item>
     </string-array>
 
     <!--BMI Menu-->
@@ -140,5 +145,10 @@
     <string name="toggle_button_gender_off">Female</string>
     <string name="toggle_button_general_off">No</string>
     <string name="toggle_button_general_on">Yes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_pregnancy_count">Pregnancy Count</string>
+    <string name="text_pregnancy_not_suitable">Pregnancy count is not \n available for male</string>
 
 </resources>

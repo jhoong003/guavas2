@@ -14,6 +14,10 @@ public class DataType implements Parcelable {
     private DataType[] compounds;
     private boolean editable = true;
 
+    public DataType(String name){
+        dataTypeName = name;
+    }
+
     public DataType(String name, String unit, float min, float max){
         dataTypeName = name;
         measurementUnit = unit;

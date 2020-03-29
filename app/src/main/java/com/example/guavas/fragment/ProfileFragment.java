@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.guavas.NavigationActivity;
 import com.example.guavas.R;
 import com.example.guavas.StartActivity;
 import com.example.guavas.controller.DailyDataProcessor;
@@ -41,6 +40,7 @@ import com.google.firebase.database.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class ProfileFragment extends Fragment implements Subject {
 
@@ -142,7 +142,7 @@ public class ProfileFragment extends Fragment implements Subject {
             @Override
             public void onDataChange(@NotNull DataSnapshot dataSnapshot){
                 if(dataSnapshot.exists()) {
-                    String fname, lname, dy;
+                    String fname, lname, dy, dd, dm;
                     lblFirstname = parent.findViewById(R.id.lblFirstname);
                     lblLastname = parent.findViewById(R.id.lblLastname);
                     lblAge = parent.findViewById(R.id.lblAge);
@@ -159,12 +159,29 @@ public class ProfileFragment extends Fragment implements Subject {
                         lblLastname.setText(lname);
                     }
 
-                    if(dataSnapshot.child("dobY").getValue() != null){
-                        dy = dataSnapshot.child("dobY").getValue().toString();
+                    if(dataSnapshot.child("dobY").getValue() != null &&
+                        dataSnapshot.child("dobM").getValue() != null &&
+                        dataSnapshot.child("dobD").getValue() != null){
 
-                        int curYr = Calendar.getInstance().get(Calendar.YEAR);
+                        dy = dataSnapshot.child("dobY").getValue().toString();
+                        dm = dataSnapshot.child("dobM").getValue().toString();
+                        dd = dataSnapshot.child("dobD").getValue().toString();
+
+                        Calendar curDate = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
+
                         int year = Integer.parseInt(dy);
-                        int age = curYr-year;
+                        int month = Integer.parseInt(dm);
+                        int day = Integer.parseInt(dd);
+
+                        int age = curDate.get(Calendar.YEAR)-year;
+
+                        if (month < curDate.get(Calendar.MONTH)){
+                            age--;
+                        }else if (month == curDate.get(Calendar.MONTH)){
+                            if (day < curDate.get(Calendar.DAY_OF_MONTH)){
+                                age--;
+                            }
+                        }
 
                         lblAge.setText(age + " years old");
                     }

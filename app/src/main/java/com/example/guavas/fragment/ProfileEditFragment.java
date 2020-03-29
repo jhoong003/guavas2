@@ -151,7 +151,6 @@ public class ProfileEditFragment extends Fragment implements Subject {
                     txtFirstName.setText(fname);
                     txtLastName.setText(lname);
 
-
                     if (gender.equals("Male")) {
                         radioGrpGender.check(R.id.radioBtnGenderM);
                     } else if (gender.equals("Female")) {

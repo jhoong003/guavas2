@@ -51,6 +51,9 @@ public class HealthSummaryFragment extends Fragment implements Subject {
                     case 1:
                         nextFragment = VitalsFragment.newInstance(VitalsFragment.SUBMENU_VITALS);
                         break;
+                    case 2:
+                        nextFragment = new OtherSummaryFragment();
+                        break;
                     default:
                         Toast.makeText(getContext(), "Not implemented yet!", Toast.LENGTH_SHORT).show();
                         return;

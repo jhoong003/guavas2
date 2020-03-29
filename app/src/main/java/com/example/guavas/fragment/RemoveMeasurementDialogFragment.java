@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.guavas.R;
 import com.example.guavas.data.DataType;
 import com.example.guavas.data.model.MedicalRecord;
+import com.example.guavas.firebaseDAO.MeasurementDAO;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -120,42 +121,7 @@ public class RemoveMeasurementDialogFragment extends DialogFragment {
     }
 
     private void removeFromDatabase(){
-        String userPhone = getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE)
-                .getString("phoneNumber", null);
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                .child(userPhone).child(dataType.getDataTypeName());
-
-        Query query = reference.orderByChild("time").equalTo(timeInMillis);
-
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    MedicalRecord record = snapshot.getValue(MedicalRecord.class);
-                    if (record.getMeasurement() == measurement) {
-                        //TODO: add feedback that the data is successfully removed
-                        snapshot.getRef().removeValue()
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.i("RemoveMeasurementDF", "Successfully removed from database");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.i("RemoveMeasurementDF", "Failed to remove from database");
-                            }
-                        });
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("RemoveMeasurementDF", "Failed to retrieve database when attempting to remove!");
-            }
-        });
+        MeasurementDAO dao = new MeasurementDAO(getActivity(), dataType);
+        dao.delete(new MedicalRecord(timeInMillis, measurement));
     }
 }

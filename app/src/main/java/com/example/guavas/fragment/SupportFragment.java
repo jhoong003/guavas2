@@ -16,8 +16,8 @@ import android.widget.Toast;
 
 import com.example.guavas.ExpandableList;
 import com.example.guavas.controller.FAQDataManager;
-import com.example.guavas.FirebaseDAO.MedsDAO;
-import com.example.guavas.FirebaseDAO.RatingDAO;
+import com.example.guavas.firebaseDAO.MedsDAO;
+import com.example.guavas.firebaseDAO.RatingDAO;
 import com.example.guavas.R;
 import com.example.guavas.data.model.UserRatingData;
 import com.example.guavas.observer.FragmentObserver;
