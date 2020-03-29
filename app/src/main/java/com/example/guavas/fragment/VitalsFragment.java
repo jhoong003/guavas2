@@ -9,6 +9,8 @@ import com.example.guavas.R;
 import com.example.guavas.adapter.FeatureCardViewAdapter;
 import com.example.guavas.data.DataType;
 import com.example.guavas.data.DataTypes;
+import com.example.guavas.data.SubMenus;
+import com.example.guavas.data.model.SubMenu;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
 
@@ -20,13 +22,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class VitalsFragment extends Fragment implements Subject {
 
-    public static final int SUBMENU_BMI = 1;
-    public static final int SUBMENU_VITALS = 2;
+    public static final int SUBMENU_BMI = 0;
+    public static final int SUBMENU_VITALS = 1;
     private static final String SUBMENU_KEY = "sub";
 
     private String[] titles;
     private int[] imageIds;
-    private int subMenu;
+    private int subMenuId;
     private FragmentObserver observer;
 
     protected RecyclerView recyclerView;
@@ -45,7 +47,7 @@ public class VitalsFragment extends Fragment implements Subject {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
         if (args != null){
-            subMenu = args.getInt(SUBMENU_KEY);
+            subMenuId = args.getInt(SUBMENU_KEY);
         }
     }
 
@@ -62,14 +64,13 @@ public class VitalsFragment extends Fragment implements Subject {
     }
 
     private void setupData(){
-        if (subMenu == SUBMENU_BMI){
-            titles = getResources().getStringArray(R.array.option_bmi);
-            imageIds = new int[] {R.drawable.bmi, R.drawable.height, R.drawable.weight};
-        }else if(subMenu == SUBMENU_VITALS){
-            titles = getResources().getStringArray(R.array.option_vitals);
-            imageIds = new int[] {R.drawable.blood_glucose, R.drawable.blood_pressure,
-                    R.drawable.cardiogram, R.drawable.pulse_rate};
-        }
+        SubMenus subMenus = new SubMenus(getActivity());
+        SubMenu subMenu = null;
+        if (subMenuId == SUBMENU_BMI)  subMenu = subMenus.getBmiSubMenu();
+        else if(subMenuId == SUBMENU_VITALS) subMenu = subMenus.getVitalSubMenu();
+
+        titles = subMenu.getTitles();
+        imageIds = subMenu.getImageIds();
     }
 
     private void setAdapterToView(){
@@ -78,7 +79,7 @@ public class VitalsFragment extends Fragment implements Subject {
         adapter.setListener(new FeatureCardViewAdapter.Listener() {
             @Override
             public void onClick(int position) {
-                launchViewDetailsFragment(position, subMenu);
+                launchViewDetailsFragment(position, subMenuId);
             }
         });
         recyclerView.setAdapter(adapter);

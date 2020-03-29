@@ -14,14 +14,14 @@ import android.widget.Toast;
 
 import com.example.guavas.R;
 import com.example.guavas.adapter.FeatureCardViewAdapter;
+import com.example.guavas.data.SubMenus;
+import com.example.guavas.data.model.SubMenu;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
 
 
 public class HealthSummaryFragment extends Fragment implements Subject {
 
-    private int[] imageIds = {R.drawable.allergy, R.drawable.bmi, R.drawable.inheritance, R.drawable.vital};
-    private String[] titles = new String[4];
     private RecyclerView recyclerView;
 
     private FragmentObserver observer;
@@ -38,18 +38,19 @@ public class HealthSummaryFragment extends Fragment implements Subject {
     }
 
     private void setAdapterToView(){
-        titles = getResources().getStringArray(R.array.option_health_summary);
-        FeatureCardViewAdapter adapter = new FeatureCardViewAdapter(titles, imageIds);
+        SubMenu subMenu = new SubMenus(getActivity()).getHealthSummarySubMenu();
+        FeatureCardViewAdapter adapter = new FeatureCardViewAdapter(subMenu.getTitles(), subMenu.getImageIds());
         adapter.setListener(new FeatureCardViewAdapter.Listener() {
             @Override
             public void onClick(int position) {
                 Fragment nextFragment;
                 switch (position){
-                    case 1:
+                    case 0:
                         nextFragment = VitalsFragment.newInstance(VitalsFragment.SUBMENU_BMI);
                         break;
-                    case 3:
-                        nextFragment = VitalsFragment.newInstance(VitalsFragment.SUBMENU_VITALS);                        break;
+                    case 1:
+                        nextFragment = VitalsFragment.newInstance(VitalsFragment.SUBMENU_VITALS);
+                        break;
                     default:
                         Toast.makeText(getContext(), "Not implemented yet!", Toast.LENGTH_SHORT).show();
                         return;

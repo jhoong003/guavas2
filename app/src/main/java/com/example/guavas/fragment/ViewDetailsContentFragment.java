@@ -16,6 +16,8 @@ import com.example.guavas.data.model.MedicalRecord;
 import com.example.guavas.factory.DataProcessorFactory;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.data.Entry;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -76,10 +78,17 @@ public class ViewDetailsContentFragment extends Fragment implements ViewDetailsG
     }
 
     private void retrieveDatabase(){
-        SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
-        String userPhone = preferences.getString("phoneNumber", null);
+        String key;
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
+        if (account == null) {
+            SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
+            key = preferences.getString("phoneNumber", null);
+        }else{
+            key = account.getDisplayName();
+        }
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference().child(userPhone).child(dataType.getDataTypeName());
+        DatabaseReference reference = database.getReference().child(key).child(dataType.getDataTypeName());
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override

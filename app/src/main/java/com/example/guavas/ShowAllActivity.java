@@ -3,6 +3,7 @@ package com.example.guavas;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,6 +15,9 @@ import com.example.guavas.fragment.AddMeasurementFragment;
 import com.example.guavas.fragment.RemoveMeasurementDialogFragment;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,9 +30,11 @@ import com.google.firebase.database.Query;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.util.Pair;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,7 +47,7 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
     private AddMeasurementFragment fragment;
     private DataType dataType;
     private FirebaseDataAdapter adapter;
-    private String userPhone;
+    private String key;
 
     private int compoundIndex;
     private ArrayList<Pair<Double, Long> > compoundData;
@@ -58,8 +64,9 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all);
-        getUserPhone();
+        getDatabaseKey();
         setupDataType();
+        setupFAB();
         setupToolbar();
         setupRecyclerView();
         findViewById(R.id.progress_bar).setVisibility(View.GONE);
@@ -71,9 +78,14 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
         adapter.stopListening();
     }
 
-    private void getUserPhone(){
-        SharedPreferences preferences = getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
-        userPhone = preferences.getString("phoneNumber", null);
+    private void getDatabaseKey(){
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if (account == null) {
+            SharedPreferences preferences = getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
+            key = preferences.getString("phoneNumber", null);
+        }else{
+            key = account.getDisplayName();
+        }
     }
 
     private void setupDataType() {
@@ -81,6 +93,13 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
         if (dataType.isCompound()){
             compoundIndex = 0;
             compoundData = new ArrayList<>();
+        }
+    }
+
+    private void setupFAB(){
+        if (!dataType.isEditable()) {
+            FloatingActionButton button = findViewById(R.id.fab_show_all);
+            button.setVisibility(View.GONE);
         }
     }
 
@@ -93,7 +112,7 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
     }
 
     private void fetchData(){
-        Query query = FirebaseDatabase.getInstance().getReference().child(userPhone).child(dataType.getDataTypeName()).orderByChild("time");
+        Query query = FirebaseDatabase.getInstance().getReference().child(key).child(dataType.getDataTypeName()).orderByChild("time");
         FirebaseRecyclerOptions<MedicalRecord> options = new FirebaseRecyclerOptions.Builder<MedicalRecord>()
                 .setQuery(query, new SnapshotParser<MedicalRecord>() {
                     @NonNull
@@ -123,6 +142,11 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
         }
         fragment.setListener(this);
 
+        showFragment(fragment);
+
+    }
+
+    private void showFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
@@ -175,6 +199,11 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
     }
 
     public void launchDialog(double measurement, long timeInMillis, DataType dataType){
+        if (dataType.isEditable()) showDialog(measurement, timeInMillis, dataType);
+        else showSnackbar("This health section cannot be edited individually");
+    }
+
+    private void showDialog(double measurement, long timeInMillis, DataType dataType){
         RemoveMeasurementDialogFragment dialogFragment =
                 RemoveMeasurementDialogFragment.newInstance(measurement, timeInMillis, dataType);
         dialogFragment.show(getSupportFragmentManager(), null);
@@ -182,7 +211,7 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
 
     private void addToDatabase(String dataTypeName, double measurement, long timeInMillis){
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(userPhone);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(key);
 
         MedicalRecord medicalRecord = new MedicalRecord(timeInMillis, measurement);
 
@@ -191,18 +220,33 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
             .addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Snackbar.make(findViewById(R.id.coordinator_layout), "Your measurement has been added.", Snackbar.LENGTH_SHORT).show();
+                    showSnackbar("Your measurement has been added.");
                 }
             })
             .addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Snackbar.make(findViewById(R.id.coordinator_layout), "Failed to add to the database! Please try again!", Snackbar.LENGTH_SHORT).show();
+                    showSnackbar("Failed to add to the database! Please try again!");
                 }
             });
     }
 
+    private void showSnackbar(String message){
+        Snackbar.make(findViewById(R.id.coordinator_layout), message, Snackbar.LENGTH_SHORT).show();
+    }
+
     private void setupToolbar(){
-        getSupportActionBar().setTitle(dataType.getDataTypeName());
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(dataType.getDataTypeName());
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //Up button behaves like back button
+        if (item.getItemId() == android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

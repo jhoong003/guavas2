@@ -60,9 +60,7 @@
 
     <!--Health Summary Menu-->
     <string-array name="option_health_summary">
-        <item>Allergies</item>
         <item>Body-Mass Index</item>
-        <item>Inherited Sicknesses</item>
         <item>Vitals</item>
     </string-array>
     <!--Vitals Menu-->
@@ -138,5 +136,9 @@
 
     <string name="no_recorded_data_height">-Height-</string>
     <string name="no_recorded_data_weight">-Weight-</string>
+    <string name="toggle_button_gender_on">Male</string>
+    <string name="toggle_button_gender_off">Female</string>
+    <string name="toggle_button_general_off">No</string>
+    <string name="toggle_button_general_on">Yes</string>
 
 </resources>

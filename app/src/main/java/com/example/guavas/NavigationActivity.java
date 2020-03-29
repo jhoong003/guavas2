@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import com.example.guavas.fragment.DiagnoseMainFragment;
 import com.example.guavas.fragment.HealthSummaryFragment;
@@ -32,6 +33,7 @@ public class NavigationActivity extends AppCompatActivity implements FragmentObs
     private BottomNavigationView navigationView;
 
     private Stack<Integer> backHistory;
+    private int prevItemOrder;
 
     //private Subject subject;
 
@@ -73,6 +75,7 @@ public class NavigationActivity extends AppCompatActivity implements FragmentObs
                         break;
                 }
                 backHistory.push(item.getOrder());
+                prevItemOrder = item.getOrder();
                 showFragment(nextFragment);
                 return true;
             }
@@ -83,7 +86,7 @@ public class NavigationActivity extends AppCompatActivity implements FragmentObs
 
     @Override
     public void updateContainerWithFragment(Fragment fragment) {
-        backHistory.push(-1);
+        backHistory.push(prevItemOrder);
         showFragment(fragment);
     }
 
@@ -111,6 +114,7 @@ public class NavigationActivity extends AppCompatActivity implements FragmentObs
     //TODO: Fix on back press behavior
     @Override
     public void onBackPressed() {
+        setActionBarDefault();
         if (getSupportFragmentManager().getBackStackEntryCount() == 1){
             finishAffinity();
         } else{
@@ -118,9 +122,7 @@ public class NavigationActivity extends AppCompatActivity implements FragmentObs
             backHistory.pop();
             int prevPos = backHistory.peek();
             System.out.println("prevPos = " + prevPos);
-            if (prevPos != -1){
-                navigationView.getMenu().getItem(prevPos).setChecked(true);
-            }
+            navigationView.getMenu().getItem(prevPos).setChecked(true);
         }
     }
 

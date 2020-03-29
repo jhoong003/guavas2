@@ -26,37 +26,9 @@
         </activity>
         <activity android:name=".StartActivity" />
         <activity android:name=".SigninActivity" />
-        <activity android:name=".SearchActivity"/>
-        <activity android:name=".DiseaseActivity">
-           <!-- <meta-data
-                android:name="android.app.searchable" />
-            <intent-filter>
-                <category android:name="android.intent.action.SEARCH" />
-            </intent-filter> -->
-        </activity>
-        <activity android:name=".HospitalActivity">
-            <!--
-            <meta-data
-                android:name="android.app.searchable"/>
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-            </intent-filter> -->
-        </activity>
-        <activity android:name=".HospitalInfoActivity"/>
-        <activity android:name=".DiseaseInfoActivity"/>
         <activity android:name=".VerificationActivity" />
-        <activity android:name=".ProfileEditActivity" />
-        <activity android:name=".diabetesfactor" />
-        <activity android:name=".diabetesResult" />
-        <activity android:name=".Diagnose_chronic" />
-        <activity android:name=".Diagnose_common" />
-        <activity android:name=".DiagnoseMain" />
-        <activity android:name=".heartfactor" />
-        <activity android:name=".heartresult" />
-        <activity android:name=".result" />
-        <activity android:name=".ProfileActivity"/>
-        <activity android:name=".SupportActivity" />
-        <activity android:name=".ShowAllActivity"/>
+        <activity android:name=".ShowAllActivity"
+            android:parentActivityName=".NavigationActivity"/>
 
 
     </application>

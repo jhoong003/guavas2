@@ -15,8 +15,8 @@ public class DataTypes {
                             new DataType("Height", "cm", -1, 999),
                             new DataType("Weight", "kg", -1, 999)
             }),
-            new DataType("Height", "cm", -1, 999),
-            new DataType("Weight", "kg", -1, 999)
+            new DataType("Height", "cm", -1, 999, false),
+            new DataType("Weight", "kg", -1, 999, false)
     };
 
     public static DataType getVitalDataType(int type){

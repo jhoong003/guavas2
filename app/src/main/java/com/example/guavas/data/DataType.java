@@ -12,12 +12,21 @@ public class DataType implements Parcelable {
     private boolean compound = false;
     private int numOfCompound;
     private DataType[] compounds;
+    private boolean editable = true;
 
     public DataType(String name, String unit, float min, float max){
         dataTypeName = name;
         measurementUnit = unit;
         minNormal = min;
         maxNormal = max;
+    }
+
+    public DataType(String name, String unit, float min, float max, boolean isEditable){
+        dataTypeName = name;
+        measurementUnit = unit;
+        minNormal = min;
+        maxNormal = max;
+        editable = isEditable;
     }
 
     public DataType(String name, String unit, float min, float max, boolean compound, int compoundCount, DataType[]compounds){
@@ -38,6 +47,7 @@ public class DataType implements Parcelable {
         compound = in.readInt() == 1;
         numOfCompound = in.readInt();
         compounds = in.createTypedArray(DataType.CREATOR);
+        editable = in.readInt() == 1;
     }
 
     public static final Creator<DataType> CREATOR = new Creator<DataType>() {
@@ -80,6 +90,10 @@ public class DataType implements Parcelable {
         return compounds[index];
     }
 
+    public boolean isEditable() {
+        return editable;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -94,5 +108,6 @@ public class DataType implements Parcelable {
         dest.writeInt(compound ? 1 : 0);
         dest.writeInt(numOfCompound);
         dest.writeTypedArray(compounds, 0);
+        dest.writeInt(editable ? 1 : 0);
     }
 }
