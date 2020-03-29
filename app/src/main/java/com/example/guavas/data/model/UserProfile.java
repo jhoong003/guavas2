@@ -1,4 +1,4 @@
-package com.example.guavas.entity;
+package com.example.guavas.data.model;
 
 /**
  * This Entity class implements the UserProfile entity.

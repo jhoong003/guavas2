@@ -41,7 +41,12 @@ import com.google.firebase.database.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
-
+/**
+ * This Fragment controls Profile Display feature.
+ * It display data retrieve from the database
+ *
+ * @author zane_
+ */
 public class ProfileFragment extends Fragment implements Subject {
 
     private String phoneNumber;
@@ -182,7 +187,7 @@ public class ProfileFragment extends Fragment implements Subject {
                 lblHeight = parent.findViewById(R.id.lblHeight);
 
                 if (dataSnapshot.getChildrenCount() == 0){
-                    lblHeight.setText(getResources().getString(R.string.no_recorded_data_height));
+                    //lblHeight.setText(getResources().getString(R.string.no_recorded_data_height));
                 }else {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         MedicalRecord record = snapshot.getValue(MedicalRecord.class);
@@ -209,7 +214,7 @@ public class ProfileFragment extends Fragment implements Subject {
                 lblWeight = parent.findViewById(R.id.lblWeight);
 
                 if (dataSnapshot.getChildrenCount() == 0){
-                    lblWeight.setText(getResources().getString(R.string.no_recorded_data_weight));
+                    //lblWeight.setText(getResources().getString(R.string.no_recorded_data_weight));
                 }else {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         MedicalRecord record = snapshot.getValue(MedicalRecord.class);
