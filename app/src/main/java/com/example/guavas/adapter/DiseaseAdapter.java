@@ -89,9 +89,11 @@ public class DiseaseAdapter extends RecyclerView.Adapter<DiseaseAdapter.DiseaseV
         return DiseaseList.size();
     }
 
-    public void updateDiseaseList (ArrayList<IllDetail> newDiseaseList){
-        DiseaseList.clear();
+    public ArrayList<IllDetail> updateDiseaseList (ArrayList<IllDetail> newDiseaseList){
+        DiseaseList =new ArrayList<IllDetail>() ;
         DiseaseList.addAll(newDiseaseList);
         notifyDataSetChanged();
+        return newDiseaseList;
+
     }
 }

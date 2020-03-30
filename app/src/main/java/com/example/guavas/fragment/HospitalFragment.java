@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HospitalFragment extends Fragment implements Subject,
@@ -54,6 +55,7 @@ public class HospitalFragment extends Fragment implements Subject,
     private HospitalAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     ArrayList<Hospital> hospitalsList = new ArrayList<>();
+    ArrayList<Hospital> searchedList = new ArrayList<>();
 
     private FragmentObserver observer;
 
@@ -106,11 +108,13 @@ public class HospitalFragment extends Fragment implements Subject,
             line = line.trim();
             System.out.println(line);
             String[] string = line.split("\\|");
-            for (String a: string){
-                System.out.println(a.trim());
-            }
+//            for (String a: string){
+//                System.out.println(a.trim());
+//            }
             hospitalsList.add(new Hospital(string[0].trim(), string[1].trim(), string[2].trim(), string[3].trim(), R.drawable.ic_hospital));
+
         }
+        Collections.sort(hospitalsList, Hospital.nameComparator);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -151,8 +155,7 @@ public class HospitalFragment extends Fragment implements Subject,
                 newList.add(item);
             }
         }
-
-        mAdapter.updateList((ArrayList<Hospital>) newList);
+        searchedList = mAdapter.updateList((ArrayList<Hospital>) newList);
 
         return true;
     }
@@ -160,7 +163,13 @@ public class HospitalFragment extends Fragment implements Subject,
     @Override
     public void onItemClick(int position) {
         Log.d(TAG, "onItemClick: clicked");
-        Hospital clickedItem = hospitalsList.get(position);
+        /*for (Hospital item : hospitalsList){
+            System.out.println(item.getName());
+            System.out.println("stupid shit");
+        }*/
+
+        Hospital clickedItem = searchedList.get(position);
+
         HospitalInfoFragment fragment = HospitalInfoFragment.newInstance(
                 clickedItem.getName(),
                 clickedItem.getAddress(),

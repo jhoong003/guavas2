@@ -81,9 +81,10 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
         return hospitalList.size();
     }
 
-    public void updateList (ArrayList<Hospital> newHospitalList){
+    public ArrayList<Hospital> updateList (ArrayList<Hospital> newHospitalList){
         hospitalList =new ArrayList<Hospital>() ;
         hospitalList.addAll(newHospitalList);
         notifyDataSetChanged();
+        return newHospitalList;
     }
 }

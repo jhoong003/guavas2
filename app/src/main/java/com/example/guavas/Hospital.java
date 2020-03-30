@@ -1,5 +1,9 @@
 package com.example.guavas;
 
+import com.example.guavas.data.IllDetail;
+
+import java.util.Comparator;
+
 public class Hospital {
     private String hospitalName;
     private String hospitalAddress;
@@ -61,7 +65,11 @@ public class Hospital {
         this.hospitalNumber = hospitalNumber;
     }
 
-
+    public static Comparator<Hospital> nameComparator = new Comparator<Hospital>(){
+        public int compare(Hospital h1, Hospital h2){
+            return (int) (h1.getName().compareTo(h2.getName()));
+        }
+    };
 
 
 

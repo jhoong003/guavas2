@@ -52,9 +52,11 @@ public class DiseaseFragment extends Fragment implements Subject,
     protected RecyclerView.LayoutManager mLayoutManager;
     private View parent;
 
+
     private FragmentObserver observer;
 
     private ArrayList<IllDetail> DiseaseList = new ArrayList<IllDetail>();
+    ArrayList<IllDetail> searchedList = new ArrayList<>();
 
     public DiseaseFragment() {
         // Required empty public constructor
@@ -73,7 +75,7 @@ public class DiseaseFragment extends Fragment implements Subject,
 
         ActionBar toolbar = (ActionBar) ((AppCompatActivity)getActivity()).getSupportActionBar();
         toolbar.setTitle("Disease");
-        toolbar.setDisplayHomeAsUpEnabled(true);
+        toolbar.setDisplayHomeAsUpEnabled(true);//back button in tool bar
 
         setUpRecyclerView();
         prepareDiseaseData();
@@ -143,14 +145,13 @@ public class DiseaseFragment extends Fragment implements Subject,
     public boolean onQueryTextChange(String newText) {
         String userInput = newText.toLowerCase();
         List<IllDetail> newList = new ArrayList<>();
-
         for (IllDetail item:DiseaseList){
             if(item.getName().toLowerCase().contains(userInput)){
                 newList.add(item);
             }
         }
 
-        mAdapter.updateDiseaseList((ArrayList<IllDetail>) newList);
+        searchedList = mAdapter.updateDiseaseList((ArrayList<IllDetail>) newList);
 
         return true;
     }
@@ -158,7 +159,7 @@ public class DiseaseFragment extends Fragment implements Subject,
     @Override
     public void onItemClick(int position) {
         Log.d(TAG, "onItemClick: clicked");
-        IllDetail clickedItem = DiseaseList.get(position);
+        IllDetail clickedItem = searchedList.get(position);
         DiseaseInfoFragment fragment = DiseaseInfoFragment.newInstance(clickedItem.getName(),
                 clickedItem.getPrevention(),
                 clickedItem.getDescription()
