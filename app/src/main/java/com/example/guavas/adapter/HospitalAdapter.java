@@ -82,7 +82,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
     }
 
     public void updateList (ArrayList<Hospital> newHospitalList){
-        hospitalList =new ArrayList<Hospital>() ;
+        hospitalList.clear();
         hospitalList.addAll(newHospitalList);
         notifyDataSetChanged();
     }
