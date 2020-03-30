@@ -87,6 +87,7 @@ public class DiseaseFragment extends Fragment implements Subject,
         InputStream inputStream = resources.openRawResource(R.raw.disease);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line = null;
+        DiseaseList.clear();
         while (true){
             try {
                 if ((line = reader.readLine()) == null) {

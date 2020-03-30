@@ -90,7 +90,7 @@ public class DiseaseAdapter extends RecyclerView.Adapter<DiseaseAdapter.DiseaseV
     }
 
     public void updateDiseaseList (ArrayList<IllDetail> newDiseaseList){
-        DiseaseList=new ArrayList<IllDetail>();
+        DiseaseList.clear();
         DiseaseList.addAll(newDiseaseList);
         notifyDataSetChanged();
     }

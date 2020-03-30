@@ -92,6 +92,7 @@ public class HospitalFragment extends Fragment implements Subject,
         InputStream inputStream = resources.openRawResource(R.raw.hosp);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line = null;
+        hospitalsList.clear();
         while (true){
             try {
                 if ((line = reader.readLine()) == null) {
