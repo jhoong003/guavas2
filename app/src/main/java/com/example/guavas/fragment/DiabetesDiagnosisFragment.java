@@ -143,7 +143,7 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                factor2.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty()) factor2.setText(Float.toString(entries.get(entries.size()-1).getY()));
 
             }
 
@@ -164,7 +164,7 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                factor3.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty()) factor3.setText(Float.toString(entries.get(entries.size()-1).getY()));
 
             }
 
@@ -185,7 +185,7 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                factor4.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty()) factor4.setText(Float.toString(entries.get(entries.size()-1).getY()));
 
             }
 
@@ -206,7 +206,7 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                factor5.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty()) factor5.setText(Float.toString(entries.get(entries.size()-1).getY()));
 
             }
 
@@ -227,7 +227,7 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                factor6.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty()) factor6.setText(Float.toString(entries.get(entries.size()-1).getY()));
             }
 
             @Override

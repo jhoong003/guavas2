@@ -47,9 +47,6 @@ public class DiseaseFragment extends Fragment implements Subject,
 
     private static final String TAG = "DiseaseActivity";
 
-    private TextView back;
-    private SearchView searchView;
-
     protected RecyclerView mRecyclerView;
     private DiseaseAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;

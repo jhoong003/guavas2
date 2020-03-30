@@ -187,7 +187,7 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                factor7.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty()) factor7.setText(Float.toString(entries.get(entries.size()-1).getY()));
             }
 
             @Override
@@ -207,7 +207,7 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                factor8.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty()) factor8.setText(Float.toString(entries.get(entries.size()-1).getY()));
 
             }
 
@@ -228,7 +228,7 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                factor9.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty()) factor9.setText(Float.toString(entries.get(entries.size()-1).getY()));
 
             }
 
@@ -249,7 +249,7 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                factor10.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty()) factor10.setText(Float.toString(entries.get(entries.size()-1).getY()));
 
             }
 
@@ -270,7 +270,7 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                factor11.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty()) factor11.setText(Float.toString(entries.get(entries.size()-1).getY()));
 
             }
 
@@ -291,7 +291,7 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                factor12.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty()) factor12.setText(Float.toString(entries.get(entries.size()-1).getY()));
 
             }
 

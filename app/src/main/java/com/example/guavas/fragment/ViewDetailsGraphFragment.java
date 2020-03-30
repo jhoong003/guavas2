@@ -64,7 +64,7 @@ public class ViewDetailsGraphFragment extends Fragment {
         return parent;
     }
 
-    protected void setupGraph(){
+    private void setupGraph(){
         LineChart mChart = parent.findViewById(R.id.line_chart);
         mChart.getDescription().setEnabled(false);
         mChart.setDragEnabled(true);

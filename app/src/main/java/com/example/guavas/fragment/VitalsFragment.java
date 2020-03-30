@@ -31,7 +31,7 @@ public class VitalsFragment extends Fragment implements Subject {
     private int subMenuId;
     private FragmentObserver observer;
 
-    protected RecyclerView recyclerView;
+    private RecyclerView recyclerView;
 
     public static VitalsFragment newInstance(int subMenu) {
 

@@ -39,7 +39,6 @@ public class ViewDetailsContentFragment extends Fragment implements ViewDetailsG
     private static final String DATATYPE_KEY ="data";
 
     private DataType dataType;
-    private int position;
     private DataProcessor dataProcessor;
     private ArrayList<Entry> entries;
     private FragmentManager fragmentManager;
@@ -62,7 +61,7 @@ public class ViewDetailsContentFragment extends Fragment implements ViewDetailsG
         Bundle args = getArguments();
         if (args != null){
             dataType = args.getParcelable(DATATYPE_KEY);
-            position = args.getInt(POSITION_KEY);
+            int position = args.getInt(POSITION_KEY);
             dataProcessor = DataProcessorFactory.getDataProcessor(position);
             fragmentManager = getChildFragmentManager();
         }
