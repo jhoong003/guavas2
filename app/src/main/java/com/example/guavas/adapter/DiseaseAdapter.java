@@ -94,4 +94,8 @@ public class DiseaseAdapter extends RecyclerView.Adapter<DiseaseAdapter.DiseaseV
         DiseaseList.addAll(newDiseaseList);
         notifyDataSetChanged();
     }
+
+    public IllDetail getItemAtIndex(int idx){
+        return DiseaseList.get(idx);
+    }
 }

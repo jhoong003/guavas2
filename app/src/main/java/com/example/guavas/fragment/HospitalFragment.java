@@ -33,6 +33,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,10 +51,10 @@ public class HospitalFragment extends Fragment implements Subject,
 
     private View parent;
     private ActionBar toolbar;
-    protected RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView;
     private HospitalAdapter mAdapter;
-    protected RecyclerView.LayoutManager mLayoutManager;
-    ArrayList<Hospital> hospitalsList = new ArrayList<>();
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayList<Hospital> hospitalsList;
 
     private FragmentObserver observer;
 
@@ -75,31 +76,27 @@ public class HospitalFragment extends Fragment implements Subject,
         toolbar.setTitle("Hospital");
         toolbar.setDisplayHomeAsUpEnabled(true);
 
+        prepareHospitalData();
         setUpRecyclerView();
-
-        try {
-            prepareHospitalData();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
         return parent;
     }
 
     //Prepare the data to be displayed on the recycler view
-    private void prepareHospitalData() throws FileNotFoundException {
+
+    private void prepareHospitalData(){
         final Resources resources = getActivity().getApplicationContext().getResources();
         InputStream inputStream = resources.openRawResource(R.raw.hosp);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line = null;
-        hospitalsList.clear();
+        hospitalsList = new ArrayList<>();
         while (true){
             try {
                 if ((line = reader.readLine()) == null) {
                     break;
                 }
             } catch (IOException e) {
-                System.out.println("No data");
+                Log.wtf("Hospital Fragment", "Is the hospital.txt data not in the resource file?!");
                 e.printStackTrace();
             }
             assert line != null;
@@ -111,7 +108,6 @@ public class HospitalFragment extends Fragment implements Subject,
             }
             hospitalsList.add(new Hospital(string[0].trim(), string[1].trim(), string[2].trim(), string[3].trim(), R.drawable.ic_hospital));
         }
-        mAdapter.notifyDataSetChanged();
     }
 
     //Set Up the recycler view
@@ -119,9 +115,14 @@ public class HospitalFragment extends Fragment implements Subject,
         mRecyclerView = parent.findViewById(R.id.recyclerView);
         // ensure that the recycle view does not change in size
         mRecyclerView.setHasFixedSize(true);
+
         mLayoutManager=new LinearLayoutManager(getContext());
-        mAdapter = new HospitalAdapter(hospitalsList, this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        ArrayList<Hospital> hospitalsCopy = new ArrayList<>();
+        hospitalsCopy.addAll(hospitalsList);
+        mAdapter = new HospitalAdapter(hospitalsCopy, this);
+
         //Bind the adapter to the recycle view
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -144,15 +145,14 @@ public class HospitalFragment extends Fragment implements Subject,
     @Override
     public boolean onQueryTextChange(String newText) {
         String userInput = newText.toLowerCase();
-        List<Hospital> newList = new ArrayList<>();
-
-        for (Hospital item:hospitalsList){
+        ArrayList<Hospital> newList = new ArrayList<>();
+        for (Hospital item : hospitalsList){
             if(item.getName().toLowerCase().contains(userInput)){
                 newList.add(item);
             }
         }
 
-        mAdapter.updateList((ArrayList<Hospital>) newList);
+        mAdapter.updateList(newList);
 
         return true;
     }
@@ -160,7 +160,7 @@ public class HospitalFragment extends Fragment implements Subject,
     @Override
     public void onItemClick(int position) {
         Log.d(TAG, "onItemClick: clicked");
-        Hospital clickedItem = hospitalsList.get(position);
+        Hospital clickedItem = mAdapter.getItemAtIndex(position);
         HospitalInfoFragment fragment = HospitalInfoFragment.newInstance(
                 clickedItem.getName(),
                 clickedItem.getAddress(),
