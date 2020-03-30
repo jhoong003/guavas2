@@ -167,9 +167,14 @@ public class HospitalFragment extends Fragment implements Subject,
             System.out.println(item.getName());
             System.out.println("stupid shit");
         }*/
+        Hospital clickedItem;
 
-        Hospital clickedItem = searchedList.get(position);
-
+        if(searchedList.isEmpty()){
+            clickedItem = hospitalsList.get(position);
+        }
+        else {
+            clickedItem = searchedList.get(position);
+        }
         HospitalInfoFragment fragment = HospitalInfoFragment.newInstance(
                 clickedItem.getName(),
                 clickedItem.getAddress(),

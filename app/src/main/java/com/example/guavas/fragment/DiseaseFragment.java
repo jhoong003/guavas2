@@ -159,7 +159,13 @@ public class DiseaseFragment extends Fragment implements Subject,
     @Override
     public void onItemClick(int position) {
         Log.d(TAG, "onItemClick: clicked");
-        IllDetail clickedItem = searchedList.get(position);
+        IllDetail clickedItem;
+        if(searchedList.isEmpty()){
+            clickedItem = DiseaseList.get(position);
+        }
+        else {
+            clickedItem = searchedList.get(position);
+        }
         DiseaseInfoFragment fragment = DiseaseInfoFragment.newInstance(clickedItem.getName(),
                 clickedItem.getPrevention(),
                 clickedItem.getDescription()
