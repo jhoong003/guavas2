@@ -21,6 +21,7 @@ import static com.example.guavas.fragment.HospitalFragment.NAME;
 import static com.example.guavas.fragment.HospitalFragment.ADDRESS;
 import static com.example.guavas.fragment.HospitalFragment.TELEPHONE;
 import static com.example.guavas.fragment.HospitalFragment.DESCRIPTION;
+import static com.example.guavas.fragment.HospitalFragment.IMGURL;
 
 public class HospitalInfoFragment extends Fragment implements Subject {
 
@@ -33,13 +34,14 @@ public class HospitalInfoFragment extends Fragment implements Subject {
     public HospitalInfoFragment() {
     }
 
-    public static HospitalInfoFragment newInstance(String name, String address, String desc, String telephone) {
+    public static HospitalInfoFragment newInstance(String name, String address, String desc, String telephone, int imgURL) {
 
         Bundle args = new Bundle();
         args.putString(NAME, name);
         args.putString(ADDRESS, address);
         args.putString(TELEPHONE, telephone);
         args.putString(DESCRIPTION, desc);
+        args.putInt(String.valueOf(IMGURL), imgURL);
         HospitalInfoFragment fragment = new HospitalInfoFragment();
         fragment.setArguments(args);
         return fragment;

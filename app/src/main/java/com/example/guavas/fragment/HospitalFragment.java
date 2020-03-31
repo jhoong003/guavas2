@@ -47,6 +47,7 @@ public class HospitalFragment extends Fragment implements Subject,
     public static final String NAME = "name";
     public static final String ADDRESS = "address";
     public static final String TELEPHONE = "number";
+    public static final int IMGURL = 0;
 
     private static final String TAG = "HospitalActivity";
 
@@ -184,10 +185,12 @@ public class HospitalFragment extends Fragment implements Subject,
         /*choice 2*/
         //Hospital clickedItem = mAdapter.getItemAtIndex(position);
         HospitalInfoFragment fragment = HospitalInfoFragment.newInstance(
+
                 clickedItem.getName(),
                 clickedItem.getAddress(),
                 clickedItem.getDescription(),
-                clickedItem.getNumber()
+                clickedItem.getNumber(),
+                clickedItem.getImgURL()
         );
 
         notifyObserver(fragment);
