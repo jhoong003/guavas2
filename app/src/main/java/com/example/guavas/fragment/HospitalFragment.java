@@ -35,7 +35,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class HospitalFragment extends Fragment implements Subject,
@@ -105,16 +104,12 @@ public class HospitalFragment extends Fragment implements Subject,
             line = line.trim();
             System.out.println(line);
             String[] string = line.split("\\|");
-//            for (String a: string){
-//                System.out.println(a.trim());
-//            }
-            hospitalsList.add(new Hospital(string[0].trim(), string[1].trim(), string[2].trim(), string[3].trim(), R.drawable.ic_hospital));
-
+            for (String a: string){
+                System.out.println(a.trim());
+            }
+            int id = getResources().getIdentifier(string[4], "drawable_hosp_xxxhdpi", getActivity().getApplicationContext().getPackageName());
+            hospitalsList.add(new Hospital(string[0].trim(), string[1].trim(), string[2].trim(), string[3].trim(), id));
         }
-
-
-        Collections.sort(hospitalsList, Hospital.nameComparator);
-        mAdapter.notifyDataSetChanged();
     }
 
     //Set Up the recycler view
