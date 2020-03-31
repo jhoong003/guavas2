@@ -104,12 +104,14 @@ public class HospitalFragment extends Fragment implements Subject,
             }
             assert line != null;
             line = line.trim();
-            System.out.println(line);
+            //System.out.println(line);
             String[] string = line.split("\\|");
-            for (String a: string){
+            /*for (String a: string){
                 System.out.println(a.trim());
-            }
-            int id = getResources().getIdentifier(string[4], "drawable_hosp_xxxhdpi", getActivity().getApplicationContext().getPackageName());
+            }*/
+            int id = resources.getIdentifier(string[4], "drawable", getActivity().getApplicationContext().getPackageName());
+            System.out.println(string[4]);
+            System.out.println(id);
             hospitalsList.add(new Hospital(string[0].trim(), string[1].trim(), string[2].trim(), string[3].trim(), id));
         }
 

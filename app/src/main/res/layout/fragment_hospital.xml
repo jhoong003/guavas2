@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -17,4 +19,5 @@
         android:scrollbars="vertical"
         tools:listitem="@layout/hospital_card_view">
     </androidx.recyclerview.widget.RecyclerView>
+
 </LinearLayout>
