@@ -38,13 +38,6 @@ public class Hospital {
         this.hospitalName=hospitalName;
     }
 
-
-    /* public String getHospitalWebsite(){
-         return hospitalWebsite;
-     }
-     public void setHospitalWebsite(String hospitalWebsite) {
-         this.hospitalWebsite = hospitalWebsite;
-     }*/
     public String getAddress(){
         return hospitalAddress;
     }

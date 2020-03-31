@@ -66,8 +66,9 @@ public class HospitalInfoFragment extends Fragment implements Subject {
             String address = args.getString(ADDRESS);
             String number = args.getString(TELEPHONE);
             String description = args.getString(DESCRIPTION);
+            int imgURL = args.getInt(String.valueOf(IMGURL));
 
-            imageView.setImageResource(R.drawable.ic_hospital);
+            imageView.setImageResource(imgURL);
             hospital_name.setText(name);
             hospital_description.setText(description);
         }

@@ -8,6 +8,8 @@
     android:layout_marginRight="5dp"
     android:layout_marginBottom="5dp"
     android:layout_marginTop="5dp"
+    android:scaleType="centerCrop"
+    android:adjustViewBounds="true"
     app:cardMaxElevation="15dp"
     app:contentPaddingRight="10dp"
     app:contentPaddingLeft="10dp"
