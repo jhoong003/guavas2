@@ -112,9 +112,8 @@ public class HospitalFragment extends Fragment implements Subject,
 
         }
 
-
-        Collections.sort(hospitalsList, Hospital.nameComparator);
-        mAdapter.notifyDataSetChanged();
+        //Collections.sort(hospitalsList, Hospital.nameComparator);
+        //mAdapter.notifyDataSetChanged();
     }
 
     //Set Up the recycler view
@@ -161,7 +160,7 @@ public class HospitalFragment extends Fragment implements Subject,
         /*choice 1*/
         searchedList = mAdapter.updateList((ArrayList<Hospital>) newList);
         /*choice 2*/
-        mAdapter.updateList(newList);
+        //mAdapter.updateList(newList);
 
         return true;
     }
