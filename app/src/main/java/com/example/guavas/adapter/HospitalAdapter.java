@@ -42,7 +42,6 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
         private TextView hospitalName;
         OnItemClickListener onItemClickListener;
 
-
         // Constructor
         public HospitalViewHolder(@NonNull View itemView, OnItemClickListener onItemClickListener) {
             super(itemView);
@@ -50,14 +49,12 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
             hospitalName=itemView.findViewById(R.id.cardTitle);
             this.onItemClickListener=onItemClickListener;
             itemView.setOnClickListener(this);
-
-
         }
+
         @Override
         public void onClick(View v) {
             onItemClickListener.onItemClick(getAdapterPosition());
         }
-
     }
 
     @NonNull
@@ -86,5 +83,9 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
         hospitalList.addAll(newHospitalList);
         notifyDataSetChanged();
         return newHospitalList;
+    }
+
+    public Hospital getItemAtIndex(int idx){
+        return hospitalList.get(idx);
     }
 }

@@ -77,8 +77,8 @@ public class DiseaseFragment extends Fragment implements Subject,
         toolbar.setTitle("Disease");
         toolbar.setDisplayHomeAsUpEnabled(true);//back button in tool bar
 
-        setUpRecyclerView();
         prepareDiseaseData();
+        setUpRecyclerView();
 
         return parent;
     }
@@ -110,8 +110,6 @@ public class DiseaseFragment extends Fragment implements Subject,
             }
         }
         Collections.sort(DiseaseList, IllDetail.nameComparator);
-
-        mAdapter.notifyDataSetChanged();
     }
     //Set Up the recycler view
     private void setUpRecyclerView(){
@@ -119,7 +117,9 @@ public class DiseaseFragment extends Fragment implements Subject,
         // ensure that the recycle view does not change in size
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager=new LinearLayoutManager(getContext());
-        mAdapter = new DiseaseAdapter(DiseaseList, this);
+        ArrayList<IllDetail> diseaseCopy = new ArrayList<>();
+        diseaseCopy.addAll(DiseaseList);
+        mAdapter = new DiseaseAdapter(diseaseCopy, this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         //Bind the adapter to the recycle view
         mRecyclerView.setAdapter(mAdapter);
@@ -159,6 +159,7 @@ public class DiseaseFragment extends Fragment implements Subject,
     @Override
     public void onItemClick(int position) {
         Log.d(TAG, "onItemClick: clicked");
+        /*choice 1*/
         IllDetail clickedItem;
         if(searchedList.isEmpty()){
             clickedItem = DiseaseList.get(position);
@@ -166,6 +167,8 @@ public class DiseaseFragment extends Fragment implements Subject,
         else {
             clickedItem = searchedList.get(position);
         }
+        /*choice 2*/
+        //IllDetail clickedItem = mAdapter.getItemAtIndex(position);
         DiseaseInfoFragment fragment = DiseaseInfoFragment.newInstance(clickedItem.getName(),
                 clickedItem.getPrevention(),
                 clickedItem.getDescription()

@@ -269,6 +269,10 @@ public class DiagnoseCommonFragment extends Fragment implements Subject, View.On
     }
 
     private void predict(){
+        //TODO: remove debug
+        for(float f : selectedSymptoms){
+            System.out.print(f + ", ");
+        }
         DiagnoseResultFragment fragment = DiagnoseResultFragment.newInstance(selectedSymptoms);
         notifyObserver(fragment);
     }

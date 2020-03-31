@@ -165,10 +165,7 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
                 compoundIndex++;
                 if (compoundIndex < dataType.getNumOfCompound()) onClickAddData(view);
                 else{
-                    for(int i=0;i<dataType.getNumOfCompound();i++){
-                        addToDatabase(compoundData.get(i).first, compoundData.get(i).second);
-                    }
-                    addToDatabase(BMICalculator.calculate(compoundData),timeInMillis);
+                    addBMIToDatabase(timeInMillis);
                     fragment = null;
                 }
             }else {
@@ -211,6 +208,17 @@ public class ShowAllActivity extends AppCompatActivity implements AddMeasurement
 
         MeasurementDAO dao = new MeasurementDAO(this, dataType);
         dao.save(new MedicalRecord(timeInMillis, measurement));
+    }
+
+    private void addBMIToDatabase(long timeInMillis){
+
+        for(int i=0;i<dataType.getNumOfCompound();i++){
+            MeasurementDAO dao = new MeasurementDAO(this, dataType.getCompoundAtIndex(i));
+            dao.save(new MedicalRecord(compoundData.get(i).second, compoundData.get(i).first));
+        }
+        MeasurementDAO dao = new MeasurementDAO(this, dataType);
+        dao.save(new MedicalRecord(timeInMillis, BMICalculator.calculate(compoundData)));
+
     }
 
     private void showSnackbar(String message){

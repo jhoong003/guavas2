@@ -96,4 +96,8 @@ public class DiseaseAdapter extends RecyclerView.Adapter<DiseaseAdapter.DiseaseV
         return newDiseaseList;
 
     }
+
+    public IllDetail getItemAtIndex(int idx){
+        return DiseaseList.get(idx);
+    }
 }

@@ -80,6 +80,14 @@ public class NavigationActivity extends AppCompatActivity implements FragmentObs
                 return true;
             }
         });
+
+        navigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                //Do nothing
+            }
+        });
+
         //Move to health summary page on start
         navigationView.setSelectedItemId(R.id.navigation_profile);
     }
