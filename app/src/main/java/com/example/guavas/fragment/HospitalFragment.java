@@ -35,6 +35,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HospitalFragment extends Fragment implements Subject,
@@ -110,6 +111,9 @@ public class HospitalFragment extends Fragment implements Subject,
             int id = getResources().getIdentifier(string[4], "drawable_hosp_xxxhdpi", getActivity().getApplicationContext().getPackageName());
             hospitalsList.add(new Hospital(string[0].trim(), string[1].trim(), string[2].trim(), string[3].trim(), id));
         }
+
+        //Collections.sort(hospitalsList, Hospital.nameComparator);
+        //mAdapter.notifyDataSetChanged();
     }
 
     //Set Up the recycler view
@@ -156,7 +160,7 @@ public class HospitalFragment extends Fragment implements Subject,
         /*choice 1*/
         searchedList = mAdapter.updateList((ArrayList<Hospital>) newList);
         /*choice 2*/
-        mAdapter.updateList(newList);
+        //mAdapter.updateList(newList);
 
         return true;
     }
