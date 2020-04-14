@@ -13,6 +13,9 @@ import com.example.guavas.R;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
 
+/**
+ * A fragment that is the main menu for the diagnose section.
+ */
 public class DiagnoseMainFragment extends Fragment implements Subject {
 
     private FragmentObserver observer;
@@ -20,6 +23,14 @@ public class DiagnoseMainFragment extends Fragment implements Subject {
     public DiagnoseMainFragment() {
     }
 
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,13 +38,13 @@ public class DiagnoseMainFragment extends Fragment implements Subject {
         View parent = inflater.inflate(R.layout.fragment_diagnose_main, container, false);
         Button commonButton = parent.findViewById(R.id.common);
         Button chronicButton = parent.findViewById(R.id.chronic);
-        commonButton.setOnClickListener(new View.OnClickListener(){
+        commonButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 notifyObserver(new DiagnoseCommonFragment());
             }
         });
 
-        chronicButton.setOnClickListener(new View.OnClickListener(){
+        chronicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 notifyObserver(new DiagnoseChronicFragment());

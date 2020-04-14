@@ -18,7 +18,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.guavas.R;
-import com.example.guavas.data.DataType;
+import com.example.guavas.data.entity.DataType;
 import com.example.guavas.firebaseDAO.MeasurementDAO;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
@@ -31,6 +31,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * A fragment that displays the "Other" in the health summary section.
+ */
 public class OtherSummaryFragment extends Fragment implements Subject, View.OnClickListener {
 
     private FragmentObserver observer;
@@ -46,7 +49,14 @@ public class OtherSummaryFragment extends Fragment implements Subject, View.OnCl
     public OtherSummaryFragment() {
     }
 
-
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,7 +66,10 @@ public class OtherSummaryFragment extends Fragment implements Subject, View.OnCl
         return parent;
     }
 
-    private void initView(){
+    /**
+     * Gets reference to the Views.
+     */
+    private void initView() {
         strokeButton = parent.findViewById(R.id.toggle_button_stroke);
         strokeButton.setOnClickListener(this);
         hyperButton = parent.findViewById(R.id.toggle_button_hypertension);
@@ -72,30 +85,41 @@ public class OtherSummaryFragment extends Fragment implements Subject, View.OnCl
         pregnancyLinearLayout = parent.findViewById(R.id.linear_layout_pregnancy);
     }
 
+    /**
+     * Sets up save and home button.
+     *
+     * @param v the clicked button.
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.button_home) notifyObserver(new HealthSummaryFragment());
-        else if (v.getId() == R.id.button_save){
+        else if (v.getId() == R.id.button_save) {
             updateDataToDatabase();
             Toast.makeText(getContext(), "Saved!", Toast.LENGTH_SHORT).show();
             notifyObserver(new HealthSummaryFragment());
         }
     }
 
-    private void updateDataToDatabase(){
-        writeDatabase(strokeButton.isChecked()? 1: 0, new DataType("Stroke"));
-        writeDatabase(hyperButton.isChecked()? 1 : 0, new DataType("Hypertension"));
+    /**
+     * Saves data to the database.
+     */
+    private void updateDataToDatabase() {
+        writeDatabase(strokeButton.isChecked() ? 1 : 0, new DataType("Stroke"));
+        writeDatabase(hyperButton.isChecked() ? 1 : 0, new DataType("Hypertension"));
         writeDatabase(pregnancyEditText.getValue(), new DataType("Pregnancy Count"));
         writeDatabase(cigarreteEditText.getValue(), new DataType("Cigarrete per Day"));
     }
 
-    private void restoreFromDatabase(){
+    /**
+     * Retrieves data from the database.
+     */
+    private void restoreFromDatabase() {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
         String key;
-        if (account == null){
+        if (account == null) {
             SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
             key = preferences.getString("phoneNumber", null);
-        }else{
+        } else {
             key = account.getDisplayName();
         }
 
@@ -108,7 +132,7 @@ public class OtherSummaryFragment extends Fragment implements Subject, View.OnCl
         refStroke.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     boolean state = Integer.parseInt(dataSnapshot.getValue().toString()) == 1;
                     strokeButton.setChecked(state);
                 }
@@ -123,7 +147,7 @@ public class OtherSummaryFragment extends Fragment implements Subject, View.OnCl
         refHypertension.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     boolean state = Integer.parseInt(dataSnapshot.getValue().toString()) == 1;
                     hyperButton.setChecked(state);
                 }
@@ -138,7 +162,7 @@ public class OtherSummaryFragment extends Fragment implements Subject, View.OnCl
         refPregnancy.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     int count = Integer.parseInt(dataSnapshot.getValue().toString());
                     pregnancyEditText.setValue(count);
                 }
@@ -153,7 +177,7 @@ public class OtherSummaryFragment extends Fragment implements Subject, View.OnCl
         refCigarette.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     int count = Integer.parseInt(dataSnapshot.getValue().toString());
                     cigarreteEditText.setValue(count);
                 }
@@ -169,8 +193,8 @@ public class OtherSummaryFragment extends Fragment implements Subject, View.OnCl
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 notAvailableText.setVisibility(View.GONE);
-                if (dataSnapshot.exists()){
-                    if (dataSnapshot.getValue().toString().equals("Male")){
+                if (dataSnapshot.exists()) {
+                    if (dataSnapshot.getValue().toString().equals("Male")) {
                         notAvailableText.setVisibility(View.VISIBLE);
                         pregnancyLinearLayout.setVisibility(View.GONE);
                     }
@@ -184,7 +208,13 @@ public class OtherSummaryFragment extends Fragment implements Subject, View.OnCl
         });
     }
 
-    private void writeDatabase(int value, DataType dataType){
+    /**
+     * Saves data to the database.
+     *
+     * @param value    the count.
+     * @param dataType the medical data type.
+     */
+    private void writeDatabase(int value, DataType dataType) {
         MeasurementDAO dao = new MeasurementDAO(getActivity(), dataType);
         dao.save(value);
     }

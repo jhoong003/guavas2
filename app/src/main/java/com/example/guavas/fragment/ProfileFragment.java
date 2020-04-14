@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.guavas.R;
-import com.example.guavas.StartActivity;
+import com.example.guavas.activity.StartActivity;
 import com.example.guavas.controller.DailyDataProcessor;
 import com.example.guavas.data.model.MedicalRecord;
 import com.example.guavas.observer.FragmentObserver;
@@ -42,10 +42,13 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
+/**
+ * A fragment that displays the profile page.
+ */
 public class ProfileFragment extends Fragment implements Subject {
 
     private String phoneNumber;
-    private int google=0;
+    private int google = 0;
     private GoogleSignInClient mGoogleSignInClient;
     private SharedPreferences preferences;
     private Button view_support;
@@ -60,22 +63,35 @@ public class ProfileFragment extends Fragment implements Subject {
         // Required empty public constructor
     }
 
+    /**
+     * Sets up the data from the saved system state.
+     *
+     * @param savedInstanceState the saved system state.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // get saved phone number
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
-        if (account != null){
+        if (account != null) {
             phoneNumber = account.getDisplayName();//get google user id
-        }else {
-             preferences = getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
+        } else {
+            preferences = getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
             phoneNumber = preferences.getString("phoneNumber", null);//get phone number
         }
     }
 
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        parent = inflater.inflate(R.layout.fragment_profile, container,false);
+        parent = inflater.inflate(R.layout.fragment_profile, container, false);
         //PROFILE
         displayProfile();
         //NAVIGATE to Edit Profile
@@ -102,7 +118,7 @@ public class ProfileFragment extends Fragment implements Subject {
 
         //SIGN OUT
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
-        if(account != null) google = 1;
+        if (account != null) google = 1;
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -111,15 +127,15 @@ public class ProfileFragment extends Fragment implements Subject {
         parent.findViewById(R.id.signout_btn).setOnClickListener(new View.OnClickListener() {
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             FirebaseUser currentUser = mAuth.getCurrentUser();
+
             @Override
             public void onClick(View v) {
-                if(currentUser != null){
+                if (currentUser != null) {
                     FirebaseAuth.getInstance().signOut();
                     Intent intent = new Intent(getActivity(), StartActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                }
-                else if(google == 1){
+                } else if (google == 1) {
                     signOut();
                     Intent intent = new Intent(getActivity(), StartActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -130,7 +146,10 @@ public class ProfileFragment extends Fragment implements Subject {
         return parent;
     }
 
-    private void displayProfile(){
+    /**
+     * Displays the profile fetched from the database if there is.
+     */
+    private void displayProfile() {
         mobileNumber = parent.findViewById(R.id.mobileNumber);
         mobileNumber.setText(phoneNumber);
 
@@ -140,8 +159,8 @@ public class ProfileFragment extends Fragment implements Subject {
 
         reff.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NotNull DataSnapshot dataSnapshot){
-                if(dataSnapshot.exists()) {
+            public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
                     String fname, lname, dy, dd, dm;
                     lblFirstname = parent.findViewById(R.id.lblFirstname);
                     lblLastname = parent.findViewById(R.id.lblLastname);
@@ -149,19 +168,19 @@ public class ProfileFragment extends Fragment implements Subject {
 
                     lblWeight = parent.findViewById(R.id.lblWeight);
 
-                    if(dataSnapshot.child("firstName").getValue() != null){
+                    if (dataSnapshot.child("firstName").getValue() != null) {
                         fname = dataSnapshot.child("firstName").getValue().toString();
                         lblFirstname.setText(fname);
                     }
 
-                    if(dataSnapshot.child("lastName").getValue() != null){
+                    if (dataSnapshot.child("lastName").getValue() != null) {
                         lname = dataSnapshot.child("lastName").getValue().toString();
                         lblLastname.setText(lname);
                     }
 
-                    if(dataSnapshot.child("dobY").getValue() != null &&
-                        dataSnapshot.child("dobM").getValue() != null &&
-                        dataSnapshot.child("dobD").getValue() != null){
+                    if (dataSnapshot.child("dobY").getValue() != null &&
+                            dataSnapshot.child("dobM").getValue() != null &&
+                            dataSnapshot.child("dobD").getValue() != null) {
 
                         dy = dataSnapshot.child("dobY").getValue().toString();
                         dm = dataSnapshot.child("dobM").getValue().toString();
@@ -173,12 +192,12 @@ public class ProfileFragment extends Fragment implements Subject {
                         int month = Integer.parseInt(dm);
                         int day = Integer.parseInt(dd);
 
-                        int age = curDate.get(Calendar.YEAR)-year;
+                        int age = curDate.get(Calendar.YEAR) - year;
 
-                        if (month < curDate.get(Calendar.MONTH)){
+                        if (month < curDate.get(Calendar.MONTH)) {
                             age--;
-                        }else if (month == curDate.get(Calendar.MONTH)){
-                            if (day < curDate.get(Calendar.DAY_OF_MONTH)){
+                        } else if (month == curDate.get(Calendar.MONTH)) {
+                            if (day < curDate.get(Calendar.DAY_OF_MONTH)) {
                                 age--;
                             }
                         }
@@ -187,20 +206,22 @@ public class ProfileFragment extends Fragment implements Subject {
                     }
                 }
             }
-            public void onCancelled(@NotNull DatabaseError databaseError){
+
+            public void onCancelled(@NotNull DatabaseError databaseError) {
                 Log.e("ProfileFragment", databaseError.getDetails());
             }
         });
 
         reffHeight.addValueEventListener(new ValueEventListener() {
             ArrayList<MedicalRecord> heights = new ArrayList<>();
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 lblHeight = parent.findViewById(R.id.lblHeight);
 
-                if (dataSnapshot.getChildrenCount() == 0){
+                if (dataSnapshot.getChildrenCount() == 0) {
                     lblHeight.setText(getResources().getString(R.string.no_recorded_data_height));
-                }else {
+                } else {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         MedicalRecord record = snapshot.getValue(MedicalRecord.class);
                         heights.add(record);
@@ -221,13 +242,14 @@ public class ProfileFragment extends Fragment implements Subject {
 
         reffWeight.addValueEventListener(new ValueEventListener() {
             ArrayList<MedicalRecord> weights = new ArrayList<>();
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 lblWeight = parent.findViewById(R.id.lblWeight);
 
-                if (dataSnapshot.getChildrenCount() == 0){
+                if (dataSnapshot.getChildrenCount() == 0) {
                     lblWeight.setText(getResources().getString(R.string.no_recorded_data_weight));
-                }else {
+                } else {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         MedicalRecord record = snapshot.getValue(MedicalRecord.class);
                         weights.add(record);
@@ -247,6 +269,9 @@ public class ProfileFragment extends Fragment implements Subject {
         });
     }
 
+    /**
+     * Signs the user out.
+     */
     private void signOut() {
         if (preferences != null) preferences.edit().clear().apply();
         mGoogleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -6,40 +6,68 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.guavas.R;
-import com.example.guavas.data.DataType;
+import com.example.guavas.data.entity.DataType;
 
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * This class is the adapter for the recycler view that displays medical data.
+ */
 public class DataCardViewAdapter extends RecyclerView.Adapter<DataCardViewAdapter.ViewHolder> {
 
     private double[] data;
     private CharSequence[] dateTime;
     private DataType dataType;
 
-    public DataCardViewAdapter(double[] data, CharSequence[] dateTime, DataType dataType){
+    /**
+     * The constructor takes in the data to be displayed.
+     *
+     * @param data     the data.
+     * @param dateTime the date and time.
+     * @param dataType the medical data type.
+     */
+    public DataCardViewAdapter(double[] data, CharSequence[] dateTime, DataType dataType) {
         this.data = data;
         this.dateTime = dateTime;
         this.dataType = dataType;
     }
 
+    /**
+     * Gets the number of data.
+     *
+     * @return the number of data.
+     */
     @Override
-    public int getItemCount() {return data.length; }
+    public int getItemCount() {
+        return data.length;
+    }
 
+    /**
+     * Inflates the card view layout.
+     *
+     * @param parent   the parent view group.
+     * @param viewType the view type.
+     * @return the card view.
+     */
     @NonNull
     @Override
     public DataCardViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         CardView cardView = (CardView)
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.data_card_view, parent, false);
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_measurement, parent, false);
         return new ViewHolder(cardView);
     }
 
-
+    /**
+     * Binds the data to the card view.
+     *
+     * @param holder   the <code>ViewHolder</code> that holds the card view.
+     * @param position the position of the data.
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CardView cardView = holder.cardView;
@@ -58,11 +86,19 @@ public class DataCardViewAdapter extends RecyclerView.Adapter<DataCardViewAdapte
         dateTimeText.setText(dateTime[position]);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    /**
+     * The class specific ViewHolder.
+     */
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private CardView cardView;
 
-        public ViewHolder(CardView cv){
+        /**
+         * The constructor takes a card view.
+         *
+         * @param cv the card view.
+         */
+        public ViewHolder(CardView cv) {
             super(cv);
             cardView = cv;
         }

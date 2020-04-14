@@ -36,7 +36,10 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnClickListener{
+/**
+ * A fragment that displays form to diagnose heart disease.
+ */
+public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnClickListener {
 
     private float[] factors = new float[12];
     private String key;
@@ -52,18 +55,31 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
         // Required empty public constructor
     }
 
+    /**
+     * Retrieves data when created.
+     *
+     * @param savedInstanceState the state to retrieve.
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
-        if (account == null){
+        if (account == null) {
             SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
             key = preferences.getString("phoneNumber", null);
-        }else{
+        } else {
             key = account.getDisplayName();
         }
     }
 
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,12 +93,19 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
         return parent;
     }
 
+    /**
+     * @param v the clicked item.
+     * @see HeartDiagnoseFragment#send()
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.button_submit) send();
     }
 
-    private void initView(){
+    /**
+     * Gets reference to the Views.
+     */
+    private void initView() {
         factor1 = (ToggleButton) parent.findViewById(R.id.Hfactor1);
         factor2 = (EditText) parent.findViewById(R.id.Hfactor2);
         factor4 = (EditText) parent.findViewById(R.id.Hfactor4);
@@ -92,50 +115,59 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
         factor8 = (EditText) parent.findViewById(R.id.Hfactor8);
         factor9 = (EditText) parent.findViewById(R.id.Hfactor9);
         factor10 = (EditText) parent.findViewById(R.id.Hfactor10);
-        factor11= (EditText) parent.findViewById(R.id.Hfactor11);
+        factor11 = (EditText) parent.findViewById(R.id.Hfactor11);
         factor12 = (EditText) parent.findViewById(R.id.Hfactor12);
     }
 
-    private void send(){
+    /**
+     * Gets the user input and diagnose the result in a new fragment.
+     */
+    private void send() {
         factors[0] = factor1.isChecked() ? 1 : 0;
-        factors[1] =Float.parseFloat(factor2.getText().toString());
-        factors[3] =Float.parseFloat(factor4.getText().toString());
+        factors[1] = Float.parseFloat(factor2.getText().toString());
+        factors[3] = Float.parseFloat(factor4.getText().toString());
         factors[2] = factors[3] == 0 ? 0 : 1;
         factors[4] = factor5.isChecked() ? 1 : 0;
         factors[5] = factor6.isChecked() ? 1 : 0;
-        factors[6] =Float.parseFloat(factor7.getText().toString());
-        factors[7] =Float.parseFloat(factor8.getText().toString());
-        factors[8] =Float.parseFloat(factor9.getText().toString());
-        factors[9] =Float.parseFloat(factor10.getText().toString());
-        factors[10] =Float.parseFloat(factor11.getText().toString());
-        factors[11] =Float.parseFloat(factor12.getText().toString());
+        factors[6] = Float.parseFloat(factor7.getText().toString());
+        factors[7] = Float.parseFloat(factor8.getText().toString());
+        factors[8] = Float.parseFloat(factor9.getText().toString());
+        factors[9] = Float.parseFloat(factor10.getText().toString());
+        factors[10] = Float.parseFloat(factor11.getText().toString());
+        factors[11] = Float.parseFloat(factor12.getText().toString());
 
         ChronicDiagnosisResultFragment resultFragment =
                 ChronicDiagnosisResultFragment.newInstance(factors, "Heart Disease", "Heart.tflite");
         notifyObserver(resultFragment);
     }
 
-    private void smartFillForm(){
+    /**
+     * Pre-fill the form based on the user data saved in the database.
+     */
+    private void smartFillForm() {
         smartFillFromProfile();
         smartFillFromSummary();
     }
 
-    private void smartFillFromProfile(){
+    /**
+     * Pre-fill the form based on the user profile.
+     */
+    private void smartFillFromProfile() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("UserProfile").child(key);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     Calendar curDate = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
                     int year = Integer.parseInt(dataSnapshot.child("dobY").getValue().toString());
                     int month = Integer.parseInt(dataSnapshot.child("dobM").getValue().toString());
                     int day = Integer.parseInt(dataSnapshot.child("dobD").getValue().toString());
-                    int age = curDate.get(Calendar.YEAR)-year;
+                    int age = curDate.get(Calendar.YEAR) - year;
 
-                    if (month < curDate.get(Calendar.MONTH)){
+                    if (month < curDate.get(Calendar.MONTH)) {
                         age--;
-                    }else if (month == curDate.get(Calendar.MONTH)){
-                        if (day < curDate.get(Calendar.DAY_OF_MONTH)){
+                    } else if (month == curDate.get(Calendar.MONTH)) {
+                        if (day < curDate.get(Calendar.DAY_OF_MONTH)) {
                             age--;
                         }
                     }
@@ -156,7 +188,10 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
         });
     }
 
-    private void smartFillFromSummary(){
+    /**
+     * Pre-fill the form based on the health summary.
+     */
+    private void smartFillFromSummary() {
         DatabaseReference refBMI = FirebaseDatabase.getInstance().getReference()
                 .child(key).child("Body-Mass Index");
         DatabaseReference refAlcohol = FirebaseDatabase.getInstance().getReference()
@@ -187,7 +222,8 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                if (!entries.isEmpty()) factor7.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty())
+                    factor7.setText(Float.toString(entries.get(entries.size() - 1).getY()));
             }
 
             @Override
@@ -207,7 +243,8 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                if (!entries.isEmpty()) factor8.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty())
+                    factor8.setText(Float.toString(entries.get(entries.size() - 1).getY()));
 
             }
 
@@ -228,7 +265,8 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                if (!entries.isEmpty()) factor9.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty())
+                    factor9.setText(Float.toString(entries.get(entries.size() - 1).getY()));
 
             }
 
@@ -249,7 +287,8 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                if (!entries.isEmpty()) factor10.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty())
+                    factor10.setText(Float.toString(entries.get(entries.size() - 1).getY()));
 
             }
 
@@ -270,7 +309,8 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                if (!entries.isEmpty()) factor11.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty())
+                    factor11.setText(Float.toString(entries.get(entries.size() - 1).getY()));
 
             }
 
@@ -291,7 +331,8 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                if (!entries.isEmpty()) factor12.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty())
+                    factor12.setText(Float.toString(entries.get(entries.size() - 1).getY()));
 
             }
 
@@ -337,7 +378,7 @@ public class HeartDiagnoseFragment extends Fragment implements Subject, View.OnC
                 if (dataSnapshot.exists()) {
                     String count = dataSnapshot.getValue().toString();
                     factor4.setText(count);
-                }else{
+                } else {
                     factor4.setText("0");
                 }
             }

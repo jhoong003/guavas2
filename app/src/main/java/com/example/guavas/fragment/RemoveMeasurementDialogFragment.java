@@ -1,26 +1,16 @@
 package com.example.guavas.fragment;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.guavas.R;
-import com.example.guavas.data.DataType;
+import com.example.guavas.data.entity.DataType;
 import com.example.guavas.data.model.MedicalRecord;
 import com.example.guavas.firebaseDAO.MeasurementDAO;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -32,6 +22,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+/**
+ * A <code>DialogFragment</code> displayed when the user clicks on a measurement data.
+ */
 public class RemoveMeasurementDialogFragment extends DialogFragment {
 
     private static final String DATATYPE_KEY = "dtk";
@@ -45,6 +38,14 @@ public class RemoveMeasurementDialogFragment extends DialogFragment {
     public RemoveMeasurementDialogFragment() {
     }
 
+    /**
+     * Gets a new instance of the fragment.
+     *
+     * @param measurement  the measurement value.
+     * @param timeInMillis the time in milliseconds since Epoch.
+     * @param dataType     the chosen data type.
+     * @return a new instance of the fragment.
+     */
     public static RemoveMeasurementDialogFragment newInstance(double measurement, long timeInMillis, DataType dataType) {
 
         Bundle args = new Bundle();
@@ -57,6 +58,11 @@ public class RemoveMeasurementDialogFragment extends DialogFragment {
         return fragment;
     }
 
+    /**
+     * Sets up the toolbar to support searching.
+     *
+     * @param savedInstanceState the saved system state.
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +74,12 @@ public class RemoveMeasurementDialogFragment extends DialogFragment {
         }
     }
 
+    /**
+     * Create the dialog.
+     *
+     * @param savedInstanceState the saved state.
+     * @return the dialog.
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -92,7 +104,12 @@ public class RemoveMeasurementDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-    private View setDialogLayout(){
+    /**
+     * Inflates the layout of the dialog
+     *
+     * @return the dialog with layout.
+     */
+    private View setDialogLayout() {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View parent = inflater.inflate(R.layout.remove_dialog, null);
 
@@ -111,16 +128,24 @@ public class RemoveMeasurementDialogFragment extends DialogFragment {
         return parent;
     }
 
-    private String getComment(){
+    /**
+     * Gets the comment based on the measurement value.
+     *
+     * @return the comment based on the measurement value.
+     */
+    private String getComment() {
         if (measurement >= dataType.getMinNormal() && measurement <= dataType.getMaxNormal())
             return getResources().getString(R.string.comment_normal);
         else
             return String.format(Locale.getDefault(), getResources().getString(R.string.comment_abnormal),
-                    (int)dataType.getMinNormal(), (int)dataType.getMaxNormal());
+                    (int) dataType.getMinNormal(), (int) dataType.getMaxNormal());
 
     }
 
-    private void removeFromDatabase(){
+    /**
+     * Remove a measurement from the database.
+     */
+    private void removeFromDatabase() {
         MeasurementDAO dao = new MeasurementDAO(getActivity(), dataType);
         dao.delete(new MedicalRecord(timeInMillis, measurement));
     }

@@ -15,7 +15,11 @@ import com.example.guavas.R;
 
 import androidx.annotation.Nullable;
 
-public class PlusMinusEditText extends LinearLayout implements View.OnClickListener{
+/**
+ * This class is a custom View class, which is an edit text with plus and minus button.
+ * Used in "Others" of the health summary page.
+ */
+public class PlusMinusEditText extends LinearLayout implements View.OnClickListener {
 
     private final String STATE_KEY = "State";
     private final String SUPERCLASS_KEY = "Super";
@@ -25,23 +29,28 @@ public class PlusMinusEditText extends LinearLayout implements View.OnClickListe
 
     private int value = 0;
 
-    public PlusMinusEditText(Context context){
+    public PlusMinusEditText(Context context) {
         super(context);
         initView(context);
     }
 
-    public PlusMinusEditText(Context context, AttributeSet attributeSet){
+    public PlusMinusEditText(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         initView(context);
     }
 
-    public PlusMinusEditText(Context context, AttributeSet attributeSet, int defStyle){
+    public PlusMinusEditText(Context context, AttributeSet attributeSet, int defStyle) {
         super(context, attributeSet, defStyle);
         initView(context);
     }
 
-    private void initView(Context context){
-        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    /**
+     * Inflates the layout resource file.
+     *
+     * @param context the context.
+     */
+    private void initView(Context context) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.plus_minus_edit_text, this);
     }
 
@@ -53,7 +62,10 @@ public class PlusMinusEditText extends LinearLayout implements View.OnClickListe
         setText(value);
     }
 
-    private void setupButtons(){
+    /**
+     * Make the plus and minus button respond to click.
+     */
+    private void setupButtons() {
         plusButton = this.findViewById(R.id.button_plus);
         plusButton.setOnClickListener(this);
 
@@ -67,17 +79,16 @@ public class PlusMinusEditText extends LinearLayout implements View.OnClickListe
         Bundle bundle = new Bundle();
         bundle.putInt(STATE_KEY, value);
         bundle.putParcelable(SUPERCLASS_KEY, super.onSaveInstanceState());
-
         return bundle;
     }
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
-        if (state instanceof Bundle){
+        if (state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
             super.onRestoreInstanceState(bundle.getParcelable(SUPERCLASS_KEY));
             value = bundle.getInt(STATE_KEY, 0);
-        }else super.onRestoreInstanceState(state);
+        } else super.onRestoreInstanceState(state);
     }
 
     @Override
@@ -92,29 +103,50 @@ public class PlusMinusEditText extends LinearLayout implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.button_plus){
+        if (v.getId() == R.id.button_plus) {
             increment();
-        }else if (v.getId() == R.id.button_minus){
+        } else if (v.getId() == R.id.button_minus) {
             decrement();
         }
     }
 
-    private void increment(){
+    /**
+     * Increments the number in the text.
+     */
+    private void increment() {
         setText(++value);
     }
 
-    private void decrement(){
+    /**
+     * Decrements the number in the text. The value will not go below zero.
+     */
+    private void decrement() {
         if (value > 0) setText(--value);
     }
 
-    private void setText(int n){
+    /**
+     * Sets the text value.
+     *
+     * @param n the value to set.
+     */
+    private void setText(int n) {
         editText.setText(Integer.toString(n));
     }
 
+    /**
+     * Returns the current value of the text.
+     *
+     * @return the current value of the text.
+     */
     public int getValue() {
         return value;
     }
 
+    /**
+     * Sets the current value of the text.
+     *
+     * @param value the value to set.
+     */
     public void setValue(int value) {
         this.value = value;
         setText(value);

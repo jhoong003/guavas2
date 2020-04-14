@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guavas.adapter.ItemAdapter;
-import com.example.guavas.data.ItemList;
+import com.example.guavas.data.entity.ItemList;
 import com.example.guavas.R;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
@@ -269,10 +269,6 @@ public class DiagnoseCommonFragment extends Fragment implements Subject, View.On
     }
 
     private void predict(){
-        //TODO: remove debug
-        for(float f : selectedSymptoms){
-            System.out.print(f + ", ");
-        }
         DiagnoseResultFragment fragment = DiagnoseResultFragment.newInstance(selectedSymptoms);
         notifyObserver(fragment);
     }

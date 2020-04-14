@@ -24,23 +24,22 @@ import android.view.ViewGroup;
 
 import com.example.guavas.R;
 import com.example.guavas.adapter.HospitalAdapter;
-import com.example.guavas.Hospital;
+import com.example.guavas.data.entity.Hospital;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
+/**
+ * A fragment that displays a list of hospitals.
+ */
 public class HospitalFragment extends Fragment implements Subject,
         HospitalAdapter.OnItemClickListener,
-        SearchView.OnQueryTextListener{
+        SearchView.OnQueryTextListener {
 
     public static final String URL = "imageUrl";
     public static final String DESCRIPTION = "description";
@@ -64,18 +63,31 @@ public class HospitalFragment extends Fragment implements Subject,
     public HospitalFragment() {
     }
 
+    /**
+     * Sets up the search feature.
+     *
+     * @param savedInstanceState the saved state.
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         parent = inflater.inflate(R.layout.fragment_hospital, container, false);
 
-        toolbar = (ActionBar) ((AppCompatActivity)getActivity()).getSupportActionBar();
+        toolbar = (ActionBar) ((AppCompatActivity) getActivity()).getSupportActionBar();
         toolbar.setTitle("Hospital");
         toolbar.setDisplayHomeAsUpEnabled(true);
 
@@ -85,15 +97,16 @@ public class HospitalFragment extends Fragment implements Subject,
         return parent;
     }
 
-    //Prepare the data to be displayed on the recycler view
-
-    private void prepareHospitalData(){
+    /**
+     * Prepare the data to be displayed on the recycler view
+     */
+    private void prepareHospitalData() {
         final Resources resources = getActivity().getApplicationContext().getResources();
         InputStream inputStream = resources.openRawResource(R.raw.hosp);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line = null;
         hospitalsList = new ArrayList<>();
-        while (true){
+        while (true) {
             try {
                 if ((line = reader.readLine()) == null) {
                     break;
@@ -104,28 +117,26 @@ public class HospitalFragment extends Fragment implements Subject,
             }
             assert line != null;
             line = line.trim();
-            //System.out.println(line);
+
             String[] string = line.split("\\|");
-            /*for (String a: string){
-                System.out.println(a.trim());
-            }*/
+
             int id = resources.getIdentifier(string[4], "drawable", getActivity().getApplicationContext().getPackageName());
             System.out.println(string[4]);
             System.out.println(id);
             hospitalsList.add(new Hospital(string[0].trim(), string[1].trim(), string[2].trim(), string[3].trim(), id));
         }
 
-        //Collections.sort(hospitalsList, Hospital.nameComparator);
-        //mAdapter.notifyDataSetChanged();
     }
 
-    //Set Up the recycler view
-    private void setUpRecyclerView(){
+    /**
+     * sets up the recycler view.
+     */
+    private void setUpRecyclerView() {
         mRecyclerView = parent.findViewById(R.id.recyclerView);
         // ensure that the recycle view does not change in size
         mRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager=new LinearLayoutManager(getContext());
+        mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         ArrayList<Hospital> hospitalsCopy = new ArrayList<>();
@@ -136,13 +147,19 @@ public class HospitalFragment extends Fragment implements Subject,
         mRecyclerView.setAdapter(mAdapter);
     }
 
+    /**
+     * Sets up the search feature.
+     *
+     * @param menu     the menu.
+     * @param inflater the inflater.
+     */
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_toolbar, menu);
         MenuItem menuItem = menu.findItem(R.id.action_search);
         menuItem.getIcon().setColorFilter(BlendModeColorFilterCompat.createBlendModeColorFilterCompat(getResources().getColor(android.R.color.white), BlendModeCompat.SRC_IN));
-        SearchView searchView = (SearchView)menuItem.getActionView();
+        SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setOnQueryTextListener(this);
     }
 
@@ -151,41 +168,43 @@ public class HospitalFragment extends Fragment implements Subject,
         return false;
     }
 
+    /**
+     * Updates recycler view when the search field changes.
+     *
+     * @param newText the query text.
+     * @return <code>true</code>.
+     */
     @Override
     public boolean onQueryTextChange(String newText) {
         String userInput = newText.toLowerCase();
         ArrayList<Hospital> newList = new ArrayList<>();
-        for (Hospital item : hospitalsList){
-            if(item.getName().toLowerCase().contains(userInput)){
+        for (Hospital item : hospitalsList) {
+            if (item.getName().toLowerCase().contains(userInput)) {
                 newList.add(item);
             }
         }
-        /*choice 1*/
+
         searchedList = mAdapter.updateList((ArrayList<Hospital>) newList);
-        /*choice 2*/
-        //mAdapter.updateList(newList);
 
         return true;
     }
 
+    /**
+     * Go to the hospital info on click.
+     *
+     * @param position the clicked position.
+     */
     @Override
     public void onItemClick(int position) {
         Log.d(TAG, "onItemClick: clicked");
 
-        /*for (Hospital item : hospitalsList){
-            System.out.println(item.getName());
-            System.out.println("stupid shit");
-        }*/
         Hospital clickedItem;
-        /*choice 1*/
-        if(searchedList.isEmpty()){
+
+        if (searchedList.isEmpty()) {
             clickedItem = hospitalsList.get(position);
-        }
-        else {
+        } else {
             clickedItem = searchedList.get(position);
         }
-        /*choice 2*/
-        //Hospital clickedItem = mAdapter.getItemAtIndex(position);
         HospitalInfoFragment fragment = HospitalInfoFragment.newInstance(
 
                 clickedItem.getName(),

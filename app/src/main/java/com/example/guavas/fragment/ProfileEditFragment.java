@@ -29,12 +29,10 @@ import com.google.firebase.database.annotations.NotNull;
  * This Fragment controls Profile update feature.
  * It display data retrieve from the database
  * It inserts & update data into the database
- *
- * @author zane_
  */
 public class ProfileEditFragment extends Fragment implements Subject {
 
-    private static String PHONE_KEY ="key";
+    private static String PHONE_KEY = "key";
 
     private String gender, phone;
     private EditText txtFirstName, txtLastName, txtDay, txtMonth, txtYear, txtEmail;
@@ -49,6 +47,12 @@ public class ProfileEditFragment extends Fragment implements Subject {
         // Required empty public constructor
     }
 
+    /**
+     * Gets a new instance of the fragment.
+     *
+     * @param phone the phone number of the user.
+     * @return a new instance of the fragment.
+     */
     public static ProfileEditFragment newInstance(String phone) {
         ProfileEditFragment fragment = new ProfileEditFragment();
         Bundle args = new Bundle();
@@ -57,6 +61,11 @@ public class ProfileEditFragment extends Fragment implements Subject {
         return fragment;
     }
 
+    /**
+     * Sets up the toolbar to support searching.
+     *
+     * @param savedInstanceState the saved system state.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +75,14 @@ public class ProfileEditFragment extends Fragment implements Subject {
         }
     }
 
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -114,7 +131,11 @@ public class ProfileEditFragment extends Fragment implements Subject {
         return parent;
     }
 
-    //Function to handle Gender Radio Button
+    /**
+     * Handles the radio button check.
+     *
+     * @param view the view clicked.
+     */
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -134,6 +155,9 @@ public class ProfileEditFragment extends Fragment implements Subject {
         }
     }
 
+    /**
+     * Displays the profile fetched from the database if there is.
+     */
     public void displayProfile() {
         DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("UserProfile").child(phone);
         reff.addValueEventListener(new ValueEventListener() {
@@ -170,6 +194,9 @@ public class ProfileEditFragment extends Fragment implements Subject {
         });
     }
 
+    /**
+     * Updates the user profile in the database.
+     */
     public void updateProfile() {
         boolean validate = validateForm();
 
@@ -192,6 +219,11 @@ public class ProfileEditFragment extends Fragment implements Subject {
 
     }
 
+    /**
+     * Checks if the form is filled.
+     *
+     * @return <code>true</code> if the form is filled.
+     */
     private boolean validateForm() {
         if (txtFirstName.getText().toString().length() == 0) {
             txtFirstName.setError("First Name cannot be empty");

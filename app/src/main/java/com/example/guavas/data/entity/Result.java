@@ -1,4 +1,4 @@
-package com.example.guavas.data;
+package com.example.guavas.data.entity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -6,10 +6,18 @@ import org.jetbrains.annotations.NotNull;
  * A generic class that holds a result success w/ data or an error exception.
  */
 public class Result<T> {
-    // hide the private constructor to limit subclass types (Success, Error)
+    /**
+     * hide the private constructor to limit subclass types (Success, Error)
+     */
+
     private Result() {
     }
 
+    /**
+     * Gets the string representation of the <code>Result</code>.
+     *
+     * @return the string representation of the <code>Result</code>.
+     */
     @NotNull
     @Override
     public String toString() {
@@ -23,27 +31,53 @@ public class Result<T> {
         return "";
     }
 
-    // Success sub-class
+    /**
+     * Success sub-class.
+     *
+     * @param <T> the Type.
+     */
     public final static class Success<T> extends Result {
         private T data;
 
+        /**
+         * The constructor.
+         *
+         * @param data the data.
+         */
         public Success(T data) {
             this.data = data;
         }
 
+        /**
+         * Gets the data.
+         *
+         * @return the data.
+         */
         public T getData() {
             return this.data;
         }
     }
 
-    // Error sub-class
+    /**
+     * Error sub-class.
+     */
     public final static class Error extends Result {
         private Exception error;
 
+        /**
+         * The constructor.
+         *
+         * @param error the error.
+         */
         public Error(Exception error) {
             this.error = error;
         }
 
+        /**
+         * Gets the exception of the error.
+         *
+         * @return the thrown exception.
+         */
         public Exception getError() {
             return this.error;
         }

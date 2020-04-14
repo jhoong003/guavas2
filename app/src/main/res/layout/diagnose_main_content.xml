@@ -1,38 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DiagnoseMain">
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
+
         <Button
             android:id="@+id/chronic"
             android:layout_width="130dp"
             android:layout_height="100dp"
-            android:layout_gravity = "center_vertical|center_horizontal"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="@drawable/rectangle_red"
             android:text="@string/button_chronic_diagnosis"
-            android:background="@drawable/rectanglewhite"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1">
+
         <Button
             android:id="@+id/common"
             android:layout_width="130dp"
             android:layout_height="100dp"
-            android:layout_gravity = "center_vertical|center_horizontal"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="@drawable/rectangle_red"
             android:text="@string/button_common_diagnosis"
-            android:background="@drawable/rectanglewhite"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
     </FrameLayout>
 
 </LinearLayout>

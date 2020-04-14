@@ -1,15 +1,20 @@
 package com.example.guavas.controller;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class FAQDataManager {
-
 /**
  * This class manages the questions and answers in FAQ Page
  * Questions and answers are stored as Hashmaps with questions as key and answers as values
- * */
+ */
+public class FAQDataManager {
 
+    /**
+     * Retrieves the FAQ questions and answers.
+     *
+     * @return the FAQ questions and answers.
+     */
     public static HashMap<String, List<String>> getFAQData() {
         final HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
 
@@ -21,7 +26,6 @@ public class FAQDataManager {
         ansq3.add("YES! One of the main functions of Meds is to act as a self-diagnosing tool for you. Two modes of diagnosis are available in Meds: common disease diagnosis and chronic disease common or chronic disease to diagnose yourself.After selecting, Meds will require input of necessary symptoms or medical data for the relevant diagnosis.");
         List<String> ansq4 = new ArrayList<String>();
         ansq4.add("Meds enables you to sign in using either a Singaporean phone number or a valid Google account. Upon signing in, all your inputted information will be saved in our databases. A Meds account allows you to store their medical data as well as self-diagnosis history so as to keep track of your health status. Meds also monitors the trends in your medical data and provides relevant suggestions.");
-
 
         expandableListDetail.put("1. What is Meds app?", ansq1);
         expandableListDetail.put("2. Where can I get hospital/disease information?", ansq2);

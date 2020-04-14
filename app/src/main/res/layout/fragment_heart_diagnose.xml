@@ -1,252 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="@string/text_chronic_diagnosis_gender"/>
+            android:layout_marginEnd="10dp"
+            android:text="@string/text_chronic_diagnosis_gender"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <ToggleButton
             android:id="@+id/Hfactor1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="10dp"
-            android:layout_marginHorizontal ="16dp"
             android:background="@drawable/toggle_selector"
             android:textColor="@android:color/white"
             android:textOff="@string/toggle_button_gender_off"
-            android:textOn="@string/toggle_button_gender_on"/>
+            android:textOn="@string/toggle_button_gender_on" />
 
         <TextView
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
-            android:textStyle="bold"
             android:layout_marginTop="10dp"
-            android:text="@string/text_diabetes_age"/>
+            android:layout_marginEnd="10dp"
+            android:text="@string/text_diabetes_age"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <EditText
+            android:id="@+id/Hfactor2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:padding="5dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:id = "@+id/Hfactor2"
-            android:inputType="number"/>
+            android:layout_marginRight="10dp"
+            android:inputType="number"
+            android:padding="5dp"
+            android:textSize="15sp" />
+
         <TextView
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="@string/text_chronic_diagnosis_cigarrete"/>
+            android:layout_marginEnd="10dp"
+            android:text="@string/text_chronic_diagnosis_cigarrete"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <EditText
+            android:id="@+id/Hfactor4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:padding="5dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:id = "@+id/Hfactor4"
-            android:inputType="number"/>
+            android:layout_marginRight="10dp"
+            android:inputType="number"
+            android:padding="5dp"
+            android:textSize="15sp" />
+
         <TextView
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="@string/text_chronic_diagnosis_stroke"/>
+            android:layout_marginEnd="10dp"
+            android:text="@string/text_chronic_diagnosis_stroke"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <ToggleButton
             android:id="@+id/Hfactor5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="10dp"
-            android:layout_marginHorizontal ="16dp"
             android:background="@drawable/toggle_selector"
             android:textColor="@android:color/white"
             android:textOff="@string/toggle_button_general_off"
-            android:textOn="@string/toggle_button_general_on"/>
+            android:textOn="@string/toggle_button_general_on" />
 
         <TextView
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="@string/text_chronic_diagnosis_hypertension"/>
+            android:layout_marginEnd="10dp"
+            android:text="@string/text_chronic_diagnosis_hypertension"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <ToggleButton
             android:id="@+id/Hfactor6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="10dp"
-            android:layout_marginHorizontal ="16dp"
             android:background="@drawable/toggle_selector"
             android:textColor="@android:color/white"
             android:textOff="@string/toggle_button_general_off"
-            android:textOn="@string/toggle_button_general_on"/>
+            android:textOn="@string/toggle_button_general_on" />
+
         <TextView
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="@string/text_chronic_diagnosis_alcohol"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:padding="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:id = "@+id/Hfactor7"
-            android:inputType="number"/>
-        <TextView
+            android:text="@string/text_chronic_diagnosis_alcohol"
             android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="@string/text_chronic_diagnosis_systolic"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:padding="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:id = "@+id/Hfactor8"
-            android:inputType="numberDecimal"/>
-        <TextView
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="@string/text_chronic_diagnosis_diastolic"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:padding="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:id = "@+id/Hfactor9"
-            android:inputType="numberDecimal"/>
-        <TextView
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="@string/text_diabetes_BMI"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:padding="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:id = "@+id/Hfactor10"
-            android:inputType="numberDecimal"/>
-        <TextView
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="@string/text_chronic_diagosis_heart_rate"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:padding="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:id = "@+id/Hfactor11"
-            android:inputType="numberDecimal"/>
-        <TextView
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="@string/text_chronic_diagnosis_glucose"/>
+            android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/Hfactor7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id = "@+id/Hfactor12"
-            android:textSize="15sp"
-            android:padding="5dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:inputType="numberDecimal"/>
+            android:layout_marginRight="10dp"
+            android:inputType="number"
+            android:padding="5dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/text_chronic_diagnosis_systolic"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/Hfactor8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:inputType="numberDecimal"
+            android:padding="5dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/text_chronic_diagnosis_diastolic"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/Hfactor9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:inputType="numberDecimal"
+            android:padding="5dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/text_diabetes_BMI"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/Hfactor10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:inputType="numberDecimal"
+            android:padding="5dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/text_chronic_diagosis_heart_rate"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/Hfactor11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:inputType="numberDecimal"
+            android:padding="5dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/text_chronic_diagnosis_glucose"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/Hfactor12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:inputType="numberDecimal"
+            android:padding="5dp"
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/button_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_submit"
-            android:textSize="20sp"
-            android:padding="4dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/rectanglewhite"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="8dp"
-            android:textColor="@android:color/white"/>
+            android:background="@drawable/rectangle_red"
+            android:padding="4dp"
+            android:text="@string/button_submit"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

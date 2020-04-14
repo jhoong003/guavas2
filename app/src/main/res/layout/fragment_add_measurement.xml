@@ -1,94 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.AddMeasurementFragment"
     android:background="@android:color/white"
-    android:clickable="true">
+    android:clickable="true"
+    tools:context=".fragment.AddMeasurementFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/text_data_type"
             android:layout_width="match_parent"
-            android:gravity="center"
             android:layout_height="?attr/actionBarSize"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/colorAccent">
+
             <TextView
-                android:paddingStart="8dp"
                 android:layout_width="0dp"
-                android:text="@string/text_date"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center|start"
-                android:layout_weight="1"/>
+                android:paddingStart="8dp"
+                android:text="@string/text_date" />
+
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3">
+
                 <TextView
                     android:id="@+id/text_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center|start"/>
+                    android:layout_gravity="center|start" />
+
                 <ImageButton
-                    android:paddingEnd="8dp"
                     android:id="@+id/image_button_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_edit_white_24"
                     android:layout_gravity="center|end"
-                    android:background="@color/colorAccent"/>
+                    android:background="@color/colorAccent"
+                    android:paddingEnd="8dp"
+                    android:src="@drawable/baseline_edit_white_24" />
             </FrameLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/colorAccent">
+
             <TextView
-                android:paddingStart="8dp"
                 android:layout_width="0dp"
-                android:text="@string/text_time"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center|start"
-                android:layout_weight="1"/>
+                android:paddingStart="8dp"
+                android:text="@string/text_time" />
+
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3">
+
                 <TextView
                     android:id="@+id/text_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center|start"/>
+                    android:layout_gravity="center|start" />
+
                 <ImageButton
-                    android:paddingEnd="8dp"
                     android:id="@+id/image_button_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_edit_white_24"
                     android:layout_gravity="center|end"
-                    android:background="@color/colorAccent"/>
+                    android:background="@color/colorAccent"
+                    android:paddingEnd="8dp"
+                    android:src="@drawable/baseline_edit_white_24" />
             </FrameLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/colorAccent">
+
             <TextView
-                android:paddingStart="8dp"
                 android:layout_width="0dp"
-                android:text="@string/text_measurement"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center|start"
-                android:layout_weight="1"/>
+                android:paddingStart="8dp"
+                android:text="@string/text_measurement" />
+
             <EditText
                 android:id="@+id/edit_text_measurement"
                 android:layout_width="0dp"
@@ -96,24 +111,25 @@
                 android:layout_gravity="center"
                 android:layout_weight="3"
                 android:hint="@string/hint_measurement"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal" />
         </LinearLayout>
     </LinearLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_measurement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
+        android:layout_marginBottom="4dp"
         android:src="@drawable/ic_done_white_24dp"
-        app:backgroundTint="@color/colorAccent"
-        android:layout_marginBottom="4dp"/>
+        app:backgroundTint="@color/colorAccent" />
 
     <ImageButton
         android:id="@+id/image_button_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="8dp"
-        android:src="@drawable/baseline_clear_white_24"
-        android:background="@android:color/transparent"/>
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/baseline_clear_white_24" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

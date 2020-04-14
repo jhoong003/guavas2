@@ -64,6 +64,7 @@
         <item>Vitals</item>
         <item>Others</item>
     </string-array>
+
     <!--Vitals Menu-->
     <string-array name="option_vitals">
         <item>Alcohol Consumption</item>
@@ -90,7 +91,7 @@
 
     <string name="button_show_all">Show All</string>
 
-    <string name="hint_measurement">Your measurement...</string>
+    <string name="hint_measurement">Your measurement…</string>
 
     <string name="text_dialog_datetime">Date and Time</string>
     <string name="text_dialog_measurement">Measurement</string>
@@ -146,9 +147,8 @@
     <string name="toggle_button_general_off">No</string>
     <string name="toggle_button_general_on">Yes</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_pregnancy_count">Pregnancy Count</string>
     <string name="text_pregnancy_not_suitable">Pregnancy count is not \n available for male</string>
+    <string name="illness_name">Illness Name</string>
 
 </resources>

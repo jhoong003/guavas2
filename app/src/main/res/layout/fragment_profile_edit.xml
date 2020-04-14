@@ -24,7 +24,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/update_profile"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
 
 
             <EditText
@@ -101,7 +101,7 @@
                     android:layout_marginTop="8dp"
                     android:ems="10"
                     android:hint="@string/profile_dobDD"
-                    android:inputType="number"/>
+                    android:inputType="number" />
 
                 <EditText
                     android:id="@+id/txtMonth"
@@ -110,7 +110,7 @@
                     android:layout_marginTop="8dp"
                     android:ems="10"
                     android:hint="@string/profile_dobMM"
-                    android:inputType="number"/>
+                    android:inputType="number" />
 
                 <EditText
                     android:id="@+id/txtYear"
@@ -121,7 +121,7 @@
                     android:layout_marginEnd="16dp"
                     android:ems="10"
                     android:hint="@string/profile_dobYYYY"
-                    android:inputType="number"/>
+                    android:inputType="number" />
             </LinearLayout>
 
             <EditText
@@ -140,16 +140,17 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
+
                 <Button
                     android:id="@+id/btnSave"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="49dp"
                     android:layout_marginBottom="87dp"
-                    android:background="@drawable/rectanglewhite"
-                    android:textColor="@android:color/white"
-                    android:text="@string/button_save" />
+                    android:background="@drawable/rectangle_red"
+                    android:text="@string/button_save"
+                    android:textColor="@android:color/white" />
             </LinearLayout>
 
         </LinearLayout>

@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
-    app:cardCornerRadius="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    app:cardCornerRadius="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
+
         <TextView
             android:id="@+id/Text1"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="DUAAAARRR"
-            android:textSize="20sp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"/>
+            android:text="Placeholder title"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/Text2"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/Text1"
-            android:text="Desc"
-            android:textColor="@android:color/white"
             android:layout_marginStart="28dp"
-            />
+            android:text="Placeholder desc"
+            android:textColor="@android:color/white" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

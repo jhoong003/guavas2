@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <TextView
         android:id="@+id/support"
         android:layout_width="wrap_content"
@@ -11,14 +12,14 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/support"
-        android:textSize="50sp"/>
+        android:textSize="50sp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="85dp"
         android:text="@string/FAQ"
         android:textSize="18sp" />
 
@@ -26,27 +27,27 @@
         android:id="@+id/expandableListView"
         android:layout_width="320dp"
         android:layout_height="240dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
         android:background="@color/creamyyellow"
         android:divider="@color/black"
-        android:dividerHeight="0.5dp"
-        android:layout_marginTop="120dp"
-        android:layout_centerHorizontal="true" />
+        android:dividerHeight="0.5dp" />
 
     <TextView
         android:id="@+id/rateapp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/rating"
-        android:layout_marginTop="360dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="360dp"
+        android:text="@string/rating"
         android:textSize="18sp" />
 
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="240dp"
         android:layout_height="55dp"
-        android:layout_marginTop="390dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="390dp"
         android:numStars="5"
         android:theme="@style/RatingBar" />
 
@@ -54,10 +55,10 @@
         android:id="@+id/submitrating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_marginTop="450dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/rectanglewhite"
-        android:textColor="@android:color/white"
-        android:text="@string/submit" />
+        android:layout_marginTop="450dp"
+        android:background="@drawable/rectangle_red"
+        android:padding="8dp"
+        android:text="@string/submit"
+        android:textColor="@android:color/white" />
 </RelativeLayout>

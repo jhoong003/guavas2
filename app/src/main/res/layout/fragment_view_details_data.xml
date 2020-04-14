@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectanglewhite"
     android:layout_margin="16dp"
+    android:background="@drawable/rectangle_red"
     android:padding="8dp"
     tools:context=".fragment.ViewDetailsDataFragment">
 
@@ -12,36 +12,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp">
+
             <TextView
-                android:text="@string/text_all_data"
                 android:layout_width="0dp"
-                android:layout_weight="1.5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|center"
-                android:textColor="@android:color/white"/>
+                android:layout_weight="1.5"
+                android:text="@string/text_all_data"
+                android:textColor="@android:color/white" />
             <!--TODO change button ui-->
             <Button
                 android:id="@+id/button_show_all"
-                android:text="@string/button_show_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/white"
                 android:onClick="onClickShowAll"
-                android:background="@android:color/white"/>
+                android:text="@string/button_show_all" />
         </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="8dp"
-            android:layout_marginHorizontal="8dp"
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:background="@android:color/white"/>
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/white"
+            android:scrollbars="vertical" />
     </LinearLayout>
 
-    
+
 </FrameLayout>

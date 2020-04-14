@@ -35,6 +35,9 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
+/**
+ * A fragment for diagnosing the patient regarding diabetes.
+ */
 public class DiabetesDiagnosisFragment extends Fragment implements Subject, View.OnClickListener {
 
     private float[] factors = new float[7];
@@ -44,20 +47,34 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
     private View parent;
     private EditText factor1, factor2, factor3, factor4, factor5, factor6, factor7;
 
-    public DiabetesDiagnosisFragment() { }
+    public DiabetesDiagnosisFragment() {
+    }
 
+    /**
+     * Retrieves data when created.
+     *
+     * @param savedInstanceState the state to retrieve.
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
-        if (account == null){
+        if (account == null) {
             SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
             key = preferences.getString("phoneNumber", null);
-        }else{
+        } else {
             key = account.getDisplayName();
         }
     }
 
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,7 +86,10 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
         return parent;
     }
 
-    private void initViews(){
+    /**
+     * Gets reference to the Views.
+     */
+    private void initViews() {
         factor1 = (EditText) parent.findViewById(R.id.factor1);
         factor2 = (EditText) parent.findViewById(R.id.factor2);
         factor3 = (EditText) parent.findViewById(R.id.factor3);
@@ -82,27 +102,33 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
         button.setOnClickListener(this);
     }
 
-    private void smartFillForm(){
+    /**
+     * Pre-fill the form based on the user data saved in the database.
+     */
+    private void smartFillForm() {
         smartFillFromProfile();
         smartFillFromSummary();
     }
 
-    private void smartFillFromProfile(){
+    /**
+     * Pre-fill the form based on the user profile.
+     */
+    private void smartFillFromProfile() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("UserProfile").child(key);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     Calendar curDate = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
                     int year = Integer.parseInt(dataSnapshot.child("dobY").getValue().toString());
                     int month = Integer.parseInt(dataSnapshot.child("dobM").getValue().toString());
                     int day = Integer.parseInt(dataSnapshot.child("dobD").getValue().toString());
-                    int age = curDate.get(Calendar.YEAR)-year;
+                    int age = curDate.get(Calendar.YEAR) - year;
 
-                    if (month < curDate.get(Calendar.MONTH)){
+                    if (month < curDate.get(Calendar.MONTH)) {
                         age--;
-                    }else if (month == curDate.get(Calendar.MONTH)){
-                        if (day < curDate.get(Calendar.DAY_OF_MONTH)){
+                    } else if (month == curDate.get(Calendar.MONTH)) {
+                        if (day < curDate.get(Calendar.DAY_OF_MONTH)) {
                             age--;
                         }
                     }
@@ -118,7 +144,10 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
         });
     }
 
-    private void smartFillFromSummary(){
+    /**
+     * Pre-fill the form based on the health summary.
+     */
+    private void smartFillFromSummary() {
         DatabaseReference refGlucose = FirebaseDatabase.getInstance().getReference()
                 .child(key).child("Blood Glucose");
         DatabaseReference refSystolic = FirebaseDatabase.getInstance().getReference()
@@ -143,7 +172,8 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                if (!entries.isEmpty()) factor2.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty())
+                    factor2.setText(Float.toString(entries.get(entries.size() - 1).getY()));
 
             }
 
@@ -164,7 +194,8 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                if (!entries.isEmpty()) factor3.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty())
+                    factor3.setText(Float.toString(entries.get(entries.size() - 1).getY()));
 
             }
 
@@ -185,7 +216,8 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                if (!entries.isEmpty()) factor4.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty())
+                    factor4.setText(Float.toString(entries.get(entries.size() - 1).getY()));
 
             }
 
@@ -206,7 +238,8 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                if (!entries.isEmpty()) factor5.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty())
+                    factor5.setText(Float.toString(entries.get(entries.size() - 1).getY()));
 
             }
 
@@ -227,7 +260,8 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
                 }
 
                 ArrayList<Entry> entries = new DailyDataProcessor().processData(records);
-                if (!entries.isEmpty()) factor6.setText(Float.toString(entries.get(entries.size()-1).getY()));
+                if (!entries.isEmpty())
+                    factor6.setText(Float.toString(entries.get(entries.size() - 1).getY()));
             }
 
             @Override
@@ -242,7 +276,7 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
                 if (dataSnapshot.exists()) {
                     String count = dataSnapshot.getValue().toString();
                     factor1.setText(count);
-                }else{
+                } else {
                     factor1.setText("0");
                 }
             }
@@ -255,19 +289,26 @@ public class DiabetesDiagnosisFragment extends Fragment implements Subject, View
 
     }
 
+    /**
+     * @param v the clicked item.
+     * @see DiabetesDiagnosisFragment#send()
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.button_submit) send();
     }
 
-    private void send(){
-        factors[0] =Float.parseFloat(factor1.getText().toString());
-        factors[1] =Float.parseFloat(factor2.getText().toString());
-        factors[2] =Float.parseFloat(factor3.getText().toString());
-        factors[3] =Float.parseFloat(factor4.getText().toString());
-        factors[4] =Float.parseFloat(factor5.getText().toString());
-        factors[5] =Float.parseFloat(factor6.getText().toString());
-        factors[6]= Float.parseFloat(factor7.getText().toString());
+    /**
+     * Gets the user input and diagnose the result in a new fragment.
+     */
+    private void send() {
+        factors[0] = Float.parseFloat(factor1.getText().toString());
+        factors[1] = Float.parseFloat(factor2.getText().toString());
+        factors[2] = Float.parseFloat(factor3.getText().toString());
+        factors[3] = Float.parseFloat(factor4.getText().toString());
+        factors[4] = Float.parseFloat(factor5.getText().toString());
+        factors[5] = Float.parseFloat(factor6.getText().toString());
+        factors[6] = Float.parseFloat(factor7.getText().toString());
 
         ChronicDiagnosisResultFragment fragment =
                 ChronicDiagnosisResultFragment.newInstance(factors, "Diabetes", "Diabetes.tflite");

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.guavas.DiagnoseLoading;
+import com.example.guavas.data.database.IllDetails;
 import com.example.guavas.R;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
@@ -23,6 +23,9 @@ import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
+/**
+ * A fragment that shows the result from common disease diagnosis.
+ */
 public class DiagnoseResultFragment extends Fragment implements Subject, View.OnClickListener {
     private static final String VALUE_KEY = "val";
     private Interpreter Htflite;
@@ -31,6 +34,11 @@ public class DiagnoseResultFragment extends Fragment implements Subject, View.On
     public DiagnoseResultFragment() {
     }
 
+    /**
+     * Gets an instance of this fragment.
+     * @param values the user inputs.
+     * @return the instance of this fragment.
+     */
     public static DiagnoseResultFragment newInstance(float[] values) {
 
         Bundle args = new Bundle();
@@ -40,6 +48,14 @@ public class DiagnoseResultFragment extends Fragment implements Subject, View.On
         return fragment;
     }
 
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -119,7 +135,7 @@ public class DiagnoseResultFragment extends Fragment implements Subject, View.On
             }
         }
         System.out.println(currentMaxIndex);
-        DiagnoseLoading DL = new DiagnoseLoading(ListOfIllness[currentMaxIndex]);
+        IllDetails DL = new IllDetails(ListOfIllness[currentMaxIndex]);
         TextView tv1 = parent.findViewById(R.id.IllName);
         TextView tv2 = parent.findViewById(R.id.Desc);
         TextView tv3 = parent.findViewById(R.id.Prevention);
@@ -132,16 +148,30 @@ public class DiagnoseResultFragment extends Fragment implements Subject, View.On
         return parent;
     }
 
+    /**
+     * @param v the view clicked.
+     * @see DiagnoseResultFragment#onClickHome()
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.home_button) onClickHome();
     }
 
+    /**
+     * Makes the home button works.
+     */
     private void onClickHome(){
         DiagnoseMainFragment fragment = new DiagnoseMainFragment();
         notifyObserver(fragment);
     }
 
+    /**
+     * Loads the machine learning model.
+     *
+     * @param location the path to the model file.
+     * @return the model.
+     * @throws IOException thrown if the model cannot be loaded.
+     */
     public MappedByteBuffer loadModelFile(String location) throws IOException {
         AssetFileDescriptor fileDescriptor = getActivity().getApplicationContext().getAssets().openFd(location);
         FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());

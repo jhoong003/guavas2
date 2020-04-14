@@ -19,6 +19,9 @@ import static com.example.guavas.fragment.DiseaseFragment.NAME;
 import static com.example.guavas.fragment.DiseaseFragment.DESCRIPTION;
 import static com.example.guavas.fragment.DiseaseFragment.PREVENTION;
 
+/**
+ * A fragment that holds the disease details.
+ */
 public class DiseaseInfoFragment extends Fragment implements Subject {
 
     private FragmentObserver observer;
@@ -26,6 +29,14 @@ public class DiseaseInfoFragment extends Fragment implements Subject {
     public DiseaseInfoFragment() {
     }
 
+    /**
+     * Gets a new instance of this fragment.
+     *
+     * @param name       the disease name.
+     * @param prevention the disease prevention.
+     * @param desc       the disease description.
+     * @return the new instance of this fragment.
+     */
     public static DiseaseInfoFragment newInstance(String name, String prevention, String desc) {
 
         Bundle args = new Bundle();
@@ -37,12 +48,20 @@ public class DiseaseInfoFragment extends Fragment implements Subject {
         return fragment;
     }
 
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View parent = inflater.inflate(R.layout.fragment_disease_info, container, false);
 
-        ActionBar toolbar = (ActionBar) ((AppCompatActivity)getActivity()).getSupportActionBar();
+        ActionBar toolbar = (ActionBar) ((AppCompatActivity) getActivity()).getSupportActionBar();
         toolbar.setTitle("Information");
         toolbar.setDisplayHomeAsUpEnabled(true);
 

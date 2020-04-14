@@ -9,12 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-import com.example.guavas.ExpandableList;
+import com.example.guavas.adapter.ExpandableListAdapter;
 import com.example.guavas.controller.FAQDataManager;
 import com.example.guavas.firebaseDAO.MedsDAO;
 import com.example.guavas.firebaseDAO.RatingDAO;
@@ -28,15 +27,18 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * A fragment for the support page.
+ */
 public class SupportFragment extends Fragment implements Subject {
 
-    private static final String PHONE_KEY ="phone";
+    private static final String PHONE_KEY = "phone";
 
     private FragmentObserver observer;
 
     private View parent;
     private ExpandableListView expandableListView;
-    private ExpandableListAdapter expandableListAdapter;
+    private android.widget.ExpandableListAdapter expandableListAdapter;
     private List<String> expandableListTitle;
     private HashMap<String, List<String>> expandableListDetail;
     private RatingBar ratingBar;
@@ -47,6 +49,11 @@ public class SupportFragment extends Fragment implements Subject {
     public SupportFragment() {
     }
 
+    /**
+     * Gets a new instance of this fragment.
+     *
+     * @param phone the phone number of the user.
+     */
     public static SupportFragment newInstance(String phone) {
 
         Bundle args = new Bundle();
@@ -56,6 +63,11 @@ public class SupportFragment extends Fragment implements Subject {
         return fragment;
     }
 
+    /**
+     * Sets up the data from the saved system state.
+     *
+     * @param savedInstanceState the saved system state.
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,12 +75,20 @@ public class SupportFragment extends Fragment implements Subject {
         userRatingData = new UserRatingData();
 
         Bundle args = getArguments();
-        if (args != null){
+        if (args != null) {
             //Get user id
             userRatingData.setUserID(args.getString(PHONE_KEY));
         }
     }
 
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -81,12 +101,15 @@ public class SupportFragment extends Fragment implements Subject {
         return parent;
     }
 
+    /**
+     * Sets up the list of FAQs
+     */
     private void setFAQ() {
         expandableListView = (ExpandableListView) parent.findViewById(R.id.expandableListView);
         expandableListDetail = FAQDataManager.getFAQData();
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
         Collections.sort(expandableListTitle);
-        expandableListAdapter = new ExpandableList(getContext(), expandableListTitle, expandableListDetail);
+        expandableListAdapter = new ExpandableListAdapter(getContext(), expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
 
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -94,13 +117,16 @@ public class SupportFragment extends Fragment implements Subject {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 showToastToUser(expandableListTitle.get(groupPosition)
-                                + " -> "
-                                + expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition));
+                        + " -> "
+                        + expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition));
                 return false;
             }
         });
     }
 
+    /**
+     * Sets up the rating bar.
+     */
     private void setRatingBar() {
         ratingBar = (RatingBar) parent.findViewById(R.id.ratingBar);
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -112,25 +138,33 @@ public class SupportFragment extends Fragment implements Subject {
         });
     }
 
+    /**
+     * Sets up the submit rating button.
+     */
     private void setSubmitRating() {
         submitRating = (Button) parent.findViewById(R.id.submitrating);
         submitRating.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+                                            @Override
+                                            public void onClick(View view) {
 
-                    showToastToUser("Thank you for rating our app!");
+                                                showToastToUser("Thank you for rating our app!");
 
-                    // Save to Firebase
-                    ratingDAO.save(userRatingData);
+                                                // Save to Firebase
+                                                ratingDAO.save(userRatingData);
 
-                    //Go back to profile's home page
-                    notifyObserver(new ProfileFragment());
-                }
-            }
+                                                //Go back to profile's home page
+                                                notifyObserver(new ProfileFragment());
+                                            }
+                                        }
         );
     }
 
-    private void showToastToUser(String message){
+    /**
+     * Displays a toast to the user.
+     *
+     * @param message the message to display.
+     */
+    private void showToastToUser(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 

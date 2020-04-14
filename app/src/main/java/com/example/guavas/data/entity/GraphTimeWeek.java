@@ -1,4 +1,4 @@
-package com.example.guavas.data;
+package com.example.guavas.data.entity;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -6,9 +6,19 @@ import java.util.TimeZone;
 
 import androidx.annotation.Nullable;
 
+/**
+ * This class represents a week.
+ */
 public class GraphTimeWeek extends GraphTime {
     private int weekNumber;
 
+    /**
+     * The constructor.
+     *
+     * @param year  the year to represent.
+     * @param month the month to represent.
+     * @param day the day to represent.
+     */
     public GraphTimeWeek(int year, int month, int day){
         super(year, month);
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
@@ -19,6 +29,10 @@ public class GraphTimeWeek extends GraphTime {
         weekNumber = calendar.get(Calendar.WEEK_OF_MONTH);
     }
 
+    /**
+     * Gets the week number.
+     * @return the week number.
+     */
     public int getWeekNumber() {
         return weekNumber;
     }

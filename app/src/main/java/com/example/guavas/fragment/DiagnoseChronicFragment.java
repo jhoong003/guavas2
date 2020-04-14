@@ -1,6 +1,5 @@
 package com.example.guavas.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +13,9 @@ import com.example.guavas.R;
 import com.example.guavas.observer.FragmentObserver;
 import com.example.guavas.observer.Subject;
 
+/**
+ * A fragment showing the options available for chronic disease.
+ */
 public class DiagnoseChronicFragment extends Fragment implements Subject {
 
     private FragmentObserver observer;
@@ -21,7 +23,14 @@ public class DiagnoseChronicFragment extends Fragment implements Subject {
     public DiagnoseChronicFragment() {
     }
 
-
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,12 +38,12 @@ public class DiagnoseChronicFragment extends Fragment implements Subject {
 
         Button Diabetes = parent.findViewById(R.id.diabetes);
         Button Heart = parent.findViewById(R.id.Heart);
-        Diabetes.setOnClickListener(new View.OnClickListener(){
+        Diabetes.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 notifyObserver(new DiabetesDiagnosisFragment());
             }
         });
-        Heart.setOnClickListener(new View.OnClickListener(){
+        Heart.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 notifyObserver(new HeartDiagnoseFragment());
             }

@@ -15,6 +15,9 @@ import com.example.guavas.observer.Subject;
 
 import java.util.ArrayList;
 
+/**
+ * A fragment for the Search page.
+ */
 public class SearchFragment extends Fragment implements Subject, View.OnClickListener {
 
     private FragmentObserver observer;
@@ -22,6 +25,14 @@ public class SearchFragment extends Fragment implements Subject, View.OnClickLis
     public SearchFragment() {
     }
 
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,6 +44,10 @@ public class SearchFragment extends Fragment implements Subject, View.OnClickLis
         return parent;
     }
 
+    /**
+     * Sets up buttons to go to other fragment.
+     * @param v the clicked view.
+     */
     @Override
     public void onClick(View v) {
 

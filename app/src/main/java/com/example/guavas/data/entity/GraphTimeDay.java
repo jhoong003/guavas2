@@ -1,17 +1,31 @@
-package com.example.guavas.data;
+package com.example.guavas.data.entity;
 
 import java.util.Calendar;
 
 import androidx.annotation.Nullable;
 
+/**
+ * This class represents a day.
+ */
 public class GraphTimeDay extends GraphTime{
     private int day;
 
+    /**
+     * The constructor.
+     *
+     * @param year  the year to represent.
+     * @param month the month to represent.
+     * @param day the day to represent.
+     */
     public GraphTimeDay(int year, int month, int day){
         super(year, month);
         this.day = day;
     }
 
+    /**
+     * Gets the day.
+     * @return the day.
+     */
     public int getDay() {
         return day;
     }

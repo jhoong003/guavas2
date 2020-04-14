@@ -1,47 +1,43 @@
-package com.example.guavas;
+package com.example.guavas.activity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 //import android.support.design.widget.TabLayout;
 //import android.support.v4.view.ViewPager;
 //import android.support.v7.app.AppCompatActivity;
 //import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 
-
+/**
+ * This class is the main activity of the project. Upon starting the application, it will go to this main activity.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+    /**
+     * Directs user to Start Activity if the user is not signed in, else directs user to Navigation Activity
+     *
+     * @param savedInstanceState the saved state.
+     * @see StartActivity
+     * @see NavigationActivity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Check network connection
         if (!isNetworkConnected()) {
             Toast.makeText(this, "No Internet connection!", Toast.LENGTH_SHORT).show();
         }
@@ -50,14 +46,18 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if (currentUser == null && account == null) {  // user is NOT signed in, go to StartActivity
+
+        // If user is NOT signed in, go to Start Activity else to Navigation Activity
+        if (currentUser == null && account == null) {
             toStartActivity();
-        }
-        else{
+        } else {
             toNavigationActivity();
         }
     }
 
+    /**
+     * When the application starts, inform the user if the device is not connected to the internet.
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -66,19 +66,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    private void toStartActivity(){
+    /**
+     * Go to Start Activity
+     */
+    private void toStartActivity() {
         Intent startIntent = new Intent(MainActivity.this, StartActivity.class);
         startActivity(startIntent);
         finish();
     }
 
-    private void toNavigationActivity(){
+    /**
+     * Go to Navigation Activity
+     */
+    private void toNavigationActivity() {
         Intent startIntent = new Intent(MainActivity.this, NavigationActivity.class);
         startActivity(startIntent);
         finish();
     }
 
+    /**
+     * Checks if the device is connected to the internet.
+     *
+     * @return <code>true</code> if the device is connected to the internet.
+     */
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
 

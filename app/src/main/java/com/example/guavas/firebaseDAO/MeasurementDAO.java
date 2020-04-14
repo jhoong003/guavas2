@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.example.guavas.data.DataType;
+import com.example.guavas.data.entity.DataType;
 import com.example.guavas.data.model.MedicalRecord;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -21,26 +21,37 @@ import java.util.List;
 import java.util.Optional;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
+/**
+ * This class holds the logic for saving data to the database via firebase.
+ */
 public class MeasurementDAO implements MedsDAO {
 
     private Context context;
     private DataType dataType;
     private String key;
 
-    public MeasurementDAO(Context userContext, DataType dataType){
+    /**
+     * The constructor of the class.
+     *
+     * @param userContext the context that calls the class.
+     * @param dataType    the medical data type to save.
+     */
+    public MeasurementDAO(Context userContext, DataType dataType) {
         context = userContext;
         this.dataType = dataType;
         initKey();
     }
 
-    private void initKey(){
+    /**
+     * Gets the appropriate key for the database.
+     */
+    private void initKey() {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(context);
-        if (account == null){
+        if (account == null) {
             SharedPreferences preferences = context.getApplicationContext().getSharedPreferences("USER_PREF", Context.MODE_PRIVATE);
             key = preferences.getString("phoneNumber", null);
-        }else{
+        } else {
             key = account.getDisplayName();
         }
     }
@@ -55,6 +66,11 @@ public class MeasurementDAO implements MedsDAO {
         return null;
     }
 
+    /**
+     * Save the medical record to the database.
+     *
+     * @param o the medical record.
+     */
     @Override
     public void save(Object o) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference(key);
@@ -65,9 +81,9 @@ public class MeasurementDAO implements MedsDAO {
 
             String randomKey = reference.push().getKey();
             reference.child(dataType.getDataTypeName()).child(randomKey).setValue(medicalRecord);
-        }else{
-            if (o instanceof Integer){
-                reference.child(dataType.getDataTypeName()).setValue((Integer)o);
+        } else {
+            if (o instanceof Integer) {
+                reference.child(dataType.getDataTypeName()).setValue((Integer) o);
             }
         }
     }
@@ -77,6 +93,11 @@ public class MeasurementDAO implements MedsDAO {
 
     }
 
+    /**
+     * Removes the medical record from the database.
+     *
+     * @param o the medical record to remove.
+     */
     @Override
     public void delete(Object o) {
         final MedicalRecord recordToRemove = (MedicalRecord) o;
@@ -89,7 +110,7 @@ public class MeasurementDAO implements MedsDAO {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     MedicalRecord record = snapshot.getValue(MedicalRecord.class);
                     if (record.getMeasurement() == recordToRemove.getMeasurement()) {
                         snapshot.getRef().removeValue()

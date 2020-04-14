@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.guavas.R;
-import com.example.guavas.data.DataType;
+import com.example.guavas.data.entity.DataType;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DateFormat;
@@ -25,6 +25,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+/**
+ * A fragment to add a new measurement for a chosen medical data type.
+ */
 public class AddMeasurementFragment extends Fragment {
 
     public static final String DATATYPE_KEY = "datatypekey";
@@ -45,6 +48,11 @@ public class AddMeasurementFragment extends Fragment {
 
     }
 
+    /**
+     * Gets a new instance of this fragment.
+     * @param dataType the chosen medical data type.
+     * @return a new instance of this fragment.
+     */
     public static AddMeasurementFragment newInstance(DataType dataType) {
         Bundle args = new Bundle();
         args.putParcelable(DATATYPE_KEY, dataType);
@@ -53,6 +61,10 @@ public class AddMeasurementFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Retrieves data when created.
+     * @param savedInstanceState the state to retrieve.
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +72,14 @@ public class AddMeasurementFragment extends Fragment {
         if (args != null) dataType = args.getParcelable(DATATYPE_KEY);
     }
 
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,6 +93,10 @@ public class AddMeasurementFragment extends Fragment {
         return parent;
     }
 
+    /**
+     * Loads the last saved state.
+     * @param savedInstanceState the last saved state.
+     */
     private void loadPreviousState(Bundle savedInstanceState){
         if (savedInstanceState != null){
             dateText.setText(savedInstanceState.getString("date"));
@@ -81,11 +105,17 @@ public class AddMeasurementFragment extends Fragment {
         }
     }
 
+    /**
+     * Sets up the title with the medical data type.
+     */
     private void setupTitle(){
         TextView textView = parent.findViewById(R.id.text_data_type);
         textView.setText(dataType.getDataTypeName());
     }
 
+    /**
+     * Sets up a working close button.
+     */
     private void setupCloseButton(){
         ImageButton imageButton = (ImageButton)parent.findViewById(R.id.image_button_close);
         imageButton.setOnClickListener(new View.OnClickListener(){
@@ -96,6 +126,9 @@ public class AddMeasurementFragment extends Fragment {
         });
     }
 
+    /**
+     * Sets up a working floating button that submits the form on click.
+     */
     private void setupFloatingButton(){
         FloatingActionButton floatingActionButton = parent.findViewById(R.id.fab_add_measurement);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +141,9 @@ public class AddMeasurementFragment extends Fragment {
         });
     }
 
+    /**
+     * Sets up the form to be filled.
+     */
     private void setupForm(){
         fillDefaultValue();
         setupDatePicker();
@@ -116,6 +152,9 @@ public class AddMeasurementFragment extends Fragment {
         measurementEditText.setHint(dataType.getMeasurementUnit());
     }
 
+    /**
+     * Sets the default value of date and time to the current time.
+     */
     private void fillDefaultValue(){
         calendar = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
         calendar.set(Calendar.SECOND, 0);
@@ -129,10 +168,18 @@ public class AddMeasurementFragment extends Fragment {
         setTextViewText(timeText, timeFormatter);
     }
 
+    /**
+     * Sets the time to current time
+     * @param textView the text view holding the current time
+     * @param dateFormat the format of the text.
+     */
     private void setTextViewText(TextView textView, DateFormat dateFormat){
         textView.setText(dateFormat.format(calendar.getTime()));
     }
 
+    /**
+     * Sets up a working DatePicker.
+     */
     private void setupDatePicker(){
         ImageButton editDateImageButton = (ImageButton) parent.findViewById(R.id.image_button_date);
         editDateImageButton.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +190,9 @@ public class AddMeasurementFragment extends Fragment {
         });
     }
 
+    /**
+     * Sets up a working TimePicker.
+     */
     private void setupTimePicker(){
         ImageButton editTimeImageButton = (ImageButton) parent.findViewById(R.id.image_button_time);
         editTimeImageButton.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +203,9 @@ public class AddMeasurementFragment extends Fragment {
         });
     }
 
+    /**
+     * Displays the DatePicker to the user.
+     */
     private void showDatePicker(){
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -166,6 +219,9 @@ public class AddMeasurementFragment extends Fragment {
         datePickerDialog.show();
     }
 
+    /**
+     * Displays the TimePicker to the user.
+     */
     private void showTimePicker(){
         TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
             @Override
@@ -178,6 +234,10 @@ public class AddMeasurementFragment extends Fragment {
         timePickerDialog.show();
     }
 
+    /**
+     * Checks if the form is valid.
+     * @return <code>true</code> if the form is valid.
+     */
     public boolean isValidForm(){
         if(!measurementEditText.getText().toString().isEmpty() &&
             calendar.getTimeInMillis() <= Calendar.getInstance().getTimeInMillis())
@@ -186,6 +246,10 @@ public class AddMeasurementFragment extends Fragment {
         return false;
     }
 
+    /**
+     * Save user input when the activity is recreated.
+     * @param outState the bundle containing the state.
+     */
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -194,10 +258,17 @@ public class AddMeasurementFragment extends Fragment {
         outState.putString("measurement", measurementEditText.getText().toString());
     }
 
+    /**
+     * Sets the activity to listen to the fragment.
+     * @param listener the activity listening to the fragment.
+     */
     public void setListener(Listener listener) {
         this.listener = listener;
     }
 
+    /**
+     * Interface for the activity that listens to this fragment.
+     */
     public interface Listener {
         public void onClickDone(View view, double measurement, long timeInMillis);
         public void onClickClose();

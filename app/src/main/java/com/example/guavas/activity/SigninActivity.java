@@ -1,4 +1,4 @@
-package com.example.guavas;
+package com.example.guavas.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.guavas.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -21,16 +22,12 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.Objects;
 
 /**
  * This activity controls the sign in features
  */
-
 public class SigninActivity extends AppCompatActivity {
 
     private TextInputEditText Phone;
@@ -42,15 +39,15 @@ public class SigninActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
 
 
+    /**
+     * Displays the Sign In page to the user. Sets up the buttons and other <code>Views</code>.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
-        //FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
         Phone = findViewById(R.id.phone);
-        TextInputEditText countryCode = findViewById(R.id.CountryCode);
         Button registerBtn = findViewById(R.id.signup_btn); //phone signin
 
         signInButton = findViewById(R.id.login_btn2); //google signin
@@ -91,27 +88,31 @@ public class SigninActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // [START on_start_sign_in]
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        // [END on_start_sign_in]
-    }
-
-
+    /**
+     * Signs the user in.
+     */
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
+    /**
+     * Checks if the phone number input is valid. The phone number must be a Singapore number.
+     *
+     * @param phone the phone number to check.
+     * @return <code>true</code> if the phone number is valid.
+     */
     private boolean isPhoneValid(String phone) {
         return (phone.length() == 8) && (phone.charAt(0) == '9' || phone.charAt(0) == '8');
     }
 
+    /**
+     * Handles result returned from launching the intent <code>GoogleSignInClient.geSignInIntent()</code>.
+     *
+     * @param requestCode the request code.
+     * @param resultCode  the result code.
+     * @param data        the intent.
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -125,6 +126,11 @@ public class SigninActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Handles the result of the sign in attempt. If sign in is successful, go to the Navigation Activity.
+     *
+     * @param completedTask the completed task.
+     */
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);

@@ -1,4 +1,5 @@
-package com.example.guavas;
+package com.example.guavas.activity;
+
 import androidx.annotation.NonNull;
 
 import android.content.Intent;
@@ -7,18 +8,17 @@ import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.guavas.R;
 import com.google.android.gms.tasks.Task;
 
 
-
-
 //x
-import android.app.ProgressDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +37,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This activity is the verification page.
+ */
 public class VerificationActivity extends AppCompatActivity {
 
     private String verificationId;
@@ -45,6 +48,11 @@ public class VerificationActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private TextInputEditText editText;
 
+    /**
+     * Sets up the user interface.
+     *
+     * @param savedInstanceState the saved state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,11 +93,21 @@ public class VerificationActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Verifies the inputted code.
+     *
+     * @param code the inputted code.
+     */
     private void verifyCode(String code) {
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
         signInWithCredential(credential);
     }
 
+    /**
+     * Verifies the inputted code with the generated code.
+     *
+     * @param credential the credential.
+     */
     private void signInWithCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -105,7 +123,7 @@ public class VerificationActivity extends AppCompatActivity {
                             startActivity(intent);
 
                         } else {
-                            Toast.makeText(VerificationActivity.this,"Verification failed.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(VerificationActivity.this, "Verification failed.", Toast.LENGTH_LONG).show();
                             //Toast.makeText(VerificationActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                         }
@@ -113,6 +131,11 @@ public class VerificationActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Sends the verification code to the phone number.
+     *
+     * @param number the phone number.
+     */
     private void sendVerificationCode(String number) {
         progressBar.setVisibility(View.VISIBLE);
         PhoneAuthProvider.getInstance().verifyPhoneNumber(

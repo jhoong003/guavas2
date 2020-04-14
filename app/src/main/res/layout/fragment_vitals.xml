@@ -4,13 +4,13 @@
     android:id="@+id/frame_layout_vital"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.VitalsFragment"
     android:background="@android:color/white"
-    android:clickable="true">
+    android:clickable="true"
+    tools:context=".fragment.VitalsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </FrameLayout>

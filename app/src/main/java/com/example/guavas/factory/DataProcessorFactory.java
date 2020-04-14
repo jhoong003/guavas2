@@ -7,15 +7,20 @@ import com.example.guavas.controller.WeeklyDataProcessor;
 import com.example.guavas.controller.YearlyDataProcessor;
 
 /**
- * This class is a factory class for instantiating DataProcessor
- * @author Sebastian
+ * This class is a factory class for instantiating DataProcessor.
  */
 public class DataProcessorFactory {
 
-    public static DataProcessor getDataProcessor(int option){
+    /**
+     * Creates a new <code>DataProcessor</code> object depending on the chosen option.
+     *
+     * @param option the option selected.
+     * @return the corresponding <code>DataProcessor</code> object.
+     */
+    public static DataProcessor getDataProcessor(int option) {
         DataProcessor dataProcessor = null;
 
-        switch(option){
+        switch (option) {
             case 0:
                 dataProcessor = new DailyDataProcessor();
                 break;

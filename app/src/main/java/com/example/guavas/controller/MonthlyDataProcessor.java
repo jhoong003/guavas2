@@ -1,7 +1,7 @@
 package com.example.guavas.controller;
 
-import com.example.guavas.data.GraphData;
-import com.example.guavas.data.GraphTime;
+import com.example.guavas.data.entity.GraphData;
+import com.example.guavas.data.entity.GraphTime;
 import com.example.guavas.data.model.MedicalRecord;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.data.Entry;
@@ -14,8 +14,17 @@ import java.util.Map;
 import java.util.TimeZone;
 import java.util.TreeMap;
 
+/**
+ * This class groups the data based on the month. The data is then displayed on the graph.
+ */
 public class MonthlyDataProcessor implements DataProcessor{
 
+    /**
+     * Processes the data by taking the average of all data in the same month.
+     *
+     * @param data the raw data to be processed.
+     * @return the processed data.
+     */
     @Override
     public ArrayList<Entry> processData(ArrayList<MedicalRecord> data) {
         ArrayList<Entry> entries = new ArrayList<>();
@@ -43,6 +52,13 @@ public class MonthlyDataProcessor implements DataProcessor{
         return entries;
     }
 
+    /**
+     * Creates the corresponding label for the x-axis. For example, the label is Mar 2020.
+     *
+     * @param value the value of the data.
+     * @param axis  the x-axis.
+     * @return the label for the corresponding data.
+     */
     @Override
     public String getAxisLabel(float value, AxisBase axis) {
         SimpleDateFormat format = new SimpleDateFormat("MMM yyyy");
@@ -51,6 +67,11 @@ public class MonthlyDataProcessor implements DataProcessor{
         return format.format(calendar.getTime());
     }
 
+    /**
+     * Returns the granularity between values.
+     *
+     * @return the granularity between values.
+     */
     @Override
     public float getGranularity() {
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());

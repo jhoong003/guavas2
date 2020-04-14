@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.guavas.R;
-import com.example.guavas.data.DataType;
+import com.example.guavas.data.entity.DataType;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
@@ -22,7 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 /**
- * This class is responsible for the creation of the line chart
+ * This fragment is responsible for the creation of the line chart
  */
 public class ViewDetailsGraphFragment extends Fragment {
 
@@ -35,9 +35,17 @@ public class ViewDetailsGraphFragment extends Fragment {
 
     private View parent;
 
-    public ViewDetailsGraphFragment(){}
+    public ViewDetailsGraphFragment() {
+    }
 
-    public static ViewDetailsGraphFragment newInstance(DataType dataType, ArrayList<Entry> entries){
+    /**
+     * Gets a new instance of the fragment.
+     *
+     * @param dataType the chosen medical data type.
+     * @param entries  the entries of the data.
+     * @return a new instance of the fragment.
+     */
+    public static ViewDetailsGraphFragment newInstance(DataType dataType, ArrayList<Entry> entries) {
         ViewDetailsGraphFragment fragment = new ViewDetailsGraphFragment();
         Bundle args = new Bundle();
         args.putParcelable(DATATYPE_KEY, dataType);
@@ -46,29 +54,45 @@ public class ViewDetailsGraphFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Sets up the data from the saved system state.
+     *
+     * @param savedInstanceState the saved system state.
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
-        if (args != null){
+        if (args != null) {
             dataType = args.getParcelable(DATATYPE_KEY);
             entries = args.getParcelableArrayList(ENTRY_KEY);
         }
     }
 
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        parent =  inflater.inflate(R.layout.fragment_view_details_graph, container, false);
+        parent = inflater.inflate(R.layout.fragment_view_details_graph, container, false);
         setupGraph();
         return parent;
     }
 
-    private void setupGraph(){
+    /**
+     * Attach the data to the graph.
+     */
+    private void setupGraph() {
         LineChart mChart = parent.findViewById(R.id.line_chart);
         mChart.getDescription().setEnabled(false);
         mChart.setDragEnabled(true);
-        mChart.zoom(1.2f,1f, mChart.getCenter().getX(), mChart.getCenter().getY());
+        mChart.zoom(1.2f, 1f, mChart.getCenter().getX(), mChart.getCenter().getY());
         adjustGraphAxis(mChart);
 
         LineDataSet dataSet = new LineDataSet(entries, dataType.getDataTypeName());
@@ -78,6 +102,11 @@ public class ViewDetailsGraphFragment extends Fragment {
         mChart.invalidate();
     }
 
+    /**
+     * Sets up the graph axis.
+     *
+     * @param chart the line chart.
+     */
     private void adjustGraphAxis(LineChart chart) {
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -86,7 +115,7 @@ public class ViewDetailsGraphFragment extends Fragment {
         xAxis.setGranularity(listener.getGranularity());
         if (!entries.isEmpty()) {
             xAxis.setAxisMinimum(entries.get(0).getX());
-            xAxis.setAxisMaximum(entries.get(entries.size()-1).getX());
+            xAxis.setAxisMaximum(entries.get(entries.size() - 1).getX());
         }
         xAxis.setLabelCount(entries.size(), false);
         xAxis.setValueFormatter(new XAxisFormatter());
@@ -97,15 +126,27 @@ public class ViewDetailsGraphFragment extends Fragment {
         yAxis.setEnabled(false);
     }
 
+    /**
+     * Connects with <code>ViewDetailsContentFragment</code>.
+     *
+     * @param listener <code>ViewDetailsContentFragment</code>.
+     */
     public void setListener(Listener listener) {
         this.listener = listener;
     }
 
-    public interface Listener{
+    /**
+     * Interface to connect with <code>ViewDetailsContentFragment</code>.
+     */
+    public interface Listener {
         public float getGranularity();
+
         public String getAxisLabel(float value, AxisBase axis);
     }
 
+    /**
+     * A custom x-axis formatter.
+     */
     private class XAxisFormatter extends ValueFormatter {
         @Override
         public String getAxisLabel(float value, AxisBase axis) {

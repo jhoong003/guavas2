@@ -23,6 +23,9 @@ import static com.example.guavas.fragment.HospitalFragment.TELEPHONE;
 import static com.example.guavas.fragment.HospitalFragment.DESCRIPTION;
 import static com.example.guavas.fragment.HospitalFragment.IMGURL;
 
+/**
+ * A fragment that displays the details of a hospital.
+ */
 public class HospitalInfoFragment extends Fragment implements Subject {
 
     private static final String TAG = "HospitalInfoActivity";
@@ -34,6 +37,16 @@ public class HospitalInfoFragment extends Fragment implements Subject {
     public HospitalInfoFragment() {
     }
 
+    /**
+     * Gets a new instance of this fragment.
+     *
+     * @param name      the name of the hospital.
+     * @param address   the address of the hospital.
+     * @param desc      the description of the hospital.
+     * @param telephone the phone number of the hospital.
+     * @param imgURL    the image id of the hospital.
+     * @return a new instance of this fragment.
+     */
     public static HospitalInfoFragment newInstance(String name, String address, String desc, String telephone, int imgURL) {
 
         Bundle args = new Bundle();
@@ -47,12 +60,20 @@ public class HospitalInfoFragment extends Fragment implements Subject {
         return fragment;
     }
 
+    /**
+     * Inflates layout and setup the fragment.
+     *
+     * @param inflater           the inflater.
+     * @param container          the container.
+     * @param savedInstanceState the saved state.
+     * @return the user interface.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         parent = inflater.inflate(R.layout.fragment_hospital_info, container, false);
 
-        ActionBar toolbar = (ActionBar) ((AppCompatActivity)getActivity()).getSupportActionBar();
+        ActionBar toolbar = (ActionBar) ((AppCompatActivity) getActivity()).getSupportActionBar();
         toolbar.setTitle("Information");
         toolbar.setDisplayHomeAsUpEnabled(true);
 

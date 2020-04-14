@@ -10,6 +10,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This class holds the logic for saving rating to the database via firebase.
+ */
 public class RatingDAO implements com.example.guavas.firebaseDAO.MedsDAO<UserRatingData> {
     private DatabaseReference mDatabase;
 
@@ -24,6 +27,10 @@ public class RatingDAO implements com.example.guavas.firebaseDAO.MedsDAO<UserRat
         return null;
     }
 
+    /**
+     * Saves rating to the database.
+     * @param userRatingData the rating to save.
+     */
     @Override
     public void save(UserRatingData userRatingData) {
         mDatabase = FirebaseDatabase.getInstance().getReference("user-rating");
@@ -32,8 +39,6 @@ public class RatingDAO implements com.example.guavas.firebaseDAO.MedsDAO<UserRat
 
     @Override
     public void update(UserRatingData userRatingData, String[] params) {
-        mDatabase = FirebaseDatabase.getInstance().getReference("user-rating");
-        mDatabase.child(userRatingData.getUserID()).setValue(userRatingData.getUserRating());
     }
 
     @Override
