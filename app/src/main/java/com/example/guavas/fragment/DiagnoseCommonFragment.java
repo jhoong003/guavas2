@@ -186,7 +186,7 @@ public class DiagnoseCommonFragment extends Fragment implements Subject, View.On
         itemLists.add(new ItemList("Blister",""));
         itemLists.add(new ItemList("Red sore around nose",""));
         itemLists.add(new ItemList("Yellow crust ooze",""));
-        Collections.sort(itemLists);
+        //Collections.sort(itemLists);
 
         recyclerView = parent.findViewById(R.id.RecycleViews);
         recyclerView.setHasFixedSize(true);
